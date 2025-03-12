@@ -1694,7 +1694,7 @@ const commonExportChart = {
 const commonLanguage = {
     saveDictionaryToIndexedDB: (language_code) => {
         return new Promise((resolve, reject) => {
-            apiHelper.get(`dictionary`, { },
+            apiHelper.get(`dictionary`, {},
                 function (response) {
                     // Lưu dictionary vào IndexedDB
                     commonLanguage.storeDictionary(response.data, language_code).then(() => {
@@ -1783,7 +1783,8 @@ const commonLanguage = {
                 if (dictionary[key] && dictionary[key][selectedLanguage]) {
                     element.textContent = dictionary[key][selectedLanguage]; // Gán giá trị dịch
                 } else {
-                    element.textContent = dictionary[key]?.["vn"] || dictionary[key];
+                    if (dictionary[key]?.[selectedLanguage] != null)
+                        element.textContent = dictionary[key]?.["vn"] || key;
                 }
             });
 
