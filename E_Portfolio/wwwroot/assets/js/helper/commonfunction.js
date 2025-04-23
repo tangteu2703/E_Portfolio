@@ -1707,7 +1707,7 @@ const commonLanguage = {
 
                     // Lưu danh sách ngôn ngữ vào localStorage
                     if (response.listLanguage) {
-                        localStorage.setItem('listLanguage', JSON.stringify(response.listLanguage));
+                        localStorage.setItem('list_Language', JSON.stringify(response.listLanguage));
                         console.log("ListLanguage saved to localStorage", moment().format('DD-MM-YYYY HH:mm:ss'));
                     } else {
                         console.warn('No listLanguage found in the response');
