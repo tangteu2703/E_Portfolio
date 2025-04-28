@@ -169,13 +169,13 @@ async function configIfTokenExpired() {
                             } else {
                                 localStorage.removeItem('e_atoken');
                                 localStorage.removeItem('e_rtoken');
-                                window.location.href = '/Auth';
+                                window.location.href = '/Login';
                                 reject('Access token not found in response');
                             }
                         },
                         function (error) {
                             console.error('Exception Error:', error);
-                            window.location.href = '/Auth';
+                            window.location.href = '/Login';
                             reject(error);
                         },
                         false
