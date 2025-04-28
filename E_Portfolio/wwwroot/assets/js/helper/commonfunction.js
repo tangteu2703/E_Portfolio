@@ -292,13 +292,13 @@ const commonExtension = {
                                 } else {
                                     localStorage.removeItem('e_atoken');
                                     localStorage.removeItem('e_rtoken');
-                                    window.location.href = '/Auth';
+                                    window.location.href = '/Login';
                                     reject('Access token not found in response');
                                 }
                             },
                             function (error) {
                                 console.error('Exception Error:', error);
-                                window.location.href = '/Auth';
+                                window.location.href = '/Login';
                                 reject(error);
                             },
                             false
@@ -1694,7 +1694,7 @@ const commonExportChart = {
 const commonLanguage = {
     saveDictionaryToIndexedDB: (language_code) => {
         return new Promise((resolve, reject) => {
-            apiHelper.get(`dictionary`, { },
+            apiHelper.get(`/dictionary`, {},
                 function (response) {
                     // Lưu dictionary vào IndexedDB
                     commonLanguage.storeDictionary(response.data, language_code).then(() => {
@@ -1707,7 +1707,7 @@ const commonLanguage = {
 
                     // Lưu danh sách ngôn ngữ vào localStorage
                     if (response.listLanguage) {
-                        localStorage.setItem('listLanguage', JSON.stringify(response.listLanguage));
+                        localStorage.setItem('list_Language', JSON.stringify(response.listLanguage));
                         console.log("ListLanguage saved to localStorage", moment().format('DD-MM-YYYY HH:mm:ss'));
                     } else {
                         console.warn('No listLanguage found in the response');
@@ -1783,7 +1783,8 @@ const commonLanguage = {
                 if (dictionary[key] && dictionary[key][selectedLanguage]) {
                     element.textContent = dictionary[key][selectedLanguage]; // Gán giá trị dịch
                 } else {
-                    element.textContent = dictionary[key]?.["vn"] || dictionary[key];
+                    if (dictionary[key]?.[selectedLanguage] != null)
+                        element.textContent = dictionary[key]?.["vn"] || key;
                 }
             });
 

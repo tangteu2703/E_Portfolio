@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>E_Portal</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="~/assets/img/logo/logo_t.png" rel="icon" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="~/assets/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet" />
+    <link href="~/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+          rel="stylesheet" />
+    <link href="~/assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="~/assets/vendor/glightbox/css/glightbox.min.css"
+          rel="stylesheet" />
+    <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <!-- Main CSS File -->
+    <link href="~/assets/css/main.css" rel="stylesheet" />
+
+</head>
+
+<body class="index-page">
+    <div class="dropdown language-dropdown" style="position: fixed;z-index: 20; top: 18px;right: 66px;">
+        <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-globe"></i> <span id="selected-lang">Tiếng Việt</span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="languageDropdown" translate="no">
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('vn', 'Tiếng Việt')">🇻🇳 Vietnamese (Tiếng Việt)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('en', 'English')">🇬🇧 English</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('fr', 'Français')">🇫🇷 French (Français)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('ja', '日本語')">🇯🇵 Japanese (日本語)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('ko', '한국어')">🇰🇷 Korean (한국어)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('zh', '简体中文')">🇨🇳 Chinese (简体中文)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('es', 'Español')">🇪🇸 Spanish (Español)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('de', 'Deutsch')">🇩🇪 German (Deutsch)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('th', 'ไทย')">🇹🇭 Thai (ไทย)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('ru', 'Русский')">🇷🇺 Russian (Русский)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('ar', 'العربية')">🇸🇦 Arabic (العربية)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('it', 'Italiano')">🇮🇹 Italian (Italiano)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('pt', 'Português')">🇵🇹 Portuguese (Português)</a></li>
+            <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi', 'हिन्दी')">🇮🇳 Hindi (हिन्दी)</a></li>
+        </ul>
+    </div>
+    <header id="header" class="header dark-background d-flex flex-column">
+        <i class="header-toggle d-xl-none bi bi-list"></i>
+
+        <div class="m-3 profile-video d-flex justify-content-center align-items-center">
+            <div class="video-wrapper">
+                <video class="video-content" autoplay loop muted playsinline>
+                    <source src="~/assets/img/video/oanh.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <a href="/"
+           class="logo d-flex align-items-center justify-content-center">
+            <h1 class="sitename">Đỗ Văn Tăng</h1>
+        </a>
+
+        <div class="social-links text-center">
+            <a href="https://www.facebook.com/tang.teu.9/" target="_blank" class="facebook">
+                <i class="bi bi-facebook"></i>
+            </a>
+            <a href="#" class="instagram">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="tel:0732318185" class="phone">
+                <i class="bi bi-telephone"></i>
+            </a>
+        </div>
+
+        <nav id="navmenu" class="navmenu">
+            <ul>
+                @* <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i> <span data-i18n="home">Trang chủ</span></a></li> *@
+                <li><a href="#about"><i class="bi bi-person navicon"></i> <span data-i18n="about">Giới thiệu</span></a></li>
+                <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> <span data-i18n="work">Kinh nghiệm làm việc</span></a></li>
+                <li><a href="#portfolio"><i class="bi bi-images navicon"></i> <span data-i18n="life">Đời sống</span></a></li>
+                <li><a href="#testimonials"><i class="bi bi-envelope navicon"></i> <span data-i18n="philosophy">Triết lý sống</span></a></li>
+                <li><a href="/"><i class="bi bi-house navicon"></i> <span data-i18n="center">Trung tâm</span></a></li>
+                <li><a href="/login" class="logout-btn"><i class="bi bi-box-arrow-right navicon"></i> <span data-i18n="logout">Đăng xuất</span></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+        @RenderBody()
+    </main>
+    <!-- Scroll Top -->
+    <a href="#"
+       id="scroll-top"
+       class="scroll-top d-flex align-items-center justify-content-center">
+        <i class="bi bi-arrow-up-short"></i>
+    </a>
+    <!-- Phần ẩn chứa translate tool -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Preloader -->
+    <div id="preloader"></div>
+
+    <script src="~/assets/lib/jquery-3.7.1.min.js"></script>
+
+    <!-- Vendor JS Files -->
+    <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/vendor/php-email-form/validate.js"></script>
+    <script src="~/assets/vendor/aos/aos.js"></script>
+    <script src="~/assets/vendor/typed.js/typed.umd.js"></script>
+    <script src="~/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="~/assets/vendor/waypoints/noframework.waypoints.js"></script>
+    <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="~/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+    <script src="~/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="~/assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/assets/js/helper/commonfunction.js"></script>
+    <script src="~/assets/js/helper/apihelper.js"></script>
+
+    <!-- Main JS File -->
+    <script src="~/assets/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

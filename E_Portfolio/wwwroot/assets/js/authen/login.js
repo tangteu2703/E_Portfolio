@@ -68,7 +68,7 @@ const login = async () => {
                 var response = res.data;
                 localStorage.setItem('e_atoken', response.access_token || null);
                 localStorage.setItem('e_rtoken', response.refresh_token || null);
-                localStorage.setItem('e_language', 'vi');
+                localStorage.setItem('e_language', 'vn');
                
                 window.location.href = "/";
                 // Khôi phục lại nút Login

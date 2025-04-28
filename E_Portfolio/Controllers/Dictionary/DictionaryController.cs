@@ -21,10 +21,21 @@ namespace E_Portfolio.Controllers.Dictionary
         {
             try
             {
+                var listLanguage = new List<object>
+                {
+                    new { Code = "vn", Name = "Tiếng Việt" },
+                    new { Code = "en", Name = "English" },
+                    new { Code = "fr", Name = "Français" },
+                    new { Code = "ja", Name = "日本語" },
+                    new { Code = "ko", Name = "한국어" },
+                    new { Code = "zh", Name = "简体中文" },
+                };
                 var list = (await _serviceWrapper.DataDictionary.SelectAllAsync()).OrderByDescending(x => x.id);
+               
                 return Json(new
                 {
                     data = list,
+                    listLanguage = listLanguage
                 });
             }
             catch (Exception ex)

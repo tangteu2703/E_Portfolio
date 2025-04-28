@@ -11,9 +11,9 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 #region add connection string
-var cmsConnection = builder.Configuration.GetConnectionString("CMSConnection");
-if (cmsConnection != null)
-    Connection.AddConnectionString("CMSConnection", cmsConnection);
+var PortfolioConnection = builder.Configuration.GetConnectionString("PortfolioConnection");
+if (PortfolioConnection != null)
+    Connection.AddConnectionString("PortfolioConnection", PortfolioConnection);
 #endregion add connection string
 
 // Add services to the container.

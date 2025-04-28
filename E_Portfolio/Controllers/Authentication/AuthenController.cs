@@ -55,7 +55,6 @@ namespace E_Portfolio.Controllers.Authentication
             }
         }
 
-
         [HttpPost]
         [Route("ChangePassword")]
         public async Task<ContentResult> ChangePassword([FromBody] ChangePasswordItemRequest data)
