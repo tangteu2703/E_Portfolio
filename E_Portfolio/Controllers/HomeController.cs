@@ -16,5 +16,9 @@ namespace E_Portfolio.Controllers
         {
             return View();
         }
+        public IActionResult Portfolio()
+        {
+            return View();
+        }
     }
 }

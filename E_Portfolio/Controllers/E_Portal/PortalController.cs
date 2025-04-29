@@ -13,7 +13,27 @@ namespace E_Portfolio.Controllers.Portal
         {
             return View();
         }
-        public IActionResult Portfolio()
+        public IActionResult Video()
+        {
+            return View();
+        }
+        public IActionResult Calendar()
+        {
+            return View();
+        }
+        public IActionResult Tasks()
+        {
+            return View();
+        }
+        public IActionResult Chats()
+        {
+            return View();
+        }
+        public IActionResult Users()
+        {
+            return View();
+        }
+        public IActionResult Menu()
         {
             return View();
         }
