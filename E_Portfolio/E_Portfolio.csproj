@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\assetsPortal\media\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\features-logos\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\framework-logos\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\icons\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\icons\duotune\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\stock\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\svg\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\svg\illustrations\.DS_Store" />
+    <None Include="wwwroot\assetsPortal\media\svg\illustrations\sigma\.DS_Store" />
     <None Include="wwwroot\assets\.DS_Store" />
   </ItemGroup>
 
