@@ -9,15 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\assetsPortal\media\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\features-logos\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\framework-logos\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\icons\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\icons\duotune\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\stock\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\svg\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\svg\illustrations\.DS_Store" />
-    <None Include="wwwroot\assetsPortal\media\svg\illustrations\sigma\.DS_Store" />
+    <Compile Remove="wwwroot\assetsPortal\media\**" />
+    <Content Remove="wwwroot\assetsPortal\media\**" />
+    <EmbeddedResource Remove="wwwroot\assetsPortal\media\**" />
+    <None Remove="wwwroot\assetsPortal\media\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\assets\.DS_Store" />
   </ItemGroup>
 
@@ -32,6 +30,10 @@
     <ProjectReference Include="..\E_Contract\E_Contract.csproj" />
     <ProjectReference Include="..\E_Repository\E_Repository.csproj" />
     <ProjectReference Include="..\E_Service\E_Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\gojs\" />
   </ItemGroup>
 
 </Project>

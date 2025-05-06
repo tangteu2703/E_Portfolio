@@ -9,10 +9,6 @@ namespace E_Portfolio.Controllers.Portal
             return View();
         }
         #region Portal
-        public IActionResult Portal()
-        {
-            return View();
-        }
         public IActionResult Video()
         {
             return View();
@@ -21,7 +17,7 @@ namespace E_Portfolio.Controllers.Portal
         {
             return View();
         }
-        public IActionResult Tasks()
+        public IActionResult Salary()
         {
             return View();
         }
@@ -34,6 +30,10 @@ namespace E_Portfolio.Controllers.Portal
             return View();
         }
         public IActionResult Menu()
+        {
+            return View();
+        }
+        public IActionResult Organize()
         {
             return View();
         }

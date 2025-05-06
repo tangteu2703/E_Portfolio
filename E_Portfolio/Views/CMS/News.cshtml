@@ -1,0 +1,778 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout_CMS.cshtml";
+	ViewData["Title"] = "E - News";
+}
+
+<div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+	<!--begin::Content wrapper-->
+	<div class="d-flex flex-column flex-column-fluid">
+
+		<!--begin::Toolbar-->
+		<div id="kt_app_toolbar" class="app-toolbar  pt-5 ">
+
+			<!--begin::Toolbar container-->
+			<div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+				<!--begin::Toolbar wrapper-->
+				<div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+
+					<!--begin::Page title-->
+					<div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+						<!--begin::Breadcrumb-->
+						<ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+
+							<!--begin::Item-->
+							<li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+								<a href="/saul-html-pro/index.html" class="text-gray-500 text-hover-primary">
+									<i class="ki-duotone ki-home fs-3 text-gray-500 me-n1"></i>
+								</a>
+							</li>
+							<!--end::Item-->
+							<!--begin::Item-->
+							<li class="breadcrumb-item">
+								<i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+							</li>
+							<!--end::Item-->
+							<!--begin::Item-->
+							<li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+								Tin tức
+							</li>
+							<!--end::Item-->
+						</ul>
+						<!--end::Breadcrumb-->
+						<!--begin::Title-->
+						<h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
+							Tin tức
+						</h1>
+						<!--end::Title-->
+					</div>
+					<!--end::Page title-->
+					<!--begin::Filter-->
+					<div class="w-150px me-3">
+						<!--begin::Select2-->
+						<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
+							<option></option>
+							<option value="all">All</option>
+							<option value="active">Active</option>
+							<option value="locked">Locked</option>
+						</select>
+						<!--end::Select2-->
+					</div>
+					<!--end::Filter-->
+				</div>
+				<!--end::Toolbar wrapper-->
+			</div>
+			<!--end::Toolbar container-->
+		</div>
+		<!--end::Toolbar-->
+		<!--begin::Content-->
+		<div id="kt_app_content" class="app-content  flex-column-fluid ">
+			<!--begin::Content container-->
+			<div id="kt_app_content_container" class="app-container  container-fluid ">
+				<!--begin::Card-->
+				<div class="card">
+					<!--begin::Card header-->
+					<div class="card-header border-0 pt-6">
+						<!--begin::Card title-->
+						<div class="card-title">
+							<!--begin::Search-->
+							<div class="d-flex align-items-center position-relative my-1">
+								<i class="ki-duotone ki-magnifier fs-3 position-absolute ms-5"><span class="path1"></span><span class="path2"></span></i>
+								<input type="text" data-kt-user-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search user">
+							</div>
+							<!--end::Search-->
+						</div>
+						<!--begin::Card title-->
+						<!--begin::Card toolbar-->
+						<div class="card-toolbar">
+							<!--begin::Toolbar-->
+							<div class="d-flex justify-content-end" data-kt-user-table-toolbar="base">
+								<!--begin::Filter-->
+								<div class="w-150px me-3">
+									<!--begin::Select2-->
+									<select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Status" data-kt-ecommerce-order-filter="status">
+										<option></option>
+										<option value="all">All</option>
+										<option value="active">Active</option>
+										<option value="locked">Locked</option>
+									</select>
+									<!--end::Select2-->
+								</div>
+								<!--end::Filter-->
+								<!--begin::Add user-->
+								<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user">
+									<i class="ki-duotone ki-plus fs-2"></i>      
+									Add User
+								</button>
+								<!--end::Add user-->
+							</div>
+							<!--end::Toolbar-->
+							<!--begin::Group actions-->
+							<div class="d-flex justify-content-end align-items-center d-none" data-kt-user-table-toolbar="selected">
+								<div class="fw-bold me-5">
+									<span class="me-2" data-kt-user-table-select="selected_count"></span> Selected
+								</div>
+
+								<button type="button" class="btn btn-danger" data-kt-user-table-select="delete_selected">
+									Delete Selected
+								</button>
+							</div>
+							<!--end::Group actions-->
+						</div>
+						<!--end::Card toolbar-->
+					</div>
+					<!--end::Card header-->
+					<!--begin::Card body-->
+					<div class="card-body py-4">
+						<!--begin::Table-->
+						<div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+							<div id="" class="table-responsive">
+								<table class="table align-middle table-row-dashed fs-6 gy-5 dataTable" id="kt_table_users" style="width: 100%;">
+									<colgroup><col data-dt-column="0" style="width: 36.4px;"><col data-dt-column="1" style="width: 192.45px;"><col data-dt-column="2" style="width: 153.163px;"><col data-dt-column="3" style="width: 153.163px;"><col data-dt-column="4" style="width: 153.163px;"><col data-dt-column="5" style="width: 213.512px;"><col data-dt-column="6" style="width: 128.85px;"></colgroup>
+									<thead>
+										<tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0" role="row">
+											<th class="w-10px pe-2 dt-orderable-none" data-dt-column="0" rowspan="1" colspan="1" aria-label="">
+												<span class="dt-column-title">
+													<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+														<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1">
+													</div>
+												</span>
+												<span class="dt-column-order"></span>
+											</th>
+											<th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="1" rowspan="1" colspan="1" aria-label="User: Activate to sort" tabindex="0"><span class="dt-column-title" role="button">User</span><span class="dt-column-order"></span></th>
+											<th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="2" rowspan="1" colspan="1" aria-label="Role: Activate to sort" tabindex="0"><span class="dt-column-title" role="button">Role</span><span class="dt-column-order"></span></th>
+											<th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="3" rowspan="1" colspan="1" aria-label="Last login: Activate to sort" tabindex="0"><span class="dt-column-title" role="button">Last login</span><span class="dt-column-order"></span></th>
+											<th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="4" rowspan="1" colspan="1" aria-label="Two-step : Activate to sort" tabindex="0"><span class="dt-column-title" role="button">Two-step </span><span class="dt-column-order"></span></th>
+											<th class="min-w-125px dt-orderable-asc dt-orderable-desc" data-dt-column="5" rowspan="1" colspan="1" aria-label="Joined Date: Activate to sort" tabindex="0"><span class="dt-column-title" role="button">Joined Date</span><span class="dt-column-order"></span></th>
+											<th class="text-end min-w-100px dt-orderable-none" data-dt-column="6" rowspan="1" colspan="1" aria-label="Actions"><span class="dt-column-title">Actions</span><span class="dt-column-order"></span></th>
+										</tr>
+									</thead>
+									<tbody class="text-gray-600 fw-semibold">
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-6.jpg" alt="Emma Smith" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Emma Smith</a>
+													<span>smith@kpmg.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Administrator
+											</td>
+											<td data-order="2025-05-05T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">Yesterday</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-05-05T10:30:00+07:00">
+												05 May 2025, 10:30 am
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true" style="">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label fs-3 bg-light-danger text-danger">
+															M
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Melody Macy</a>
+													<span>melody@altbox.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Analyst
+											</td>
+											<td data-order="2025-05-06T08:00:22+07:00">
+												<div class="badge badge-light fw-bold">20 mins ago</div>
+											</td>
+											<td>
+												<div class="badge badge-light-success fw-bold">Enabled</div>
+											</td>
+											<td data-order="2025-12-20T18:05:00+07:00">
+												20 Dec 2025, 6:05 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-1.jpg" alt="Max Smith" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Max Smith</a>
+													<span>max@kt.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Developer
+											</td>
+											<td data-order="2025-05-03T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">3 days ago</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-08-19T22:10:00+07:00">
+												19 Aug 2025, 10:10 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-5.jpg" alt="Sean Bean" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Sean Bean</a>
+													<span>sean@dellito.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Support
+											</td>
+											<td data-order="2025-05-06T03:20:22+07:00">
+												<div class="badge badge-light fw-bold">5 hours ago</div>
+											</td>
+											<td>
+												<div class="badge badge-light-success fw-bold">Enabled</div>
+											</td>
+											<td data-order="2025-06-20T11:30:00+07:00">
+												20 Jun 2025, 11:30 am
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-25.jpg" alt="Brian Cox" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Brian Cox</a>
+													<span>brian@exchange.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Developer
+											</td>
+											<td data-order="2025-05-04T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">2 days ago</div>
+											</td>
+											<td>
+												<div class="badge badge-light-success fw-bold">Enabled</div>
+											</td>
+											<td data-order="2025-07-25T18:05:00+07:00">
+												25 Jul 2025, 6:05 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label fs-3 bg-light-warning text-warning">
+															C
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Mikaela Collins</a>
+													<span>mik@pex.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Administrator
+											</td>
+											<td data-order="2025-05-01T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">5 days ago</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-11-10T17:30:00+07:00">
+												10 Nov 2025, 5:30 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-9.jpg" alt="Francis Mitcham" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Francis Mitcham</a>
+													<span>f.mit@kpmg.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Trial
+											</td>
+											<td data-order="2025-04-15T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">3 weeks ago</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-11-10T06:43:00+07:00">
+												10 Nov 2025, 6:43 am
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label fs-3 bg-light-danger text-danger">
+															O
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Olivia Wild</a>
+													<span>olivia@corpmail.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Administrator
+											</td>
+											<td data-order="2025-05-05T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">Yesterday</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-11-10T17:20:00+07:00">
+												10 Nov 2025, 5:20 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label fs-3 bg-light-primary text-primary">
+															N
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Neil Owen</a>
+													<span>owen.neil@gmail.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Analyst
+											</td>
+											<td data-order="2025-05-06T08:00:22+07:00">
+												<div class="badge badge-light fw-bold">20 mins ago</div>
+											</td>
+											<td>
+												<div class="badge badge-light-success fw-bold">Enabled</div>
+											</td>
+											<td data-order="2025-06-24T18:05:00+07:00">
+												24 Jun 2025, 6:05 pm
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<div class="form-check form-check-sm form-check-custom form-check-solid">
+													<input class="form-check-input" type="checkbox" value="1">
+												</div>
+											</td>
+											<td class="d-flex align-items-center">
+												<!--begin:: Avatar -->
+												<div class="symbol symbol-circle symbol-50px overflow-hidden me-3">
+													<a href="/saul-html-pro/apps/user-management/users/view.html">
+														<div class="symbol-label">
+															<img src="/saul-html-pro/assets/media/avatars/300-23.jpg" alt="Dan Wilson" class="w-100">
+														</div>
+													</a>
+												</div>
+												<!--end::Avatar-->
+												<!--begin::User details-->
+												<div class="d-flex flex-column">
+													<a href="/saul-html-pro/apps/user-management/users/view.html" class="text-gray-800 text-hover-primary mb-1">Dan Wilson</a>
+													<span>dam@consilting.com</span>
+												</div>
+												<!--begin::User details-->
+											</td>
+											<td>
+												Developer
+											</td>
+											<td data-order="2025-05-03T08:20:22+07:00">
+												<div class="badge badge-light fw-bold">3 days ago</div>
+											</td>
+											<td>
+											</td>
+											<td data-order="2025-12-20T11:30:00+07:00">
+												20 Dec 2025, 11:30 am
+											</td>
+											<td class="text-end">
+												<a href="#" class="btn btn-light btn-active-light-primary btn-flex btn-center btn-sm" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+													Actions
+													<i class="ki-duotone ki-down fs-5 ms-1"></i>
+												</a>
+												<!--begin::Menu-->
+												<div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="/saul-html-pro/apps/user-management/users/view.html" class="menu-link px-3">
+															Edit
+														</a>
+													</div>
+													<!--end::Menu item-->
+													<!--begin::Menu item-->
+													<div class="menu-item px-3">
+														<a href="#" class="menu-link px-3" data-kt-users-table-filter="delete_row">
+															Delete
+														</a>
+													</div>
+													<!--end::Menu item-->
+												</div>
+												<!--end::Menu-->
+											</td>
+										</tr>
+									</tbody>
+									<tfoot></tfoot>
+								</table>
+							</div>
+							<div id="" class="row">
+								<div id="" class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start dt-toolbar"></div>
+								<div id="" class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
+									<div class="dt-paging paging_simple_numbers">
+										<nav>
+											<ul class="pagination">
+												<li class="dt-paging-button page-item disabled">
+													<button class="page-link previous" role="link" type="button" aria-controls="kt_table_users" aria-disabled="true" aria-label="Previous" data-dt-idx="previous" tabindex="-1"><i class="previous"></i></button>
+												</li>
+												<li class="dt-paging-button page-item active"><button class="page-link" role="link" type="button" aria-controls="kt_table_users" aria-current="page" data-dt-idx="0">1</button></li>
+												<li class="dt-paging-button page-item"><button class="page-link" role="link" type="button" aria-controls="kt_table_users" data-dt-idx="1">2</button></li>
+												<li class="dt-paging-button page-item"><button class="page-link" role="link" type="button" aria-controls="kt_table_users" data-dt-idx="2">3</button></li>
+												<li class="dt-paging-button page-item"><button class="page-link next" role="link" type="button" aria-controls="kt_table_users" aria-label="Next" data-dt-idx="next"><i class="next"></i></button></li>
+											</ul>
+										</nav>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--end::Table-->
+					</div>
+					<!--end::Card body-->
+				</div>
+				<!--end::Card-->
+			</div>
+			<!--end::Content container-->
+		</div>
+		<!--end::Content-->
+	</div>
+	<!--end::Content wrapper-->
+</div>
