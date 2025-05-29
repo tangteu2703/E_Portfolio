@@ -37,6 +37,14 @@ namespace E_Portfolio.Controllers.Portal
         {
             return View();
         }
+        public IActionResult Documents()
+        {
+            return View();
+        }
+        public IActionResult Tests()
+        {
+            return View();
+        }
         #endregion
     }
 }

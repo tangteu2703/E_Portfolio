@@ -1,6 +1,7 @@
 ﻿var baseUrl = "";
 
 $(document).ready(function () {
+
     // Xoá token trong localStorage
     localStorage.removeItem('e_atoken');
     localStorage.removeItem('e_rtoken');
@@ -17,7 +18,7 @@ $(document).ready(function () {
             icon.removeClass("bi-eye-slash").addClass("bi-eye");
         }
     });
-
+ 
 });
 
 const login = async () => {

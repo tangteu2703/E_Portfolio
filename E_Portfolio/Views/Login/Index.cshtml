@@ -1,12 +1,29 @@
-﻿<div class="login-container">
+﻿<style>
+	.fade-in {
+		opacity: 1;
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	.fade-out {
+		opacity: 1;
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	.d-none {
+		display: none;
+	}
+</style>
+
+<div class="login-container">
 
 	<!-- Logo -->
 	<div class="text-center">
 		<img src="~/assets/img/logo/logo_t.png" alt="Logo" class="mb-2">
-		<h3 class="text-center mb-4">Login</h3>
 	</div>
 
-	<form>
+	<form id="loginForm" class="fade-in">
+		<h3 class="text-center mb-4">Login</h3>
+
 		<div class="mb-3">
 			<label for="email" class="form-label">Email address</label>
 			<input type="email" class="form-control" id="email" placeholder="Enter your email" autocomplete="email">
@@ -28,7 +45,7 @@
 		</div>
 
 		<div class="text-center mt-3">
-			<a href="#">Forgot password?</a>
+			<a href="#" id="forgotPasswordLink">Forgot password?</a>
 		</div>
 		<hr />
 
@@ -46,7 +63,52 @@
 			</button>
 		</div>
 	</form>
+
+	<form id="forgotPasswordForm" class="fade-out d-none">
+		<div class="text-center">
+			<h3 class="mb-4">Forgot Password</h3>
+		</div>
+		<div class="mb-3">
+			<label for="forgotEmail" class="form-label">Email address</label>
+			<input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email">
+		</div>
+		<div class="d-grid gap-2">
+			<button type="button" class="btn btn-primary">Send mail</button>
+			<button type="button" class="btn btn-outline-secondary" id="backToLoginBtn">Back to Login</button>
+		</div>
+	</form>
 </div>
 @section Scripts {
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			  const loginForm = document.getElementById("loginForm");
+			  const forgotPasswordForm = document.getElementById("forgotPasswordForm");
+			  const forgotPasswordLink = document.getElementById("forgotPasswordLink");
+			  const backToLoginBtn = document.getElementById("backToLoginBtn");
+
+			  // Hiển thị form forgot password
+			  forgotPasswordLink.addEventListener("click", function (e) {
+				  e.preventDefault();
+				  loginForm.classList.add("fade-out");
+				  loginForm.classList.remove("fade-in");
+				  setTimeout(() => {
+					  loginForm.classList.add("d-none");
+					  forgotPasswordForm.classList.remove("d-none");
+					  forgotPasswordForm.classList.add("fade-in");
+				  }, 200); // Thời gian khớp với transition
+			  });
+
+			  // Quay lại form login
+			  backToLoginBtn.addEventListener("click", function () {
+				  forgotPasswordForm.classList.add("fade-out");
+				  forgotPasswordForm.classList.remove("fade-in");
+				  setTimeout(() => {
+					  forgotPasswordForm.classList.add("d-none");
+					  loginForm.classList.remove("d-none");
+					  loginForm.classList.add("fade-in");
+				  }, 200);
+			  });
+		  });
+	</script>
 	<script src="~/assets/js/authen/login.js"></script>
 }
