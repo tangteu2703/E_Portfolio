@@ -1,4 +1,4 @@
-using E_Common;
+﻿using E_Common;
 using E_Contract.Repository;
 using E_Contract.Service;
 using E_Portfolio.Filter;
@@ -10,80 +10,104 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-#region add connection string
-var PortfolioConnection = builder.Configuration.GetConnectionString("PortfolioConnection");
-if (PortfolioConnection != null)
-    Connection.AddConnectionString("PortfolioConnection", PortfolioConnection);
-#endregion add connection string
+// --------------------- CẤU HÌNH CHUỖI KẾT NỐI ---------------------
+var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+if (defaultConnection != null)
+    Connection.AddConnectionString("DefaultConnection", defaultConnection);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-#region Authentication setting
+var hrmConnection = builder.Configuration.GetConnectionString("HRMConnection");
+if (hrmConnection != null)
+    Connection.AddConnectionString("HRMConnection", hrmConnection);
 
+var bioConnection = builder.Configuration.GetConnectionString("BioStarConnection");
+if (bioConnection != null)
+    Connection.AddConnectionString("BioStarConnection", bioConnection);
+
+// --------------------- CẤU HÌNH CORS ---------------------
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
+// --------------------- CẤU HÌNH JWT AUTHENTICATION ---------------------
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
-
-builder.Services.AddLogging(loggingBuilder =>
-{
-    loggingBuilder.AddConsole();
-    loggingBuilder.AddDebug();
-});
-builder.Services.AddSingleton<JwtHelper>();
-builder.Services.AddScoped<LoggedAuthorrizeAttribute>();
-builder.Services.AddScoped<RoleAuthorizeAttribute>();
 
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
 })
-           .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-           {
-               options.RequireHttpsMetadata = false;
-               options.SaveToken = true;
-               options.TokenValidationParameters = new TokenValidationParameters
-               {
-                   ValidateIssuer = true,
-                   ValidateAudience = true,
-                   ValidateIssuerSigningKey = true,
-                   ValidIssuer = jwtSettings["Issuer"],
-                   ValidAudience = jwtSettings["Audience"],
-                   IssuerSigningKey = new SymmetricSecurityKey(key)
-               };
-           });
+.AddJwtBearer(options =>
+{
+    options.RequireHttpsMetadata = false;
+    options.SaveToken = true;
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(key)
+    };
+});
+
+// --------------------- CẤU HÌNH LOGGING ---------------------
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConsole();
+    logging.AddDebug();
+});
+
+// --------------------- CẤU HÌNH DEPENDENCY INJECTION ---------------------
+builder.Services.AddScoped<LoggedAuthorrizeAttribute>();
+builder.Services.AddScoped<RoleAuthorizeAttribute>();
 builder.Services.AddScoped<MustLoggedFilter>();
 
-#endregion Authentication setting
-#region DI setting
-
+builder.Services.AddSingleton<JwtHelper>();
 builder.Services.AddTransient<IServiceWrapper, ServiceWrapper>();
 builder.Services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
 
-#endregion DI setting
+// --------------------- CẤU HÌNH MVC ---------------------
+builder.Services.AddControllersWithViews();
 
-#region App setting
+// --------------------- BUILD APP ---------------------
 var app = builder.Build();
+
+// --------------------- MIDDLEWARE PIPELINE ---------------------
+
+// CORS phải đặt đầu tiên sau app.Build()
 app.UseCors("AllowAll");
+
+// File tĩnh và default page
 app.UseDefaultFiles();
 app.UseStaticFiles();
-// Configure the HTTP request pipeline.
+
+// Xử lý lỗi môi trường Production
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
+// Routing
 app.UseRouting();
+app.UseHttpsRedirection();
 
+// Authentication & Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
+// Định tuyến MVC
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Run ứng dụng
 app.Run();
-#endregion App setting

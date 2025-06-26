@@ -3,6 +3,7 @@
     public interface IServiceBase<T>
     {
         Task<IEnumerable<T>> SelectAllAsync();
+
         Task<IEnumerable<T>> SelectFilterAsync(T model);
 
         Task<T> SelectByIdAsync(int id);

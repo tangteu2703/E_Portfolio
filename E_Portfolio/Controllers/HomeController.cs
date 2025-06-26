@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using E_Portfolio.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace E_Portfolio.Controllers
@@ -20,5 +18,7 @@ namespace E_Portfolio.Controllers
         {
             return View();
         }
+
+
     }
 }

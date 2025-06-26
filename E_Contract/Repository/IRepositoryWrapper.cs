@@ -1,6 +1,10 @@
 ﻿using E_Contract.Repository.Authentication;
+using E_Contract.Repository.Department;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.User;
+using E_Contract.Repository.WorkSheet;
+using E_Contract.Service.Department;
+using E_Contract.Service.WorkSheet;
 
 namespace E_Contract.Repository
 {
@@ -23,5 +27,14 @@ namespace E_Contract.Repository
         IDataDictionaryRepository DataDictionary { get; }
 
         #endregion User
+
+        #region WorkSheet
+        IWorkSheetRepository WorkSheet{ get; }
+        IClockTransactionRepository ClockTransaction { get; }
+        #endregion
+
+        #region MasterData
+        IDepartmentRepository Department { get; }
+        #endregion
     }
 }

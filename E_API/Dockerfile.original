@@ -1,0 +1,32 @@
+﻿# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
+
+# Stage 1: Build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
+
+# Copy csproj and restore as distinct layers
+COPY ["E_API/E_API.csproj", "E_API/"]
+COPY ["E_Common/E_Common.csproj", "E_Common/"]
+COPY ["E_Contract/E_Contract.csproj", "E_Contract/"]
+COPY ["E_Repository/E_Repository.csproj", "E_Repository/"]
+COPY ["E_Service/E_Service.csproj", "E_Service/"]
+
+RUN dotnet restore "E_API/E_API.csproj"
+
+# Copy everything else and build
+COPY . .
+WORKDIR "/src/E_API"
+RUN dotnet publish -c Release -o /app/publish --no-restore
+
+# Stage 2: Runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Expose port (sửa lại nếu app dùng port khác)
+EXPOSE 80
+EXPOSE 443
+
+ENV ASPNETCORE_URLS=http://+:80
+
+ENTRYPOINT ["dotnet", "E_API.dll"]

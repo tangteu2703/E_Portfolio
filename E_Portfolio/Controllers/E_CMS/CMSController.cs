@@ -1,13 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using E_Contract.Service;
+using E_Model.Request.WorkSheet;
+using E_Model.Table_SQL.WorkSheet;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Globalization;
+using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace E_Portfolio.Controllers.CMS
 {
     public class CMSController : Controller
     {
-        public IActionResult Index()
+        private readonly IServiceWrapper _serviceWrapper;
+        public CMSController(IServiceWrapper serviceWrapper)
+        {
+            _serviceWrapper = serviceWrapper;
+        }
+        public async Task<IActionResult> Index()
         {
             return View();
         }
+        #region
         public IActionResult Admin()
         {
             return View();
@@ -24,6 +37,14 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        public IActionResult WorkSetup()
+        {
+            return View();
+        }
+        public IActionResult WorkSheetHistory()
+        {
+            return View();
+        }
         public IActionResult SalarySetup()
         {
             return View();
@@ -36,5 +57,6 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        #endregion
     }
 }

@@ -859,5 +859,45 @@ namespace E_Common
         {
             return string.Join(separator, list);
         }
+
+
+        public static class TableTypeConverter
+        {
+            public static DataTable ConvertToDataTable<T>(IEnumerable<T> data)
+            {
+                var dataTable = new DataTable(typeof(T).Name);
+
+                // Get all the properties
+                var properties = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+                foreach (var prop in properties)
+                {
+                    Type propType = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                    dataTable.Columns.Add(prop.Name, propType);
+                }
+
+                foreach (var item in data)
+                {
+                    var values = properties.Select(p => p.GetValue(item, null) ?? DBNull.Value).ToArray();
+                    dataTable.Rows.Add(values);
+                }
+
+                return dataTable;
+            }
+        }
+
+        public static DynamicParameters ToDynamicParameters<T>(this T obj)
+        {
+            var parameters = new DynamicParameters();
+            if (obj == null) return parameters;
+
+            foreach (var prop in typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                var value = prop.GetValue(obj);
+                parameters.Add("@" + prop.Name, value);
+            }
+
+            return parameters;
+        }
     }
 }

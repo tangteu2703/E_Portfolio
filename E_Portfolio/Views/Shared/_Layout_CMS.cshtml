@@ -3,20 +3,26 @@
 <!--begin::Head-->
 <head>
 	<base href="" />
-	<title>E - CMS</title>
 	<meta charset="utf-8" />
+	<title>E - CMS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Favicon -->
 	<link rel="shortcut icon" href="~/assets/img/logo/logo_t.png" />
-	<!--begin::Fonts(mandatory for all pages)-->
+
+	<!-- Fonts (Google Fonts) -->
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
-	<!--end::Fonts-->
-	<!--begin::Vendor Stylesheets(used for this page only)-->
+
+	<!-- Vendor Stylesheets (used for specific pages) -->
 	<link href="/assetsCMS/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="/assetsCMS/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Vendor Stylesheets-->
-	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
+
+	<!-- Global Stylesheets Bundle (core theme styles) -->
 	<link href="/assetsCMS/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="/assetsCMS/css/style.bundle.css" rel="stylesheet" type="text/css" />
-	<!--end::Global Stylesheets Bundle-->
+
+	<!-- Meta for responsiveness and compatibility -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -1054,7 +1060,7 @@
 									</div>
 									<div class="menu-item">
 										<!--begin:Menu link-->
-										<a class="menu-link" href="#">
+										<a class="menu-link" href="/CMS/WorkSheetHistory">
 											<span class="menu-bullet">
 												<span class="bullet bullet-dot"></span>
 											</span>
@@ -1212,25 +1218,33 @@
 	</div>
 	<!--end::App-->
 	<!--begin::Javascript-->
+	<!-- Host config -->
 	<script>var hostUrl = "/assetsCMS/";</script>
-	<!--begin::Global Javascript Bundle(mandatory for all pages)-->
+
+	<!-- Global Javascript Bundle (jQuery, Bootstrap, ... - do Metronic đóng gói) -->
 	<script src="/assetsCMS/plugins/global/plugins.bundle.js"></script>
 	<script src="/assetsCMS/js/scripts.bundle.js"></script>
-	<!--end::Global Javascript Bundle-->
-	<!--begin::Vendors Javascript(used for this page only)-->
+
+	<!-- Vendors Javascript (used for this page only) -->
 	<script src="/assetsCMS/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
 	<script src="/assetsCMS/plugins/custom/datatables/datatables.bundle.js"></script>
-	<!--end::Vendors Javascript-->
-	<!--begin::Custom Javascript(used for this page only)-->
+
+	<!-- Custom Javascript (used for this page only) -->
 	<script src="/assetsCMS/js/widgets.bundle.js"></script>
 	<script src="/assetsCMS/js/custom/widgets.js"></script>
 	<script src="/assetsCMS/js/custom/apps/chat/chat.js"></script>
 	<script src="/assetsCMS/js/custom/utilities/modals/upgrade-plan.js"></script>
 	<script src="/assetsCMS/js/custom/utilities/modals/create-account.js"></script>
 	<script src="/assetsCMS/js/custom/utilities/modals/create-app.js"></script>
-	<script src="/assetsCMS/js/custom/utilities/modals/users-search.js"></script>
-	<!--end::Custom Javascript-->
-	<!--end::Javascript-->
+    <script src="/assetsCMS/js/custom/utilities/modals/users-search.js"></script>
+
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/root/helper/apihelper.js"></script>
+    <script src="~/root/helper/commonfunction.js"></script>
+
+	<!-- Custom Page Script Section -->
 	@RenderSection("Scripts", required: false)
+
+	<!--end::Javascript-->
 </body>
 </html>

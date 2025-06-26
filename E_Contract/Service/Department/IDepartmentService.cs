@@ -1,0 +1,13 @@
+﻿using E_Model.Table_SQL.Department;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace E_Contract.Service.Department
+{
+    public interface IDepartmentService : IServiceBase<data_department>
+    {
+    }
+}

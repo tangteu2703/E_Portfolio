@@ -2,11 +2,15 @@
 using E_Contract.Repository;
 using E_Contract.Service;
 using E_Contract.Service.Authentication;
+using E_Contract.Service.Department;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.User;
+using E_Contract.Service.WorkSheet;
 using E_Service.Authentication;
+using E_Service.Department;
 using E_Service.Dictionary;
 using E_Service.User;
+using E_Service.WorkSheet;
 
 namespace E_Service
 {
@@ -45,6 +49,18 @@ namespace E_Service
         public IDataDepartmentService DataDepartment => _dataDepartment.Value;
         private Lazy<IDataDictionaryService> _dataDictionary => new(() => new DataDictionaryService(_repositoryWrapper));
         public IDataDictionaryService DataDictionary => _dataDictionary.Value;
+        #endregion
+
+        #region WorkSheet
+        private Lazy<WorkSheetService> _workSheet => new(() => new WorkSheetService(_repositoryWrapper));
+        public IWorkSheetService WorkSheet => _workSheet.Value;
+        private Lazy<ClockTransactionService> _clock => new(() => new ClockTransactionService(_repositoryWrapper));
+        public IClockTransactionService ClockTransaction => _clock.Value;
+        #endregion
+
+        #region MasterData
+        private Lazy<DepartmentService> _Department => new(() => new DepartmentService(_repositoryWrapper));
+        public IDepartmentService Department => _Department.Value;
         #endregion
 
     }

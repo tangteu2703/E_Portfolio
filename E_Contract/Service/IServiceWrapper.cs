@@ -1,6 +1,9 @@
-﻿using E_Contract.Service.Authentication;
+﻿using E_Contract.Service.AI;
+using E_Contract.Service.Authentication;
+using E_Contract.Service.Department;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.User;
+using E_Contract.Service.WorkSheet;
 
 namespace E_Contract.Service
 {
@@ -22,6 +25,15 @@ namespace E_Contract.Service
         IDataDictionaryService DataDictionary { get; }
 
         #endregion User
+
+        #region WorkSheet
+        IWorkSheetService WorkSheet { get; }
+        IClockTransactionService ClockTransaction { get; }
+        #endregion
+
+        #region MasterData
+        IDepartmentService Department { get; }
+        #endregion
 
     }
 }

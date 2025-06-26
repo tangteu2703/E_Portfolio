@@ -7,12 +7,17 @@ WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
 
-
+ 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["E_Portfolio/E_Portfolio.csproj", "E_Portfolio/"]
+COPY ["E_Common/E_Common.csproj", "E_Common/"]
+COPY ["E_Contract/E_Contract.csproj", "E_Contract/"]
+COPY ["E_Model/E_Model.csproj", "E_Model/"]
+COPY ["E_Repository/E_Repository.csproj", "E_Repository/"]
+COPY ["E_Service/E_Service.csproj", "E_Service/"]
 RUN dotnet restore "./E_Portfolio/E_Portfolio.csproj"
 COPY . .
 WORKDIR "/src/E_Portfolio"

@@ -1,10 +1,14 @@
 ﻿using E_Contract.Repository;
 using E_Contract.Repository.Authentication;
+using E_Contract.Repository.Department;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.User;
+using E_Contract.Repository.WorkSheet;
 using E_Repository.Authentication;
+using E_Repository.Department;
 using E_Repository.Dictionary;
 using E_Repository.User;
+using E_Repository.WorkSheet;
 
 namespace E_Repository
 {
@@ -41,6 +45,21 @@ namespace E_Repository
 
         private IDataDictionaryRepository _dataDictionary;
         public IDataDictionaryRepository DataDictionary => _dataDictionary ??= new DataDictionaryRepository();
+        #endregion
+
+        #region workSheet
+
+        private IWorkSheetRepository _workSheet;
+        public IWorkSheetRepository WorkSheet => _workSheet ??= new WorkSheetRepository();
+
+        private IClockTransactionRepository _clockTransaction;
+        public IClockTransactionRepository ClockTransaction => _clockTransaction ??= new ClockTransactionRepository();
+        #endregion
+
+        #region MasterData
+
+        private IDepartmentRepository _Department;
+        public IDepartmentRepository Department => _Department ??= new DepartmentRepository();
         #endregion
 
     }
