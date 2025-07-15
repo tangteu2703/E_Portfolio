@@ -14,6 +14,27 @@ namespace E_API.Controllers.MasterData
         {
             _serviceWrapper = serviceWrapper;
         }
+
+
+        [HttpGet("Version-API")]
+        public async Task<IActionResult> GetVersions()
+        {
+            try
+            {
+                var version = new
+                {
+                    Version = "20250714",
+                    BuildDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                    Environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"
+                };
+                return OK(version);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("Departments")]
         public async Task<IActionResult> GetDepartments()
         {

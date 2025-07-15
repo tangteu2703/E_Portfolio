@@ -45,6 +45,10 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        public IActionResult WorkSheetDetail()
+        {
+            return View();
+        }
         public IActionResult SalarySetup()
         {
             return View();

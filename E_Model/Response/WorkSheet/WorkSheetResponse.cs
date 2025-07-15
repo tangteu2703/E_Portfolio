@@ -20,5 +20,14 @@ namespace E_Model.Response.WorkSheet
         public string? Machine_Out { get; set; }
         public string? Shift { get; set; }
     }
+    public class TransactionResponse
+    {
+        public string? emp_code { get; set; }
+        public string? terminal_alias { get; set; }
+        public DateTime? punch_time { get; set; }
+        public string? area_alias { get; set; }
+        public string? terminal_sn { get; set; }
+        public DateTime? upload_time { get; set; }
+    }
 
 }

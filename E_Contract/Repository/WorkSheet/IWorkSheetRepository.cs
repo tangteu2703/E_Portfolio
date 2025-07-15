@@ -1,4 +1,5 @@
 ﻿using E_Model.Request.WorkSheet;
+using E_Model.Response;
 using E_Model.Response.WorkSheet;
 using E_Model.Table_SQL.WorkSheet;
 
@@ -7,7 +8,12 @@ namespace E_Contract.Repository.WorkSheet
     public interface IWorkSheetRepository : IRepositoryBase<worksheet_daily>
     {
         Task<IEnumerable<WorkSheetResponse>> SelectFilterAsync(WorkSheetRequest request);
+        Task<DataTableResponse<WorkSheetResponse>> SelectFilterAsync(WorkSheetRequest request, string version = "");
+        Task<DataTableResponse<worksheet_detail>> SelectDetailAsync(WorkSheetRequest request, string version = "");
+        Task<IEnumerable<TransactionResponse>> SelectBioHistoryAsync(WorkSheetRequest request);
         Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime date);
+        Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime from, DateTime to);
+        Task<IEnumerable<worksheet_daily>> SelectToDayAsync(DateTime from, DateTime to);
         Task<IEnumerable<worksheet_daily>> SelectLogicErrorAsync();
         Task<int> InsertBatchAsync(List<worksheet_daily> list, string type = "");
         Task<int> UpdateBatchAsync(List<worksheet_daily> list, string type = "");
@@ -15,7 +21,10 @@ namespace E_Contract.Repository.WorkSheet
 
 
         //HR_BarCode
-        Task<IEnumerable<HR_BarCode>> SelectHR_BarcodeAsync(DateTime date,string db = "");
+        Task<IEnumerable<HR_BarCode>> SelectHR_BarcodeAsync(DateTime date, string db = "");
         Task<int> InsertUpdateBatchAsync(List<HR_BarCode> list, string type = "");
+
+        //WorkSheet_Detail
+        Task<(int Inserted, int Updated)> InsertUpdate_DetailAsync(List<worksheet_detail> list, string type = "");
     }
 }

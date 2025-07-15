@@ -2,6 +2,7 @@
 using E_Common;
 using E_Contract.Repository.WorkSheet;
 using E_Model.Request.WorkSheet;
+using E_Model.Response;
 using E_Model.Response.WorkSheet;
 using E_Model.Table_SQL.WorkSheet;
 using System.Data;
@@ -25,7 +26,81 @@ namespace E_Repository.WorkSheet
                 throw ex;
             }
         }
-        public async Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime date) 
+        public async Task<DataTableResponse<WorkSheetResponse>> SelectFilterAsync(WorkSheetRequest request, string version = "")
+        {
+            try
+            {
+                var data = new DataTableResponse<WorkSheetResponse>();
+
+                var param = request.ToDynamicParameters();
+                param.Add("@recordsTotal", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@recordsFiltered", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var storeName = "worksheet_daily_select_filter_v2";
+                if (version == "zktbio")
+                    storeName = "iclock_transaction_select_filter";
+
+                var result = await Connection.SelectAsync<WorkSheetResponse>(
+                    storeName,
+                    param,
+                    "HRMConnection"
+                );
+
+                data.recordsTotal = param.Get<int>("@recordsTotal");
+                data.recordsFiltered = param.Get<int>("@recordsFiltered");
+                data.listData = result;
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public async Task<DataTableResponse<worksheet_detail>> SelectDetailAsync(WorkSheetRequest request, string version = "")
+        {
+            try
+            {
+                var data = new DataTableResponse<worksheet_detail>();
+
+                var param = request.ToDynamicParameters();
+                param.Add("@recordsTotal", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@recordsFiltered", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var storeName = "worksheet_daily_select_filter_detail";
+                var result = await Connection.SelectAsync<worksheet_detail>(
+                    storeName,
+                    param,
+                    "HRMConnection"
+                );
+
+                data.recordsTotal = param.Get<int>("@recordsTotal");
+                data.recordsFiltered = param.Get<int>("@recordsFiltered");
+                data.listData = result;
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<IEnumerable<TransactionResponse>> SelectBioHistoryAsync(WorkSheetRequest request)
+        {
+            try
+            {
+                var param = request.ToDynamicParameters();
+
+                var result = await Connection.SelectAsync<TransactionResponse>("iclock_transaction_select_filter", param, "HRMConnection");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime date)
         {
             try
             {
@@ -39,7 +114,37 @@ namespace E_Repository.WorkSheet
                 throw ex;
             }
         }
-        public async Task<IEnumerable<worksheet_daily>> SelectLogicErrorAsync() 
+        public async Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime from, DateTime to)
+        {
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@from", from);
+                param.Add("@to", to);
+                var result = await Connection.SelectAsync<worksheet_daily>("worksheet_daily_select_date2", param, "HRMConnection");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<IEnumerable<worksheet_daily>> SelectToDayAsync(DateTime from, DateTime to)
+        {
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@from", from);
+                param.Add("@to", to);
+                var result = await Connection.SelectAsync<worksheet_daily>("worksheet_daily_select_date3", param, "HRMConnection");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<IEnumerable<worksheet_daily>> SelectLogicErrorAsync()
         {
             try
             {
@@ -55,7 +160,7 @@ namespace E_Repository.WorkSheet
         public async Task<int> InsertBatchAsync(List<worksheet_daily> list, string type = "")
         {
             var stroreName = $"";
-            switch(type)
+            switch (type)
             {
                 case "in-001":
                     stroreName = $"worksheet_daily_insert_batch_in_day";
@@ -209,6 +314,44 @@ namespace E_Repository.WorkSheet
                 var result = await Connection.ExcuteScalarAsync(stroreName, param, "count", "HRMConnection");
 
                 return result; // Số lượng insert thành công
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        #endregion
+
+        #region [WorkSheet_Detail]
+        public async Task<(int Inserted, int Updated)> InsertUpdate_DetailAsync(List<worksheet_detail> list, string type = "")
+        {
+            var stroreName = $"";
+            switch (type)
+            {
+                case "001":
+                    stroreName = $"worksheet_detail_insert_update_batch";
+                    break;
+                default:
+                    stroreName = "";
+                    break;
+            }
+            try
+            {
+                // Chuyển List<T> thành DataTable
+                var dataTable = TableTypeConverter.ConvertToDataTable(list);
+                var typeName = $"WorkSheet_Detail_Type";
+
+                var param = new DynamicParameters();
+                param.Add("@list", dataTable.AsTableValuedParameter(typeName));
+
+                param.Add("@inserted", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@updated", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                // Gọi store procedure
+                var outputNames = new[] { "@inserted", "@updated" };
+                var result = await Connection.ExecuteScalarOutputsAsync(stroreName, param, outputNames, "HRMConnection");
+
+                return (result["@inserted"], result["@updated"]);
             }
             catch (Exception ex)
             {

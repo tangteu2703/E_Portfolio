@@ -1,0 +1,1087 @@
+2025-07-15 09:45:31 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 09:45:31 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 09:45:31 | [JOB] Calendar 2025-07-16 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 09:45:31 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 09:45:31 | **********   Start JobHostedService  **********
+2025-07-15 09:40:03 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 09:40:03 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 09:40:03 | [JOB] Calendar 2025-07-16 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 09:40:03 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 09:40:03 | **********   Start JobHostedService  **********
+2025-07-15 08:59:08 | [JOB] Calendar 2025-07-16 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:59:08 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-15 08:59:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-15 08:59:00
+2025-07-15 08:53:43 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 08:53:43 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 08:53:43 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:53:43 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:53:43 | **********   Start JobHostedService  **********
+2025-07-15 08:48:36 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 08:48:36 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 08:48:36 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:48:36 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:48:36 | **********   Start JobHostedService  **********
+2025-07-15 08:45:55 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 08:45:55 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 08:45:55 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:45:55 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:45:55 | **********   Start JobHostedService  **********
+2025-07-15 08:19:55 | [JOB] Calendar 2025-07-15 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-15 08:19:55 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-15 08:19:55 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:19:55 | [JOB] Calendar 2025-07-16 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-15 08:19:55 | **********   Start JobHostedService  **********
+2025-07-14 17:52:19 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 17:52:19 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 17:52:19 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:52:19 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:52:19 | **********   Start JobHostedService  **********
+2025-07-14 17:50:02 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 17:50:02 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 17:50:02 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:50:02 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:50:02 | **********   Start JobHostedService  **********
+2025-07-14 17:19:26 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 17:19:26 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 17:19:26 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:19:26 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:19:26 | **********   Start JobHostedService  **********
+2025-07-14 17:18:33 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 17:18:33 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 17:18:33 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:18:33 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 17:18:33 | **********   Start JobHostedService  **********
+2025-07-14 16:25:40 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 16:25:40 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 16:25:40 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 16:25:40 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 16:25:40 | **********   Start JobHostedService  **********
+2025-07-14 16:13:06 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 16:13:06 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 16:13:06 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 16:13:06 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 16:13:06 | **********   Start JobHostedService  **********
+2025-07-14 15:29:56 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 15:29:56 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 15:29:56 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 15:29:56 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 15:29:56 | **********   Start JobHostedService  **********
+2025-07-14 15:26:42 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 15:26:42 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 15:26:42 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 15:26:42 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 15:26:42 | **********   Start JobHostedService  **********
+2025-07-14 14:58:54 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 14:58:54 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 14:58:54 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 14:58:54 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 14:58:54 | **********   Start JobHostedService  **********
+2025-07-14 13:57:14 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 13:57:14 | [JOB] Calendar 2025-07-15 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 13:57:14 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 13:57:14 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 13:57:14 | **********   Start JobHostedService  **********
+2025-07-14 09:51:29 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 09:51:29 | [JOB] Calendar 2025-07-14 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 09:51:29 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 09:51:29 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 09:51:29 | **********   Start JobHostedService  **********
+2025-07-14 08:59:01 | [JOB] Calendar 2025-07-15 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-14 08:58:59 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-14 08:58:59
+2025-07-14 08:29:32 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 08:29:32 | [JOB] Calendar 2025-07-14 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 08:29:32 | [JOB] Calendar 2025-07-14 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 08:29:32 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 08:29:32 | **********   Start JobHostedService  **********
+2025-07-14 08:14:01 | [JOB] Calendar 2025-07-15 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 08:14:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-14 08:14:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-14 08:14:00
+2025-07-14 07:58:01 | [JOB] Calendar 2025-07-14 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-14 07:58:01 | [JOB] Calendar 2025-07-14 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-14 07:58:01 | [JOB] Calendar 2025-07-14 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 07:58:01 | [JOB] Calendar 2025-07-14 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-14 07:58:01 | **********   Start JobHostedService  **********
+2025-07-12 15:38:44 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 15:38:44 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 15:38:44 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:38:44 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:38:44 | **********   Start JobHostedService  **********
+2025-07-12 15:34:57 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 15:34:57 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 15:34:57 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:34:57 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:34:57 | **********   Start JobHostedService  **********
+2025-07-12 15:05:15 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 15:05:15 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 15:05:15 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:05:15 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:05:15 | **********   Start JobHostedService  **********
+2025-07-12 15:03:10 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 15:03:10 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 15:03:10 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:03:10 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:03:10 | **********   Start JobHostedService  **********
+2025-07-12 15:02:36 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 15:02:36 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 15:02:36 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:02:36 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 15:02:36 | **********   Start JobHostedService  **********
+2025-07-12 14:47:33 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 14:47:33 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 14:47:33 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:47:33 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:47:33 | **********   Start JobHostedService  **********
+2025-07-12 14:39:06 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 14:39:06 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 14:39:06 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:39:06 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:39:06 | **********   Start JobHostedService  **********
+2025-07-12 14:36:37 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 14:36:37 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 14:36:37 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:36:37 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:36:37 | **********   Start JobHostedService  **********
+2025-07-12 14:24:02 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 14:24:02 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 14:24:02 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:24:02 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:24:02 | **********   Start JobHostedService  **********
+2025-07-12 14:20:04 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 14:20:04 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 14:20:04 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:20:04 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 14:20:04 | **********   Start JobHostedService  **********
+2025-07-12 13:39:45 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 13:39:45 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 13:39:45 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 13:39:45 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 13:39:45 | **********   Start JobHostedService  **********
+2025-07-12 12:00:00 | [JOB] Calendar 2025-07-13 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-12 12:00:00 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-12 12:00:00
+2025-07-12 11:59:59 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 11:59:59 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-12 11:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-12 11:59:59
+2025-07-12 10:39:44 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 10:39:44 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 10:39:44 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 10:39:44 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 10:39:44 | **********   Start JobHostedService  **********
+2025-07-12 10:28:10 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 10:28:10 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 10:28:10 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 10:28:10 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 10:28:10 | **********   Start JobHostedService  **********
+2025-07-12 09:54:40 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 09:54:40 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 09:54:40 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:54:40 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:54:40 | **********   Start JobHostedService  **********
+2025-07-12 09:53:32 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 09:53:32 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 09:53:32 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:53:32 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:53:32 | **********   Start JobHostedService  **********
+2025-07-12 09:50:21 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 09:50:21 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 09:50:21 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:50:21 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:50:21 | **********   Start JobHostedService  **********
+2025-07-12 09:47:14 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 09:47:14 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 09:47:14 | [JOB] Calendar 2025-07-13 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:47:14 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 09:47:14 | **********   Start JobHostedService  **********
+2025-07-12 08:14:01 | [JOB] Calendar 2025-07-13 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 08:14:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-12 08:13:59 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-12 08:13:59
+2025-07-12 08:07:43 | [JOB] Calendar 2025-07-12 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-12 08:07:43 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-12 08:07:43 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 08:07:43 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-12 08:07:43 | **********   Start JobHostedService  **********
+2025-07-11 16:44:46 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 16:44:46 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 16:44:46 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 16:44:46 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 16:44:46 | **********   Start JobHostedService  **********
+2025-07-11 15:40:49 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 15:40:49 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 15:40:49 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:40:49 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:40:49 | **********   Start JobHostedService  **********
+2025-07-11 15:34:53 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 15:34:53 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 15:34:53 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:34:53 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:34:53 | **********   Start JobHostedService  **********
+2025-07-11 15:22:33 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 15:22:33 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 15:22:33 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:22:33 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 15:22:33 | **********   Start JobHostedService  **********
+2025-07-11 14:52:16 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 14:52:16 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 14:52:16 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 14:52:16 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 14:52:16 | **********   Start JobHostedService  **********
+2025-07-11 14:35:59 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 14:35:59 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 14:35:59 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 14:35:59 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 14:35:59 | **********   Start JobHostedService  **********
+2025-07-11 13:56:24 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 13:56:24 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 13:56:24 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:56:24 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:56:24 | **********   Start JobHostedService  **********
+2025-07-11 13:53:43 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 13:53:43 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 13:53:43 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:53:43 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:53:43 | **********   Start JobHostedService  **********
+2025-07-11 13:28:54 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 13:28:54 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 13:28:54 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:28:54 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 13:28:54 | **********   Start JobHostedService  **********
+2025-07-11 12:00:00 | [JOB] Calendar 2025-07-12 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-11 11:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-11 11:59:59
+2025-07-11 11:49:02 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:49:02 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:49:02 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:49:02 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:49:02 | **********   Start JobHostedService  **********
+2025-07-11 11:25:27 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:25:27 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:25:27 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:25:27 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:25:27 | **********   Start JobHostedService  **********
+2025-07-11 11:24:50 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:24:50 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:24:50 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:24:50 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:24:50 | **********   Start JobHostedService  **********
+2025-07-11 11:23:31 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:23:31 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:23:31 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:23:31 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:23:31 | **********   Start JobHostedService  **********
+2025-07-11 11:20:14 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:20:14 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:20:14 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:20:14 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:20:14 | **********   Start JobHostedService  **********
+2025-07-11 11:19:12 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 11:19:12 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 11:19:12 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:19:12 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 11:19:12 | **********   Start JobHostedService  **********
+2025-07-11 10:48:38 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:48:38 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:48:38 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:48:38 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:48:38 | **********   Start JobHostedService  **********
+2025-07-11 10:43:52 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:43:52 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:43:52 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:43:52 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:43:52 | **********   Start JobHostedService  **********
+2025-07-11 10:42:20 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:42:20 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:42:20 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:42:20 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:42:20 | **********   Start JobHostedService  **********
+2025-07-11 10:40:29 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:40:29 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:40:29 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:40:29 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:40:29 | **********   Start JobHostedService  **********
+2025-07-11 10:38:11 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:38:11 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:38:11 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:38:11 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:38:11 | **********   Start JobHostedService  **********
+2025-07-11 10:32:43 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:32:43 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:32:43 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:32:43 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:32:43 | **********   Start JobHostedService  **********
+2025-07-11 10:31:19 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 10:31:19 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 10:31:19 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:31:19 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 10:31:19 | **********   Start JobHostedService  **********
+2025-07-11 08:59:01 | [JOB] Calendar 2025-07-12 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-11 08:58:59 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-11 08:58:59
+2025-07-11 08:14:01 | [JOB] Calendar 2025-07-12 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 08:14:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-11 08:14:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-11 08:14:00
+2025-07-11 08:07:44 | [JOB] Calendar 2025-07-11 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-11 08:07:44 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-11 08:07:44 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 08:07:44 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-11 08:07:44 | **********   Start JobHostedService  **********
+2025-07-10 17:51:42 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 17:51:42 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 17:51:42 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 17:51:42 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 17:51:42 | **********   Start JobHostedService  **********
+2025-07-10 17:32:52 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 17:32:52 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 17:32:52 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 17:32:52 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 17:32:52 | **********   Start JobHostedService  **********
+2025-07-10 16:59:37 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 16:59:37 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 16:59:37 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:59:37 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:59:37 | **********   Start JobHostedService  **********
+2025-07-10 16:51:12 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 16:51:12 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 16:51:12 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:51:12 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:51:12 | **********   Start JobHostedService  **********
+2025-07-10 16:47:11 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 16:47:11 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 16:47:11 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:47:11 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:47:11 | **********   Start JobHostedService  **********
+2025-07-10 16:44:20 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 16:44:20 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 16:44:20 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:44:20 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 16:44:20 | **********   Start JobHostedService  **********
+2025-07-10 15:52:33 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 15:52:33 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 15:52:33 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 15:52:33 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 15:52:33 | **********   Start JobHostedService  **********
+2025-07-10 15:13:33 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 15:13:33 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 15:13:33 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 15:13:33 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 15:13:33 | **********   Start JobHostedService  **********
+2025-07-10 14:49:06 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 14:49:06 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 14:49:06 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 14:49:06 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 14:49:06 | **********   Start JobHostedService  **********
+2025-07-10 14:43:23 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 14:43:23 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 14:43:23 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 14:43:23 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 14:43:23 | **********   Start JobHostedService  **********
+2025-07-10 13:55:39 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:55:39 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:55:39 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:55:39 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:55:39 | **********   Start JobHostedService  **********
+2025-07-10 13:43:55 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:43:55 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:43:55 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:43:55 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:43:55 | **********   Start JobHostedService  **********
+2025-07-10 13:43:12 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:43:12 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:43:12 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:43:12 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:43:12 | **********   Start JobHostedService  **********
+2025-07-10 13:40:14 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:40:14 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:40:14 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:40:14 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:40:14 | **********   Start JobHostedService  **********
+2025-07-10 13:39:30 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:39:30 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:39:30 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:39:30 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:39:30 | **********   Start JobHostedService  **********
+2025-07-10 13:33:44 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:33:44 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:33:44 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:33:44 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:33:44 | **********   Start JobHostedService  **********
+2025-07-10 13:31:22 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 13:31:22 | [JOB] Calendar 2025-07-11 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 13:31:22 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:31:22 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 13:31:22 | **********   Start JobHostedService  **********
+2025-07-10 11:54:56 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:54:56 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:54:56 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:54:56 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:54:56 | **********   Start JobHostedService  **********
+2025-07-10 11:31:32 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:31:32 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:31:32 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:31:32 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:31:32 | **********   Start JobHostedService  **********
+2025-07-10 11:23:21 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:23:21 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:23:21 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:23:21 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:23:21 | **********   Start JobHostedService  **********
+2025-07-10 11:19:58 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:19:58 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:19:58 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:19:58 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:19:58 | **********   Start JobHostedService  **********
+2025-07-10 11:16:14 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:16:14 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:16:14 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:16:14 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:16:14 | **********   Start JobHostedService  **********
+2025-07-10 11:04:57 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 11:04:57 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 11:04:57 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:04:57 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 11:04:57 | **********   Start JobHostedService  **********
+2025-07-10 10:48:56 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 10:48:56 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 10:48:56 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:48:56 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:48:56 | **********   Start JobHostedService  **********
+2025-07-10 10:38:14 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 10:38:14 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 10:38:14 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:38:14 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:38:14 | **********   Start JobHostedService  **********
+2025-07-10 10:35:55 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 10:35:55 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 10:35:55 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:35:55 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:35:55 | **********   Start JobHostedService  **********
+2025-07-10 10:32:19 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 10:32:19 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 10:32:19 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:32:19 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:32:19 | **********   Start JobHostedService  **********
+2025-07-10 10:27:17 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 10:27:17 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 10:27:17 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:27:17 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 10:27:17 | **********   Start JobHostedService  **********
+2025-07-10 09:53:37 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:53:37 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:53:37 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:53:37 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:53:37 | **********   Start JobHostedService  **********
+2025-07-10 09:48:36 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:48:36 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:48:36 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:48:36 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:48:36 | **********   Start JobHostedService  **********
+2025-07-10 09:43:48 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:43:48 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:43:48 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:43:48 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:43:48 | **********   Start JobHostedService  **********
+2025-07-10 09:39:15 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:39:15 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:39:15 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:39:15 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:39:15 | **********   Start JobHostedService  **********
+2025-07-10 09:36:31 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:36:31 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:36:31 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:36:31 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:36:31 | **********   Start JobHostedService  **********
+2025-07-10 09:23:39 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:23:39 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:23:39 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:23:39 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:23:39 | **********   Start JobHostedService  **********
+2025-07-10 09:16:05 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:16:05 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:16:05 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:16:05 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:16:05 | **********   Start JobHostedService  **********
+2025-07-10 09:07:26 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:07:26 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:07:26 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:07:26 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:07:26 | **********   Start JobHostedService  **********
+2025-07-10 09:06:14 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:06:14 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:06:14 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:06:14 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:06:14 | **********   Start JobHostedService  **********
+2025-07-10 09:01:12 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 09:01:12 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 09:01:12 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:01:12 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:01:12 | **********   Start JobHostedService  **********
+2025-07-10 09:00:28 | [JOB] Calendar 2025-07-11 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 09:00:28 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-10 08:59:11 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-10 08:59:11
+2025-07-10 08:52:45 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 08:52:45 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 08:52:45 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 08:52:45 | [JOB] Calendar 2025-07-11 08:14:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 08:52:45 | **********   Start JobHostedService  **********
+2025-07-10 08:19:45 | [JOB] Calendar 2025-07-10 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-10 08:19:45 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-10 08:19:45 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 08:19:45 | [JOB] Calendar 2025-07-11 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-10 08:19:45 | **********   Start JobHostedService  **********
+2025-07-09 17:54:30 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 17:54:30 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 17:54:30 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:54:30 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:54:30 | **********   Start JobHostedService  **********
+2025-07-09 17:17:55 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 17:17:55 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 17:17:55 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:17:55 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:17:55 | **********   Start JobHostedService  **********
+2025-07-09 17:09:48 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 17:09:48 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 17:09:48 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:09:48 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:09:48 | **********   Start JobHostedService  **********
+2025-07-09 17:02:57 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 17:02:57 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 17:02:57 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:02:57 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 17:02:57 | **********   Start JobHostedService  **********
+2025-07-09 16:45:22 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 16:45:22 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 16:45:22 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 16:45:22 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 16:45:22 | **********   Start JobHostedService  **********
+2025-07-09 13:30:43 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 13:30:43 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 13:30:43 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 13:30:42 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 13:30:42 | **********   Start JobHostedService  **********
+2025-07-09 12:00:00 | [JOB] Calendar 2025-07-10 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-09 11:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-09 11:59:59
+2025-07-09 11:07:40 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 11:07:40 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 11:07:40 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 11:07:40 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 11:07:40 | **********   Start JobHostedService  **********
+2025-07-09 10:48:13 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 10:48:13 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 10:48:13 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:48:13 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:48:13 | **********   Start JobHostedService  **********
+2025-07-09 10:44:10 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 10:44:10 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 10:44:10 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:44:10 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:44:10 | **********   Start JobHostedService  **********
+2025-07-09 10:32:19 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 10:32:19 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 10:32:19 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:32:19 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:32:19 | **********   Start JobHostedService  **********
+2025-07-09 10:28:19 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 10:28:19 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 10:28:19 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:28:19 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 10:28:19 | **********   Start JobHostedService  **********
+2025-07-09 09:00:48 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 09:00:48 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 09:00:48 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 09:00:48 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 09:00:48 | **********   Start JobHostedService  **********
+2025-07-09 08:59:02 | [JOB] Calendar 2025-07-10 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:59:02 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-09 08:59:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-09 08:59:00
+2025-07-09 08:57:04 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 08:57:04 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 08:57:04 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:57:04 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:57:04 | **********   Start JobHostedService  **********
+2025-07-09 08:50:15 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 08:50:15 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 08:50:15 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:50:15 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:50:15 | **********   Start JobHostedService  **********
+2025-07-09 08:46:57 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 08:46:57 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 08:46:57 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:46:57 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:46:57 | **********   Start JobHostedService  **********
+2025-07-09 08:44:32 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 08:44:32 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 08:44:32 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:44:32 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:44:32 | **********   Start JobHostedService  **********
+2025-07-09 08:37:36 | [JOB] Calendar 2025-07-09 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-09 08:37:36 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-09 08:37:36 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:37:36 | [JOB] Calendar 2025-07-10 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-09 08:37:36 | **********   Start JobHostedService  **********
+2025-07-08 17:54:49 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 17:54:49 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 17:54:49 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 17:54:49 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 17:54:49 | **********   Start JobHostedService  **********
+2025-07-08 17:52:54 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 17:52:54 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 17:52:54 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 17:52:54 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 17:52:54 | **********   Start JobHostedService  **********
+2025-07-08 16:54:20 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 16:54:20 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 16:54:20 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 16:54:20 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 16:54:20 | **********   Start JobHostedService  **********
+2025-07-08 16:46:28 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 16:46:28 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 16:46:28 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 16:46:28 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 16:46:28 | **********   Start JobHostedService  **********
+2025-07-08 15:25:13 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 15:25:13 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 15:25:13 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 15:25:13 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 15:25:13 | **********   Start JobHostedService  **********
+2025-07-08 15:24:43 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 15:24:43 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 15:24:43 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 15:24:43 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 15:24:43 | **********   Start JobHostedService  **********
+2025-07-08 14:37:34 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 14:37:34 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 14:37:34 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:37:34 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:37:34 | **********   Start JobHostedService  **********
+2025-07-08 14:33:34 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 14:33:34 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 14:33:34 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:33:34 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:33:34 | **********   Start JobHostedService  **********
+2025-07-08 14:23:23 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 14:23:23 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 14:23:23 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:23:23 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 14:23:23 | **********   Start JobHostedService  **********
+2025-07-08 13:15:02 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 13:15:02 | [JOB] Calendar 2025-07-09 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 13:15:02 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 13:15:02 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 13:15:02 | **********   Start JobHostedService  **********
+2025-07-08 11:52:21 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:52:21 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:52:21 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:52:21 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:52:21 | **********   Start JobHostedService  **********
+2025-07-08 11:42:59 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:42:59 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:42:59 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:42:59 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:42:59 | **********   Start JobHostedService  **********
+2025-07-08 11:24:00 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:24:00 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:24:00 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:24:00 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:24:00 | **********   Start JobHostedService  **********
+2025-07-08 11:23:40 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:23:40 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:23:40 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:23:40 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:23:40 | **********   Start JobHostedService  **********
+2025-07-08 11:19:56 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:19:56 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:19:56 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:19:56 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:19:56 | **********   Start JobHostedService  **********
+2025-07-08 11:17:40 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:17:40 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:17:40 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:17:40 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:17:40 | **********   Start JobHostedService  **********
+2025-07-08 11:14:42 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:14:42 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:14:42 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:14:42 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:14:42 | **********   Start JobHostedService  **********
+2025-07-08 11:06:32 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 11:06:32 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 11:06:32 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:06:32 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 11:06:32 | **********   Start JobHostedService  **********
+2025-07-08 10:56:17 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 10:56:17 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 10:56:17 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:56:17 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:56:17 | **********   Start JobHostedService  **********
+2025-07-08 10:51:27 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 10:51:27 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 10:51:27 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:51:27 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:51:27 | **********   Start JobHostedService  **********
+2025-07-08 10:51:19 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 10:51:19 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-08 10:51:19 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:51:19 | [JOB] Calendar 2025-07-09 08:13:59 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 10:51:19 | **********   Start JobHostedService  **********
+2025-07-08 08:59:01 | [JOB] Calendar 2025-07-09 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-08 08:59:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-08 08:59:00
+2025-07-08 08:58:58 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-08 08:58:58 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-08 08:58:57 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-08 08:58:57
+2025-07-08 00:00:00 | [JOB] Calendar 2025-07-08 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-08 00:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-07 23:59:58 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-07 23:59:58
+2025-07-07 18:06:24 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 18:06:24 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 18:06:24 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 18:06:24 | **********   Start JobHostedService  **********
+2025-07-07 17:22:22 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 17:22:22 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 17:22:22 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 17:22:22 | **********   Start JobHostedService  **********
+2025-07-07 17:21:04 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 17:21:04 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 17:21:04 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 17:21:04 | **********   Start JobHostedService  **********
+2025-07-07 17:17:30 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 17:17:30 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 17:17:30 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 17:17:30 | **********   Start JobHostedService  **********
+2025-07-07 17:12:00 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 17:12:00 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 17:12:00 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 17:12:00 | **********   Start JobHostedService  **********
+2025-07-07 16:40:18 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 16:40:18 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 16:40:18 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 16:40:18 | **********   Start JobHostedService  **********
+2025-07-07 16:39:05 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 16:39:05 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 16:39:05 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 16:39:05 | **********   Start JobHostedService  **********
+2025-07-07 16:22:15 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 16:22:15 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 16:22:15 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 16:22:15 | **********   Start JobHostedService  **********
+2025-07-07 16:16:33 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 16:16:33 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 16:16:33 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 16:16:33 | **********   Start JobHostedService  **********
+2025-07-07 16:04:20 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 16:04:20 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 16:04:20 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 16:04:20 | **********   Start JobHostedService  **********
+2025-07-07 15:59:05 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 15:59:05 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 15:59:05 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 15:59:05 | **********   Start JobHostedService  **********
+2025-07-07 15:52:52 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 15:52:52 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 15:52:52 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 15:52:52 | **********   Start JobHostedService  **********
+2025-07-07 15:46:17 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 15:46:17 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 15:46:17 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 15:46:16 | **********   Start JobHostedService  **********
+2025-07-07 15:37:35 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 15:37:35 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 15:37:35 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 15:37:35 | **********   Start JobHostedService  **********
+2025-07-07 14:23:22 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 14:23:22 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 14:23:22 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 14:23:22 | **********   Start JobHostedService  **********
+2025-07-07 14:19:52 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 14:19:52 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 14:19:52 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 14:19:52 | **********   Start JobHostedService  **********
+2025-07-07 14:12:14 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 14:12:14 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 14:12:14 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 14:12:14 | **********   Start JobHostedService  **********
+2025-07-07 14:02:42 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 14:02:42 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 14:02:42 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 14:02:42 | **********   Start JobHostedService  **********
+2025-07-07 13:54:03 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 13:54:03 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 13:54:03 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 13:54:03 | **********   Start JobHostedService  **********
+2025-07-07 13:44:18 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 13:44:18 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 13:44:18 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 13:44:18 | **********   Start JobHostedService  **********
+2025-07-07 13:37:14 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 13:37:14 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 13:37:14 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 13:37:14 | **********   Start JobHostedService  **********
+2025-07-07 13:17:19 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 13:17:19 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 13:17:19 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 13:17:19 | **********   Start JobHostedService  **********
+2025-07-07 13:10:05 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 13:10:05 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 13:10:05 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 13:10:05 | **********   Start JobHostedService  **********
+2025-07-07 12:00:35 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 12:00:35 | [JOB] Calendar 2025-07-08 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 12:00:35 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 12:00:35 | **********   Start JobHostedService  **********
+2025-07-07 12:00:00 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-07 12:00:00
+2025-07-07 11:53:20 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:53:20 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:53:20 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:53:20 | **********   Start JobHostedService  **********
+2025-07-07 11:47:19 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:47:19 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:47:19 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:47:19 | **********   Start JobHostedService  **********
+2025-07-07 11:46:05 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:46:05 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:46:05 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:46:05 | **********   Start JobHostedService  **********
+2025-07-07 11:42:56 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:42:56 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:42:56 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:42:56 | **********   Start JobHostedService  **********
+2025-07-07 11:40:17 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:40:17 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:40:17 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:40:17 | **********   Start JobHostedService  **********
+2025-07-07 11:28:50 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:28:50 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:28:50 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:28:50 | **********   Start JobHostedService  **********
+2025-07-07 11:22:56 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:22:56 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:22:56 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:22:56 | **********   Start JobHostedService  **********
+2025-07-07 11:16:22 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 11:16:22 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 11:16:22 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 11:16:22 | **********   Start JobHostedService  **********
+2025-07-07 10:48:41 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:48:41 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:48:41 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:48:41 | **********   Start JobHostedService  **********
+2025-07-07 10:47:01 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:47:01 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:47:01 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:47:01 | **********   Start JobHostedService  **********
+2025-07-07 10:38:22 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:38:22 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:38:22 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:38:22 | **********   Start JobHostedService  **********
+2025-07-07 10:34:56 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:34:56 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:34:56 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:34:56 | **********   Start JobHostedService  **********
+2025-07-07 10:25:33 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:25:33 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:25:33 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:25:33 | **********   Start JobHostedService  **********
+2025-07-07 10:16:44 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:16:44 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:16:44 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:16:44 | **********   Start JobHostedService  **********
+2025-07-07 10:15:25 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:15:25 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:15:25 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:15:25 | **********   Start JobHostedService  **********
+2025-07-07 10:09:10 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:09:10 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:09:10 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:09:10 | **********   Start JobHostedService  **********
+2025-07-07 10:00:06 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 10:00:06 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 10:00:06 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 10:00:06 | **********   Start JobHostedService  **********
+2025-07-07 09:57:24 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 09:57:24 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 09:57:24 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 09:57:24 | **********   Start JobHostedService  **********
+2025-07-07 08:59:01 | [JOB] Calendar 2025-07-08 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-07 08:58:59 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-07 08:58:59
+2025-07-07 08:00:28 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 08:00:28 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 08:00:28 | [JOB] Calendar 2025-07-07 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 08:00:28 | **********   Start JobHostedService  **********
+2025-07-07 07:53:00 | [JOB] Calendar 2025-07-07 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-07 07:53:00 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-07 07:53:00 | [JOB] Calendar 2025-07-07 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-07 07:53:00 | **********   Start JobHostedService  **********
+2025-07-06 12:00:00 | [JOB] Calendar 2025-07-07 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-06 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-06 12:00:00 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-06 12:00:00
+2025-07-06 11:59:56 | [JOB] Calendar 2025-07-06 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-06 11:59:56 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-06 11:59:55 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-06 11:59:55
+2025-07-06 08:59:01 | [JOB] Calendar 2025-07-07 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-06 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-06 08:59:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-06 08:59:00
+2025-07-06 08:58:57 | [JOB] Calendar 2025-07-06 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-06 08:58:57 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-06 08:58:55 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-06 08:58:55
+2025-07-05 23:59:59 | [JOB] Calendar 2025-07-06 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-05 23:59:59 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-05 23:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-05 23:59:59
+2025-07-05 23:59:56 | [JOB] Calendar 2025-07-05 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-05 23:59:56 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-05 23:59:54 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-05 23:59:54
+2025-07-05 12:00:00 | [JOB] Calendar 2025-07-06 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-05 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-05 12:00:00 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-05 12:00:00
+2025-07-05 11:59:57 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-05 11:59:57 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-05 11:59:56 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-05 11:59:56
+2025-07-05 08:59:01 | [JOB] Calendar 2025-07-06 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-05 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-05 08:59:00 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-05 08:59:00
+2025-07-05 08:58:58 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-05 08:58:58 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-05 08:58:57 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-05 08:58:57
+2025-07-04 23:59:59 | [JOB] Calendar 2025-07-05 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 23:59:59 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-04 23:59:57 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-04 23:59:57
+2025-07-04 17:10:51 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 17:10:51 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 17:10:51 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 17:10:51 | **********   Start JobHostedService  **********
+2025-07-04 15:44:09 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 15:44:09 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 15:44:09 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 15:44:09 | **********   Start JobHostedService  **********
+2025-07-04 15:02:02 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 15:02:02 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 15:02:02 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 15:02:02 | **********   Start JobHostedService  **********
+2025-07-04 14:58:07 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:58:07 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:58:07 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:58:07 | **********   Start JobHostedService  **********
+2025-07-04 14:55:02 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:55:02 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:55:02 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:55:02 | **********   Start JobHostedService  **********
+2025-07-04 14:29:09 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:29:09 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:29:09 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:29:09 | **********   Start JobHostedService  **********
+2025-07-04 14:21:25 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:21:25 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:21:25 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:21:25 | **********   Start JobHostedService  **********
+2025-07-04 14:18:17 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:18:17 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:18:17 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:18:17 | **********   Start JobHostedService  **********
+2025-07-04 14:13:40 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 14:13:40 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 14:13:40 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 14:13:40 | **********   Start JobHostedService  **********
+2025-07-04 12:00:00 | [JOB] Calendar 2025-07-05 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-04 11:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-04 11:59:59
+2025-07-04 10:34:55 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 10:34:55 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 10:34:55 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 10:34:55 | **********   Start JobHostedService  **********
+2025-07-04 10:17:48 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 10:17:48 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 10:17:48 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 10:17:48 | **********   Start JobHostedService  **********
+2025-07-04 08:59:01 | [JOB] Calendar 2025-07-05 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 08:59:01 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-00-09  ***** 
+2025-07-04 08:58:59 | [JOB] Run task: TurnOn-ToolWorkSheet-00-09  at 2025-07-04 08:58:59
+2025-07-04 08:51:06 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 08:51:06 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 08:51:06 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 08:51:06 | **********   Start JobHostedService  **********
+2025-07-04 08:43:13 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-04 08:43:13 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-04 08:43:13 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-04 08:43:13 | **********   Start JobHostedService  **********
+2025-07-03 23:59:59 | [JOB] Calendar 2025-07-04 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 23:59:59 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-03 23:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-03 23:59:59
+2025-07-03 23:59:58 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 23:59:58 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-12-24  ***** 
+2025-07-03 23:59:58 | [JOB] Run task: TurnOn-ToolWorkSheet-12-24  at 2025-07-03 23:59:58
+2025-07-03 17:42:47 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 17:42:47 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 17:42:47 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 17:42:47 | **********   Start JobHostedService  **********
+2025-07-03 17:38:22 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 17:38:22 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 17:38:22 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 17:38:22 | **********   Start JobHostedService  **********
+2025-07-03 17:15:47 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 17:15:47 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 17:15:47 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 17:15:47 | **********   Start JobHostedService  **********
+2025-07-03 16:30:31 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 16:30:31 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 16:30:31 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 16:30:31 | **********   Start JobHostedService  **********
+2025-07-03 16:29:39 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 16:29:39 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 16:29:39 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 16:29:39 | **********   Start JobHostedService  **********
+2025-07-03 16:13:00 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 16:13:00 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 16:13:00 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 16:13:00 | **********   Start JobHostedService  **********
+2025-07-03 15:54:54 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 15:54:54 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 15:54:54 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 15:54:54 | **********   Start JobHostedService  **********
+2025-07-03 14:13:22 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 14:13:22 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 14:13:22 | [JOB] Calendar 2025-07-04 08:59:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 14:13:22 | **********   Start JobHostedService  **********
+2025-07-03 14:04:05 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 14:04:05 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 14:04:05 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 14:04:05 | **********   Start JobHostedService  **********
+2025-07-03 13:52:52 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 13:52:52 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 13:52:52 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 13:52:52 | **********   Start JobHostedService  **********
+2025-07-03 13:40:54 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 13:40:54 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 13:40:54 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 13:40:54 | **********   Start JobHostedService  **********
+2025-07-03 13:32:37 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 13:32:37 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 13:32:37 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 13:32:37 | **********   Start JobHostedService  **********
+2025-07-03 12:00:00 | [JOB] Calendar 2025-07-04 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 12:00:00 | [JOB] ***** Completed: TurnOn-ToolWorkSheet-09-12  ***** 
+2025-07-03 11:59:59 | [JOB] Run task: TurnOn-ToolWorkSheet-09-12  at 2025-07-03 11:59:59
+2025-07-03 09:24:30 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 09:24:30 | [JOB] Calendar 2025-07-03 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 09:24:30 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 09:24:30 | **********   Start JobHostedService  **********
+2025-07-03 09:21:48 | [JOB] Calendar 2025-07-03 23:59:59 --> run task: TurnOn-ToolWorkSheet-12-24 
+2025-07-03 09:21:48 | [JOB] Calendar 2025-07-03 12:00:00 --> run task: TurnOn-ToolWorkSheet-09-12 
+2025-07-03 09:21:48 | [JOB] Calendar 2025-07-04 09:00:00 --> run task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 09:21:48 | **********   Start JobHostedService  **********
+2025-07-03 09:00:00 | [JOB] Lên lịch 2025-07-04 09:00:00 để chạy task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 09:00:00 | [JOB] ✅✅✅ Hoàn tất: TurnOn-ToolWorkSheet-00-09  ✅✅✅ 
+2025-07-03 09:00:00 | [JOB] Bắt đầu chạy task: TurnOn-ToolWorkSheet-00-09  lúc 2025-07-03 09:00:00
+2025-07-03 08:59:58 | [JOB] Lên lịch 2025-07-03 09:00:00 để chạy task: TurnOn-ToolWorkSheet-00-09 
+2025-07-03 08:59:58 | [JOB] ✅✅✅ Hoàn tất: TurnOn-ToolWorkSheet-00-09  ✅✅✅ 
+2025-07-03 08:59:57 | [JOB] Bắt đầu chạy task: TurnOn-ToolWorkSheet-00-09  lúc 2025-07-03 08:59:57
+2025-07-02 23:59:59 | [JOB] Lên lịch 2025-07-03 23:59:59 để chạy task: TurnOn-ToolWorkSheet-12-24 
+2025-07-02 23:59:59 | [JOB] ✅✅✅ Hoàn tất: TurnOn-ToolWorkSheet-12-24  ✅✅✅ 
+2025-07-02 23:59:59 | [JOB] Bắt đầu chạy task: TurnOn-ToolWorkSheet-12-24  lúc 2025-07-02 23:59:59
+2025-07-02 23:59:58 | [JOB] Lên lịch 2025-07-02 23:59:59 để chạy task: TurnOn-ToolWorkSheet-12-24 
+2025-07-02 23:59:58 | [JOB] ✅✅✅ Hoàn tất: TurnOn-ToolWorkSheet-12-24  ✅✅✅ 
+2025-07-02 23:59:57 | [JOB] Bắt đầu chạy task: TurnOn-ToolWorkSheet-12-24  lúc 2025-07-02 23:59:57
+2025-07-02 17:11:02 | [JOB] Lên lịch 2025-07-02 23:59:59 để chạy task: TurnOn-ToolWorkSheet-12-24 
+2025-07-02 17:11:02 | [JOB] Lên lịch 2025-07-03 12:00:00 để chạy task: TurnOn-ToolWorkSheet-09-12 
+2025-07-02 17:11:02 | [JOB] Lên lịch 2025-07-03 09:00:00 để chạy task: TurnOn-ToolWorkSheet-00-09 
+2025-07-02 17:11:02 | **********   Start JobHostedService  **********

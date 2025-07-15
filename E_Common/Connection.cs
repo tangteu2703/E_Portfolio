@@ -62,6 +62,20 @@ namespace E_Common
             await Connection.getConnection(ConnectionName).ExecuteAsync(StoreProcedureName, param, commandType: CommandType.StoredProcedure);
             return param.Get<int>(returnValueParamName);
         }
+        public static async Task<Dictionary<string, int>> ExecuteScalarOutputsAsync( string storeProcedureName, DynamicParameters param, IEnumerable<string> outputNames, string connectionName = "DefaultConnection")
+        {
+            await Connection
+                .getConnection(connectionName)
+                .ExecuteAsync(storeProcedureName, param, commandType: CommandType.StoredProcedure);
+
+            var result = new Dictionary<string, int>();
+            foreach (var name in outputNames)
+            {
+                result[name] = param.Get<int>(name);
+            }
+            return result;
+        }
+
 
         public static async Task<IEnumerable<T>> SelectAsync<T>(string StoreProcedueName, DynamicParameters param = null, string ConnectionName = "DefaultConnection")
         //where T : class

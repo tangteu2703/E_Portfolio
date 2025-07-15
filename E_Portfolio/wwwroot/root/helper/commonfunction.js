@@ -277,17 +277,6 @@ const commonExtension = {
                                     localStorage.setItem('e_atoken', response.access_token);
                                     localStorage.setItem('e_rtoken', response.refresh_token);
 
-                                    var list_menu = response.list_menu;
-                                    var list_factory = response.list_factory;
-                                    var list_full_location = response.list_full_location;
-                                    var list_user_function = response.list_user_function;
-                                    await commonFunction.extension.saveAuthorizeToIndexedDB(
-                                        'AuthorizeDB',
-                                        list_menu,
-                                        list_factory,
-                                        list_full_location,
-                                        list_user_function
-                                    );
                                     resolve();
                                 } else {
                                     localStorage.removeItem('e_atoken');
@@ -355,45 +344,7 @@ const commonExtension = {
         a.click();
         window.URL.revokeObjectURL(url);
     },
-    getListApiUrl: (isReturnLocation = false) => {
-        return new Promise((resolve, reject) => {
-            const dbName = 'AuthorizeDB';
-            const request = indexedDB.open(dbName);
-
-            request.onupgradeneeded = function (event) {
-                const db = event.target.result;
-                if (!db.objectStoreNames.contains('list_user_function')) {
-                    db.createObjectStore('list_user_function', { keyPath: 'id' });
-                }
-            };
-
-            request.onsuccess = function (event) {
-                const db = event.target.result;
-                const transaction = db.transaction(['list_user_function'], 'readonly');
-                const store = transaction.objectStore('list_user_function');
-                const getAllRequest = store.getAll();
-
-                getAllRequest.onsuccess = function () {
-                    const list_api_url = getAllRequest.result.map(x => x.api_url);
-                    if (isReturnLocation == false) {
-                        resolve(list_api_url);
-                    } else {
-                        resolve(getAllRequest.result);
-                    }
-                };
-
-                getAllRequest.onerror = function (event) {
-                    console.error('Failed to load list_user_function from IndexedDB:', event.target.error);
-                    reject(event.target.error);
-                };
-            };
-
-            request.onerror = function (event) {
-                console.error('IndexedDB error:', event.target.error);
-                reject(event.target.error);
-            };
-        });
-    },
+   
     /*--------- Query Param -------------------------------*/
     getQueryParam: (param) => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -446,122 +397,7 @@ const commonExtension = {
         return url;
     },
 
-    saveAuthorizeToIndexedDB: (dbName, listMenu, listFactory, listFullLocation, listUserFunction) => {
-        return new Promise((resolve, reject) => {
-            const request = indexedDB.open(dbName);
-
-            request.onsuccess = function (event) {
-                const db = event.target.result;
-
-                // Kiểm tra sự tồn tại của tất cả các object store
-                const requiredStores = ['list_menu', 'list_factory', 'list_full_location', 'list_user_function'];
-                const missingStores = requiredStores.filter(store => !db.objectStoreNames.contains(store));
-
-                if (missingStores.length > 0) {
-                    console.warn('Missing object stores:', missingStores, '. Deleting and recreating database.');
-
-                    // Đóng cơ sở dữ liệu và xóa nó
-                    db.close();
-                    const deleteRequest = indexedDB.deleteDatabase(dbName);
-
-                    deleteRequest.onsuccess = () => {
-                        console.log('Database deleted successfully.');
-                        recreateDatabase(); // Tạo lại cơ sở dữ liệu sau khi xóa
-                    };
-
-                    deleteRequest.onerror = (event) => {
-                        console.error('Failed to delete database:', event.target.error);
-                        reject(event.target.error);
-                    };
-
-                    return;
-                }
-
-                // Nếu không thiếu object store nào, tiến hành thêm dữ liệu
-                handleTransaction(db);
-            };
-
-            request.onupgradeneeded = function (event) {
-                recreateStores(event.target.result);
-            };
-
-            request.onerror = function (event) {
-                console.error('Failed to open database:', event.target.error);
-                reject(event.target.error);
-            };
-
-            const recreateDatabase = () => {
-                const createRequest = indexedDB.open(dbName);
-
-                createRequest.onupgradeneeded = function (event) {
-                    const db = event.target.result;
-                    recreateStores(db);
-                };
-
-                createRequest.onsuccess = function (event) {
-                    const db = event.target.result;
-                    handleTransaction(db);
-                };
-
-                createRequest.onerror = function (event) {
-                    console.error('Failed to recreate database:', event.target.error);
-                    reject(event.target.error);
-                };
-            };
-
-            const recreateStores = (db) => {
-                const stores = [
-                    { name: 'list_menu', keyPath: 'id', autoIncrement: true },
-                    { name: 'list_factory', keyPath: 'id', autoIncrement: true },
-                    { name: 'list_full_location', keyPath: 'id', autoIncrement: true },
-                    { name: 'list_user_function', keyPath: 'id', autoIncrement: true }
-                ];
-
-                stores.forEach(store => {
-                    if (!db.objectStoreNames.contains(store.name)) {
-                        db.createObjectStore(store.name, { keyPath: store.keyPath, autoIncrement: store.autoIncrement });
-                        console.log(`Object store "${store.name}" created.`);
-                    }
-                });
-            };
-
-            const handleTransaction = (dbInstance) => {
-                const transaction = dbInstance.transaction(
-                    ['list_menu', 'list_factory', 'list_full_location', 'list_user_function'],
-                    'readwrite'
-                );
-
-                const clearAndInsertData = (storeName, data) => {
-                    const store = transaction.objectStore(storeName);
-
-                    store.clear().onsuccess = () => {
-                        console.log(`${storeName} cleared.`);
-                        data.forEach(item => store.add(item));
-                    };
-
-                    store.clear().onerror = (event) => {
-                        console.error(`Failed to clear ${storeName}:`, event.target.error);
-                        reject(event.target.error);
-                    };
-                };
-
-                clearAndInsertData('list_menu', listMenu);
-                clearAndInsertData('list_factory', listFactory);
-                clearAndInsertData('list_full_location', listFullLocation);
-                clearAndInsertData('list_user_function', listUserFunction);
-
-                transaction.oncomplete = () => {
-                    console.log('All data inserted successfully.');
-                    resolve();
-                };
-
-                transaction.onerror = (event) => {
-                    console.error('Transaction failed:', event.target.error);
-                    reject(event.target.error);
-                };
-            };
-        });
-    },
+   
     getDictionaryFromIndexedDB: () => {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open("TranslationDB");
@@ -705,69 +541,6 @@ const commonDataTable = {
         };
         var table = $(`#${tableId}`).DataTable(tableSetting);
         table.clear().rows.add(data).draw();
-    },
-    genOperationButtonTable: (data, list_user_function, onClickEdit, onClickDelete, controller, isCheckPermission = true, isCheckIdMachine = false, idMachine = 0) => {
-        var list_api_url = list_user_function.map(x => x.api_url);
-        if (isCheckPermission === true) {
-            if (data != null && data > 0 && list_user_function != null) {
-                const hasAccessDelete = list_api_url.some(function (func) {
-                    return func.trim().toLowerCase() == `/${controller}/delete`.toLowerCase();
-                });
-                let hasAccessUpdate = false;
-                if (isCheckIdMachine && idMachine > 0) {
-                    hasAccessUpdate = list_user_function.some(function (func) {
-                        return func.api_url.trim().toLowerCase() === `/${controller}/update`.toLowerCase() && func.machine_ids.split(',').map(Number).includes(idMachine);
-                    });
-                } else {
-                    hasAccessUpdate = list_api_url.some(function (func) {
-                        return func.trim().toLowerCase() == `/${controller}/update`.toLowerCase();
-                    });
-                }
-
-                const hasAccessViewDetail = list_api_url.some(function (func) {
-                    return func.trim().toLowerCase() == `/${controller}/selectbyid`.toLowerCase();
-                });
-                var button = ``;
-                if (hasAccessUpdate) {
-                    button += `<i class="ki-duotone ki-pencil text-primary btn-icon" style="font-size:20px" onclick="${onClickEdit}(${data})">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>`;
-                } else {
-                    if (hasAccessViewDetail) {
-                        button += `<i class="ki-duotone ki-eye text-primary btn-icon" style="font-size:20px" onclick="${onClickEdit}(${data})">
-                         <span class="path1"></span>
-                         <span class="path2"></span>
-                         <span class="path3"></span>
-                        </i>`;
-                    }
-                }
-                if (hasAccessDelete) {
-                    button += `<i class="ki-duotone ki-trash text-danger btn-icon" style="font-size:20px"  onclick="${onClickDelete}(${data})">
-                             <span class="path1"></span>
-                             <span class="path2"></span>
-                             <span class="path3"></span>
-                             <span class="path4"></span>
-                             <span class="path5"></span>
-                            </i>`;
-                }
-                button += '';
-                return button;
-            }
-            else {
-                return ``;
-            }
-        } else {
-            var button = ``;
-            button += `<div class='btn-group'><button class="btn btn-info btn-sm" onclick="${onClickEdit}(${data})">
-                                        <i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
-                                        </button>`;
-            button +=
-                `<button class="btn btn-danger btn-sm" onclick="${onClickDelete}(${data})">
-                                                <i class="fa fa-trash-o text-white" aria-hidden="true"></i>
-                                            </button></div>`;
-            return button;
-        }
     },
     genOperationButtonTableWithLocation: (data, list_api_url, onClickEdit, onClickDelete, controller, location_id) => {
         if (data != null && data > 0 && list_api_url != null) {
@@ -1858,3 +1631,124 @@ const comboBox = {
         }
     }
 };
+const commonIndexDB = {
+    saveToIndexedDB: async function (dbName, storeName, data, keyPath = "id") {
+        if (!dbName || !storeName || !data) {
+            console.error("Thiếu tham số bắt buộc");
+            return Promise.reject("Thiếu tham số");
+        }
+
+        // ✅ Check nếu object không có keyPath
+        if (data[keyPath] === undefined || data[keyPath] === null) {
+            console.error(`Object không có keyPath '${keyPath}'`);
+            return Promise.reject(`Object thiếu key '${keyPath}'`);
+        }
+
+        let currentVersion = 1;
+        let needUpgrade = false;
+
+        // Bước 1: Mở DB để lấy version hiện tại
+        try {
+            const versionInfo = await new Promise((resolve, reject) => {
+                const req = indexedDB.open(dbName);
+                req.onsuccess = (e) => {
+                    const db = e.target.result;
+                    const version = db.version;
+                    const hasStore = db.objectStoreNames.contains(storeName);
+                    db.close();
+                    resolve({ version, hasStore });
+                };
+                req.onerror = () => reject("Không thể mở DB");
+            });
+
+            currentVersion = versionInfo.version;
+            needUpgrade = !versionInfo.hasStore;
+        } catch (err) {
+            return Promise.reject(err);
+        }
+
+        // Bước 2: Nếu store chưa tồn tại → tăng version và tạo store
+        if (needUpgrade) {
+            currentVersion += 1;
+
+            await new Promise((resolve, reject) => {
+                const upgradeReq = indexedDB.open(dbName, currentVersion);
+                upgradeReq.onupgradeneeded = function (e) {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(storeName)) {
+                        db.createObjectStore(storeName, { keyPath });
+                    }
+                };
+                upgradeReq.onsuccess = (e) => {
+                    e.target.result.close();
+                    resolve(true);
+                };
+                upgradeReq.onerror = () => reject("Upgrade DB lỗi");
+            });
+        }
+
+        // Bước 3: Mở lại và ghi dữ liệu
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName, currentVersion);
+            request.onsuccess = function (e) {
+                const db = e.target.result;
+                const tx = db.transaction(storeName, "readwrite");
+                const store = tx.objectStore(storeName);
+
+                const putRequest = store.put(data);
+                putRequest.onsuccess = () => resolve(true);
+                putRequest.onerror = (e) => reject("Lỗi khi ghi: " + e.target.error);
+
+                tx.oncomplete = () => db.close();
+            };
+            request.onerror = (e) => reject("Mở DB lỗi: " + e.target.errorCode);
+        });
+    },
+
+    setupUser: async function () {
+        const dbName = 'AuthorizeDB';
+        const storeName = 'user_information';
+
+        const user = await new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName);
+            request.onsuccess = function (e) {
+                const db = e.target.result;
+
+                if (!db.objectStoreNames.contains(storeName)) {
+                    return resolve(null);
+                }
+
+                const tx = db.transaction(storeName, "readonly");
+                const store = tx.objectStore(storeName);
+
+                const getAll = store.getAll();
+                getAll.onsuccess = () => resolve(getAll.result?.[0] || null);
+                getAll.onerror = () => reject("Lỗi đọc user");
+            };
+            request.onerror = () => reject("Lỗi mở DB");
+        });
+
+        if (!user) {
+            console.warn("Không tìm thấy user_information");
+            return;
+        }
+
+        // ✅ Gán dữ liệu theo class (gán cho tất cả matching elements)
+        document.querySelectorAll('.user_avatar').forEach(el => {
+            el.src = user.avatar || "https://picsum.photos/100";
+        });
+
+        document.querySelectorAll('.user_fullname').forEach(el => {
+            el.textContent = user.full_name || "Không rõ";
+        });
+
+        document.querySelectorAll('.user_email').forEach(el => {
+            el.textContent = user.email || "no-email@example.com";
+            el.href = `mailto:${user.email}`;
+        });
+    }
+
+};
+
+
+

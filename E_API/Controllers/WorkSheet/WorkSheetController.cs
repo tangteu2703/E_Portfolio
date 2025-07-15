@@ -2,6 +2,7 @@
 using E_Model.Request.WorkSheet;
 using E_Model.Table_SQL.WorkSheet;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq.Dynamic.Core;
 
 namespace E_API.Controllers.WorkSheet
 {
@@ -15,6 +16,26 @@ namespace E_API.Controllers.WorkSheet
             _serviceWrapper = serviceWrapper;
         }
 
+        [HttpPost("Setup")]
+        public async Task<IActionResult> GetDataSetup([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var result = await _serviceWrapper.WorkSheet.SelectFilterAsync(request, "");
+                // 7. Trả kết quả
+                return Ok(new
+                {
+                    data = result.listData,
+                    recordsTotal = result.recordsTotal,
+                    recordsFiltered = result.recordsFiltered
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("History")]
         public async Task<IActionResult> GetAttendanceHistory([FromBody] WorkSheetRequest request)
         {
@@ -23,6 +44,44 @@ namespace E_API.Controllers.WorkSheet
                 var listData = await _serviceWrapper.WorkSheet.SelectFilterAsync(request);
 
                 return OK(listData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("History-Bio")]
+        public async Task<IActionResult> GetAttendanceBioHistory([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                request.from_date ??= DateTime.Now;
+                request.to_date = request.from_date.Value.AddDays(10);
+                request.from_date = request.from_date.Value.AddDays(-10);
+
+                var listData = await _serviceWrapper.WorkSheet.SelectBioHistoryAsync(request);
+
+                return OK(listData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Detail")]
+        public async Task<IActionResult> GetAttendanceDetail([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var result = await _serviceWrapper.WorkSheet.SelectDetailAsync(request, "detail");
+                return Ok(new
+                {
+                    data = result.listData,
+                    recordsTotal = result.recordsTotal,
+                    recordsFiltered = result.recordsFiltered
+                });
             }
             catch (Exception ex)
             {
@@ -107,6 +166,30 @@ namespace E_API.Controllers.WorkSheet
             }
         }
 
+        [HttpGet("Calculation-Detail")]
+        public async Task<IActionResult> CalculationDetail(DateTime? dateTime)
+        {
+            try
+            {
+                DateTime dayStart = (dateTime ?? DateTime.Now).Date;
+
+                var from = dayStart.AddHours(2); // 02:00
+                var to = dayStart.AddDays(1).AddHours(2);   // day+1 02:00
+
+                var (success, message) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_Detail(from, to);
+
+                if (success || success)
+                    return Ok(new { success = true, message = message });
+                else
+                    return BadRequest(new { success = false, error = message });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, error = "Unexpected error: " + ex.Message });
+            }
+        }
+
+
         #region Tool-WorkSheet
         [HttpGet("TurnOn-Tool-00-09")]
         public async Task<IActionResult> ConvertWorkSheet_Time(DateTime? dateTime)
@@ -121,10 +204,12 @@ namespace E_API.Controllers.WorkSheet
                 var (success, message) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_00_09(from, to);
                 var (success2, message2) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_HRBarcode(from, to);
 
+                var (success3, message3) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_Detail(from, to);
+
                 if (success || success2)
                     return Ok(new { success = true, message = message + $"\n Convert_WorkSheet_to_HRBarcode:" + message2 });
                 else
-                    return BadRequest(new { success = false, error = message });
+                    return BadRequest(new { success = false, error = message + $"\n Convert_WorkSheet_to_HRBarcode:" + message2 });
             }
             catch (Exception ex)
             {
@@ -143,6 +228,7 @@ namespace E_API.Controllers.WorkSheet
                 var to = dayStart.AddHours(12);   // 12:00
 
                 var (success, message) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_09_12(from, to);
+                //var (success2, message2) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_Detail(from, to);
 
                 if (success)
                     return Ok(new { success = true, message = message });
@@ -165,19 +251,18 @@ namespace E_API.Controllers.WorkSheet
                 var to = dayStart.AddDays(1);      // 00:00 sáng mai
 
                 var (success, message) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_12_24(from, to);
+                var (success2, message2) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_HRBarcode(dayStart.AddHours(09), to, 2);
 
-                if (success)
-                    return Ok(new { success = true, message = message });
+                if (success || success2)
+                    return Ok(new { success = true, message = message + $"\n Convert_WorkSheet_to_HRBarcode:" + message2 });
                 else
-                    return BadRequest(new { success = false, error = message });
+                    return BadRequest(new { success = false, error = message + $"\n Convert_WorkSheet_to_HRBarcode:" + message2 });
             }
             catch (Exception ex)
             {
                 return BadRequest(new { success = false, error = "Unexpected error: " + ex.Message });
             }
         }
-
-
         #endregion
     }
 }

@@ -62,8 +62,9 @@
                             Excel
                         </button>
                         <ul class="dropdown-menu w-100">
-                            <li><a class="dropdown-item" href="#" data-value="import">Import Excel</a></li>
+                            <li><a class="dropdown-item" onclick="importClick()" data-value="import">Import Excel</a></li>
                             <li><a class="dropdown-item" onclick="exportClick()" data-value="export">Export Excel</a></li>
+                            <input type="file" id="inputImage" accept="image/*" style="display:none;" onchange="onImageSelected(event)">
                         </ul>
                     </div>
                 </div>
@@ -135,7 +136,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!--end::Card header-->
                     <!--begin::Card body-->
                     <div class="card-body py-4">
@@ -158,7 +158,6 @@
                                             <th>Ngày công</th>
                                             <th>Giờ vào</th>
                                             <th>Giờ ra</th>
-                                            <th>Overtime</th>
                                             <th>Ca làm việc</th>
                                             <th>Chức năng</th>
                                         </tr>
@@ -180,6 +179,65 @@
         <!--end::Content-->
     </div>
     <!--end::Content wrapper-->
+</div>
+
+<div id="kt_activities" class="bg-body drawer drawer-end" data-kt-drawer="true" data-kt-drawer-name="activities" data-kt-drawer-activate="true" data-kt-drawer-overlay="true"
+     data-kt-drawer-width="{default:'500px', 'lg': '700px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_activities_toggle" data-kt-drawer-close="#kt_activities_close">
+
+    <div class="card shadow-none border-0 rounded-0">
+        <!--begin::Header-->
+        <div class="card-header" id="kt_activities_header">
+            <h3 class="card-title fw-bold text-gray-900">Lịch sử In/ Out</h3>
+
+            <div class="card-toolbar">
+                <button type="button" class="btn btn-sm btn-icon btn-active-light-primary me-n5" id="kt_activities_close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </button>
+            </div>
+        </div>
+        <!--end::Header-->
+        <!--begin::Body-->
+        <div class="card-body position-relative" id="kt_activities_body">
+            <!--begin::Content-->
+            <div id="kt_activities_scroll" class="position-relative scroll-y me-n5 pe-5" data-kt-scroll="true" data-kt-scroll-height="auto"
+                 data-kt-scroll-wrappers="#kt_activities_body" data-kt-scroll-dependencies="#kt_activities_header, #kt_activities_footer"
+                 data-kt-scroll-offset="5px" style="height: 700px;">
+
+                <div id="" class="table-responsive">
+                    <table id="zktbio_table" class="table table-sm table-hover align-middle table-row-dashed fs-8 gy-2 dataTable" style="width: 100%;">
+                        <thead>
+                            <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0" role="row">
+                                <th>Mã nhân viên</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tháng</th>
+                                <th>Khu vực</th>
+                                <th>Thiết bị</th>
+                                <th>Ngày cập nhật</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-semibold">
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                </div>
+            </div>
+            <!--end::Content-->
+        </div>
+        <!--end::Body-->
+        <!--begin::Footer-->
+        <div class="card-footer py-5 text-center" id="kt_activities_footer">
+            <a href="http://192.168.7.28:8081" target="_blank">
+                View All
+                <i class="ki-duotone ki-arrow-right fs-3 text-primary">
+                    <span class="path1"></span><span class="path2"></span>
+                </i>
+            </a>
+        </div>
+        <!--end::Footer-->
+    </div>
 </div>
 
 @section Scripts {

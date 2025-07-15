@@ -8,10 +8,9 @@ namespace E_Model.Response
 {
     public class DataTableResponse<T>
     {
-        public int Draw { get; set; }              // Số thứ tự của request, do DataTable gửi lên
-        public int RecordsTotal { get; set; }      // Tổng số bản ghi trong database
-        public int RecordsFiltered { get; set; }   // Tổng số bản ghi sau khi filter (nếu có filter)
-        public IEnumerable<T> Data { get; set; }   // Dữ liệu thực tế trả về
+        public int recordsTotal { get; set; }    
+        public int recordsFiltered { get; set; }
+        public IEnumerable<T> listData { get; set; }
     }
 
 }

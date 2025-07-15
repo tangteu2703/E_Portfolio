@@ -1,13 +1,18 @@
 ﻿using Dapper;
+using E_Common;
+using E_Contract.Repository.User;
+using E_Model.Authentication;
+using E_Model.Request;
+using E_Model.Request.User;
+using E_Model.Request.WorkSheet;
+using E_Model.Response.Authentication;
+using E_Model.Response.User;
+using E_Model.Response.WorkSheet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using E_Common;
-using E_Contract.Repository.User;
-using E_Model.Authentication;
-using E_Model.Response.Authentication;
 
 namespace E_Repository.User
 {
@@ -53,8 +58,23 @@ namespace E_Repository.User
                 param.Add("@password", password);
                 param.Add("@is_ldap", is_ldap);
 
-                var result = await Connection.SelectAsync<DataUserItemResponse>("data_user_select_by_user", param);
+                var result = await Connection.SelectAsync<DataUserItemResponse>("data_user_select_by_user", param, "PortfolioConnection");
                 return result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<IEnumerable<UserResponse>> SelectFilterAsync(UserRequest request)
+        {
+            try
+            {
+                var param = request.ToDynamicParameters();
+
+                var result = await Connection.SelectAsync<UserResponse>("data_user_select_filter", param, "HRMConnection");
+                return result;
             }
             catch (Exception ex)
             {

@@ -1,4 +1,27 @@
-﻿const apiHelper = (function () {
+﻿//const apiBase = "http://192.168.22.124:81/api";
+const apiBase = "https://localhost:44334/api";
+
+$(document).ready(function () {
+
+    commonIndexDB.setupUser();
+
+    pingAPI(); // Gọi ngay 1 lần khi load
+
+    // Ping lại 2 tiếng = 2 x 60 phút × 60 giây × 1000 ms
+    setInterval(pingAPI, 7200000);
+});
+
+const pingAPI = () => {
+    apiHelper.get(`/Masters/Version-API`, {},
+        function (res) {
+            console.log("Ping Version: ", res);
+        },
+        function (err) {
+            console.error("Ping error:", err);
+        });
+}
+
+const apiHelper = (function () {
     async function sendRequest({
         url,
         method = 'GET',
@@ -10,6 +33,8 @@
         isBlob = false,
     }) {
         try {
+            url = apiBase + url;
+
             const token = isAddToken ? await getApiToken(url) : localStorage.getItem("e_atoken");
 
             $.ajax({
@@ -110,7 +135,6 @@
     };
 })();
 
-
 async function configIfTokenExpired() {
     return new Promise(async (resolve, reject) => {
         try {
@@ -134,17 +158,6 @@ async function configIfTokenExpired() {
                                 localStorage.setItem('e_atoken', response.access_token);
                                 localStorage.setItem('e_rtoken', response.refresh_token);
 
-                                var list_menu = response.list_menu;
-                                var list_factory = response.list_factory;
-                                var list_full_location = response.list_full_location;
-                                var list_user_function = response.list_user_function;
-                                await commonFunction.extension.saveAuthorizeToIndexedDB(
-                                    'AuthorizeDB',
-                                    list_menu,
-                                    list_factory,
-                                    list_full_location,
-                                    list_user_function
-                                );
                                 resolve();
                             } else {
                                 localStorage.removeItem('e_atoken');
@@ -174,57 +187,5 @@ async function configIfTokenExpired() {
 }
 async function getApiToken(api_url) {
     await configIfTokenExpired();
-
-    return new Promise((resolve, reject) => {
-        const dbName = 'AuthorizeDB';
-        const request = indexedDB.open(dbName);
-
-        request.onupgradeneeded = function (event) {
-            const db = event.target.result;
-
-            // Create the list_user_function object store if it doesn't already exist
-            if (!db.objectStoreNames.contains('list_user_function')) {
-                db.createObjectStore('list_user_function', { keyPath: 'id', autoIncrement: true });
-            }
-        };
-
-        request.onsuccess = function (event) {
-            const db = event.target.result;
-
-            // Check if list_user_function exists in the database before attempting to access it
-            if (!db.objectStoreNames.contains('list_user_function')) {
-                reject('Object store list_user_function not found in database');
-                return;
-            }
-
-            const transaction = db.transaction('list_user_function', 'readonly');
-            const store = transaction.objectStore('list_user_function');
-
-            // Retrieve all items from list_user_function
-            const getAllRequest = store.getAll();
-            getAllRequest.onsuccess = function () {
-                const allRecords = getAllRequest.result;
-
-                api_url = "/" + api_url;
-                api_url = api_url.replace(/\/\//, '/');
-
-                // Find the record matching the api_url
-                const record = allRecords.find(item => item.api_url.toLowerCase() === api_url.toLowerCase());
-                if (record) {
-                    resolve(record.api_token); // Return the api_token if found
-                } else {
-                    resolve(localStorage.getItem("e_atoken")); // Return the api_token if found
-                }
-            };
-
-            getAllRequest.onerror = function () {
-                reject('Failed to load list_user_function from IndexedDB');
-            };
-        };
-
-        request.onerror = function () {
-            reject('Error with IndexedDB');
-        };
-    });
 }
 

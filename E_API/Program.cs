@@ -28,6 +28,10 @@ if (bioConnection != null)
 var neoeConnection = builder.Configuration.GetConnectionString("NEOEConnection");
 if (neoeConnection != null)
     Connection.AddConnectionString("NEOEConnection", neoeConnection);
+
+var portfolioConnection = builder.Configuration.GetConnectionString("PortfolioConnection");
+if (portfolioConnection != null)
+    Connection.AddConnectionString("PortfolioConnection", portfolioConnection);
 #endregion
 
 #region Services
@@ -43,10 +47,7 @@ builder.Services.AddTransient<IRepositoryWrapper, RepositoryWrapper>();
 builder.Services.AddHostedService<JobHostedService>();
 
 // Register AI Services riêng biệt
-//builder.Services.AddSingleton<YoloService>();
-//builder.Services.AddSingleton<OcrService>();
-//builder.Services.AddSingleton<FaceService>();
-//builder.Services.AddTransient<IImageService, ImageService>();
+builder.Services.AddSingleton<IVisionAIService, VisionAIService>();
 
 // Logging
 builder.Services.AddLogging(loggingBuilder =>
@@ -59,15 +60,18 @@ builder.Services.AddLogging(loggingBuilder =>
 #region CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhostFrontend",
-        policy =>
-        {
-            policy.WithOrigins("https://localhost:32771") // Đổi theo cổng frontend bạn dùng
-                  .AllowAnyHeader()
-                  .AllowAnyMethod()
-                  .AllowCredentials(); // Nếu frontend có gửi cookie/token
-        });
+    options.AddPolicy("AllowLocalhostFrontend", policy =>
+    {
+        policy.WithOrigins(
+            "https://localhost:44344",        // Cổng frontend đúng!
+            "http://192.168.22.124"           // Nếu chạy IIS
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials(); // Cho phép gửi cookie/token
+    });
 });
+
 #endregion
 
 #region Authentication
@@ -100,10 +104,10 @@ builder.Services.AddAuthentication(options =>
 var app = builder.Build();
 
 #region Middleware
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(); // để truy cập Swagger UI khi push lên server
 }
 else
 {
@@ -111,7 +115,7 @@ else
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();  mục đích là để sử dụng HTTPS, nhưng nếu bạn đang chạy trên localhost có thể bỏ qua
 app.UseStaticFiles();
 
 app.UseRouting();
