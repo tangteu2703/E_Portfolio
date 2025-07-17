@@ -1,4 +1,5 @@
 ﻿using E_Contract.Service;
+using E_Model.Request.User;
 using E_Model.Request.WorkSheet;
 using E_Model.Table_SQL.WorkSheet;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,7 @@ namespace E_API.Controllers.WorkSheet
             }
         }
 
+        #region History
         [HttpPost("History")]
         public async Task<IActionResult> GetAttendanceHistory([FromBody] WorkSheetRequest request)
         {
@@ -50,15 +52,14 @@ namespace E_API.Controllers.WorkSheet
                 return BadRequest(ex.Message);
             }
         }
-
         [HttpPost("History-Bio")]
         public async Task<IActionResult> GetAttendanceBioHistory([FromBody] WorkSheetRequest request)
         {
             try
             {
                 request.from_date ??= DateTime.Now;
-                request.to_date = request.from_date.Value.AddDays(10);
-                request.from_date = request.from_date.Value.AddDays(-10);
+                request.to_date = request.from_date.Value.AddDays(5);
+                request.from_date = request.from_date.Value.AddDays(-5);
 
                 var listData = await _serviceWrapper.WorkSheet.SelectBioHistoryAsync(request);
 
@@ -69,26 +70,6 @@ namespace E_API.Controllers.WorkSheet
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPost("Detail")]
-        public async Task<IActionResult> GetAttendanceDetail([FromBody] WorkSheetRequest request)
-        {
-            try
-            {
-                var result = await _serviceWrapper.WorkSheet.SelectDetailAsync(request, "detail");
-                return Ok(new
-                {
-                    data = result.listData,
-                    recordsTotal = result.recordsTotal,
-                    recordsFiltered = result.recordsFiltered
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpPost("Export-excel")]
         public async Task<IActionResult> ExportWorkSheet([FromBody] WorkSheetRequest request)
         {
@@ -129,6 +110,77 @@ namespace E_API.Controllers.WorkSheet
                 return StatusCode(500, $"Lỗi xuất Excel: {ex.Message}");
             }
         }
+        #endregion
+
+        #region Detail
+        [HttpPost("Detail")]
+        public async Task<IActionResult> GetAttendanceDetail([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var result = await _serviceWrapper.WorkSheet.SelectDetailAsync(request, "detail");
+                return Ok(new
+                {
+                    data = result.listData,
+                    recordsTotal = result.recordsTotal,
+                    recordsFiltered = result.recordsFiltered
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Export-Detail")]
+        public async Task<IActionResult> ExportWorkSheetDetail([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var listData = (await _serviceWrapper.WorkSheet.SelectDetailAsync(request, "detail")).listData.ToList();
+
+                if (listData == null || !listData.Any())
+                    return BadRequest("Không có dữ liệu để xuất Excel.");
+
+                var columnMapping = new Dictionary<string, (string, string?)>
+                {
+                    { "Phòng ban", ("Dept_Name", null) },
+                    { "Mã nhân viên", ("Emp_Code", null) },
+                    { "Tên nhân viên", ("Emp_Name", null) },
+                    { "Ca làm việc", ("Shift_Code", null) },
+                    { "Phân loại", ("Day_Code", null) },
+                    { "Ngày công", ("Work_Day", "yyyy-MM-dd") },
+                    { "Giờ vào", ("Time_In", "HH:mm:ss") },
+                    { "Giờ ra", ("Time_Out", "HH:mm:ss") },
+                    { "Giờ thiếu", ("Lack_Hour", null) },
+                    { "Giờ tiêu chuẩn", ("Work_Hour", null) },
+                    { "OT 150%", ("OT_101", null) },
+                    { "OT 210%", ("OT_102", null) },
+                    { "OT 200%", ("OT_103", null) },
+                    { "OT  200%", ("OT_201", null) },
+                    { "OT 270%", ("OT_202", null) },
+                    { "OT 300%", ("OT_301", null) },
+                    { "OT 390%", ("OT_302", null) },
+                    { "Ghi chú", ("note", null) },
+                };
+
+                // Tên file có đuôi .xlsx
+                var fileName = $"WorkSheet_Detail_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+
+                // Export và nhận về đường dẫn tương đối
+                var relativePath = ExcelExtension.ExportToExcel(listData, columnMapping, "WorkSheet", fileName, "/WorkSheet");
+
+                // Tạo đường dẫn đầy đủ cho client tải
+                var fileUrl = $"{Request.Scheme}://{Request.Host}{relativePath}";
+
+                return Ok(new { url = fileUrl });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi xuất Excel: {ex.Message}");
+            }
+        }
+        #endregion
 
         [HttpPost("Compare-data")]
         public async Task<IActionResult> CompareData([FromQuery] DateTime? dateTime)

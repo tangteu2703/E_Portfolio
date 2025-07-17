@@ -24,9 +24,9 @@ namespace E_Service.Hosted
 
             var _jobList = new List<JobTask>
             {
-                new JobTask { TaskCode = "W_0009",TaskName = "TurnOn-ToolWorkSheet-00-09 ", RunAt = new TimeSpan(8, 14, 00), Status = true },
-                new JobTask { TaskCode = "W_0009",TaskName = "TurnOn-ToolWorkSheet-00-09 ", RunAt = new TimeSpan(8, 59, 00), Status = true },
-                new JobTask { TaskCode = "W_0912",TaskName = "TurnOn-ToolWorkSheet-09-12 ", RunAt = new TimeSpan(12, 00, 0), Status = true },
+                new JobTask { TaskCode = "W_0009",TaskName = "TurnOn-ToolWorkSheet-00-09 ", RunAt = new TimeSpan(08, 14, 00), Status = true },
+                new JobTask { TaskCode = "W_0009",TaskName = "TurnOn-ToolWorkSheet-00-09 ", RunAt = new TimeSpan(08, 59, 00), Status = true },
+                new JobTask { TaskCode = "W_0912",TaskName = "TurnOn-ToolWorkSheet-09-12 ", RunAt = new TimeSpan(12, 00, 00), Status = true },
                 new JobTask { TaskCode = "W_1224",TaskName = "TurnOn-ToolWorkSheet-12-24 ", RunAt = new TimeSpan(23, 59, 59), Status = true }
             };
 
@@ -55,7 +55,6 @@ namespace E_Service.Hosted
 
                 await Task.Delay(delay, ct);
 
-
                 try
                 {
                     var date = nextRun.Date;
@@ -69,6 +68,7 @@ namespace E_Service.Hosted
                             break;
                         case "W_0912":
                             await _serviceWrapper.WorkSheet.Convert_WorkSheet_09_12(date.AddHours(9), date.AddHours(12));
+                            await _serviceWrapper.WorkSheet.Convert_WorkSheet_to_Detail(date.AddDays(-1).AddHours(2), date.AddHours(2));
                             break;
                         case "W_1224":
                             await _serviceWrapper.WorkSheet.Convert_WorkSheet_12_24(date.AddHours(12), date.AddDays(1));

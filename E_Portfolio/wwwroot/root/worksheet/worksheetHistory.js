@@ -16,7 +16,7 @@ const loadData = async () => {
 
     $table.DataTable({
         processing: true,
-        serverSide: true, // Kích hoạt phân trang phía server
+        serverSide: true, 
         responsive: true,
         autoWidth: false,
         ajax: {
@@ -101,8 +101,8 @@ const loadData = async () => {
                         </button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#" onclick="viewHistory('${row.emp_Code}','${row.dateTime_In ?? row.dateTime_Out}')">Lịch sử In/Out</a></li>
-                            <li><a class="dropdown-item text-primary" href="#">Sửa</a></li>
-                            <li><a class="dropdown-item text-danger" href="#" data-kt-users-table-filter="delete_row">Xóa</a></li>
+                            <li><a class="dropdown-item text-primary" href="#" onclick="viewHistory('${row.emp_Code}','${row.dateTime_In ?? row.dateTime_Out}')">Cập nhật</a></li>
+                            <li><a class="dropdown-item text-danger" href="#" data-kt-users-table-filter="delete_row">Xóa bỏ</a></li>
                         </ul>
                     </div>`
             }

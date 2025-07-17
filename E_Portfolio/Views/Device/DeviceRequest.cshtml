@@ -1,0 +1,155 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CMS.cshtml";
+    ViewData["Title"] = "E - WorkSheet";
+}
+
+<div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+
+        <!--begin::Toolbar-->
+        <div id="kt_app_toolbar" class="app-toolbar  pt-5 ">
+
+            <!--begin::Toolbar container-->
+            <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+                <!--begin::Toolbar wrapper-->
+                <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+
+                    <!--begin::Page title-->
+                    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+                        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                <a href="/CMS" class="text-gray-500 text-hover-primary">
+                                    <i class="ki-duotone ki-home fs-3 text-gray-500 me-n1"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Thiết bị
+                            </li>
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Yêu cầu – Bàn giao
+                            </li>
+                        </ul>
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
+                            Yêu cầu – Bàn giao thiết bị
+                        </h1>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Page title-->
+                    <div class="d-flex mb-4">
+                        <a href="#" class="btn btn-sm btn-success btn-active-color-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">Thêm yêu cầu</a>
+
+                        <a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Thêm bàn giao</a>
+
+                        <div class="dropdown w-150px me-3">
+                            <button id="dropdownExcelAction" class="btn btn-sm btn-light w-100 dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Excel
+                            </button>
+                            <ul class="dropdown-menu w-100">
+                                <li><a class="dropdown-item" onclick="importClick()" data-value="import">Import Excel</a></li>
+                                <li><a class="dropdown-item" onclick="exportClick()" data-value="export">Export Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <!--end::Toolbar wrapper-->
+            </div>
+            <!--end::Toolbar container-->
+        </div>
+        <!--end::Toolbar-->
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-fluid ">
+                <!--begin::Card-->
+                <div class="card">
+                    <!--begin::Card header-->
+                    <div class="card-header border-0 pt-6 pb-0">
+                        <div class="row w-100 gx-3 gy-2 align-items-end">
+                            <!-- Tìm kiếm -->
+                            <div class="col-sm-6 col-md-5">
+                                <label for="txt_Search" class="form-label fw-bold mb-1">Tìm kiếm</label>
+                                <div class="position-relative">
+                                    <i class="ki-duotone ki-magnifier fs-3 position-absolute top-50 translate-middle-y ms-3"></i>
+                                    <input type="text" id="txt_Search" class="form-control form-control-sm ps-13 form-control-solid" placeholder="Nhập từ khóa...">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 col-md-2">
+                                <label for="cbo_Type" class="form-label fw-bold mb-1">Phân loại</label>
+                                <select id="cbo_Type" class="form-select form-select-sm form-select-solid">
+                                    <option value="">Tất cả</option>
+                                </select>
+                            </div>
+
+                            <!-- Ca làm -->
+                            <div class="col-sm-3 col-md-2">
+                                <label for="cbo_Shift" class="form-label fw-bold mb-1">Trạng thái</label>
+                                <select id="cbo_Shift"
+                                        class="form-select form-select-sm form-select-solid"
+                                        data-control="select2" data-allow-clear="true">
+                                    <option value="">Tất cả</option>
+                                    <option value="001">Trong kho</option>
+                                    <option value="002">Đã cấp</option>
+                                </select>
+                            </div>
+
+                            <!-- Nút tìm kiếm -->
+                            <div class="col-sm-3 col-md-1">
+                                <label class="form-label fw-bold mb-1 invisible">Tìm kiếm</label>
+                                <button type="button" id="btn_Search" onclick="searchClick()" class="btn btn-sm btn-primary w-100">
+                                    <i class="ki-duotone ki-search fs-4 me-1"></i> Tìm kiếm
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body py-4">
+                        <!--begin::Table-->
+                        <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+                            <div id="" class="table-responsive">
+                                <table id="request_table" class="table table-sm table-hover align-middle table-row-dashed fs-8 gy-2 dataTable" style="width: 100%;">
+                                    <thead>
+                                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0" role="row">
+                                            <th>Mã yêu cầu</th>
+                                            <th>Ngày yêu cầu</th>
+                                            <th>Hạn bàn giao</th>
+                                            <th>Người yêu cầu</th>
+                                            <th>Người phê duyệt</th>
+                                            <th>Thiết bị</th>
+                                            <th>Số lượng</th>
+                                            <th>Lý do</th>
+                                            <th>Trạng thái</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end::Table-->
+                    </div>
+                    <!--end::Card body-->
+                </div>
+                <!--end::Card-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+</div>
+
+@section Scripts {
+    <script src="~/root/device/devicerequest.js"></script>
+}

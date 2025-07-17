@@ -80,6 +80,7 @@ namespace E_Service.WorkSheet
                 if (!listData.Any())
                     return (true, $"Không có dữ liệu từ {from} đến {to}.");
 
+
                 var grouped = listData.GroupBy(x => x.emp_code);
                 var listOne = grouped
                     .Where(g => g.Count() == 1)
@@ -156,6 +157,8 @@ namespace E_Service.WorkSheet
                 var listLogicError = (await _repositoryWrapper.WorkSheet.SelectLogicErrorAsync()).ToList();
                 if (listLogicError.Any())
                 {
+                    var a = listLogicError.Where(c => c.Emp_Code == "J00005").ToList();
+
                     var (success3, message3) = await ConvertLogicError(listLogicError);
                     message += $" Check LogicError: {message3}";
                 }
@@ -307,7 +310,7 @@ namespace E_Service.WorkSheet
                 var message = string.Empty;
 
                 // Điều kiện 1: Có từ 2 lần chấm công trong cùng một ngày
-                // Điều kiện 2: Thời gian làm việc > 15 tiếng
+                // Điều kiện 2: Thời gian làm việc > 18 tiếng
                 // Điều kiện 3: Thời gian làm việc< 1 tiếng
                 // Điều kiện 4: In = Out day-1 => chấm công ra nhầm ngày hôm trước
                 if (!listLogicError.Any())
@@ -321,7 +324,7 @@ namespace E_Service.WorkSheet
                     // Out - In >= 15 --> Out update nhầm ngày hôm trc
                     var listOver15 = listLogicError
                         .Where(c => c.DateTime_Out != null &&
-                                    (c.DateTime_Out.Value - c.DateTime_In)?.TotalHours >= 15)
+                                    (c.DateTime_Out.Value - c.DateTime_In)?.TotalHours >= 18)
                         .ToList();
                     // Out - In < 1 --> ko tính công hôm đó
                     var listHaft1 = listLogicError
@@ -501,8 +504,7 @@ namespace E_Service.WorkSheet
                 if ((d.Month == 1 && d.Day == 1) ||   // Tết dương
                     (d.Month == 4 && d.Day == 30) ||  // 30/4
                     (d.Month == 5 && d.Day == 1) ||   // 1/5
-                    (d.Month == 9 && d.Day == 2) ||   // 2/9
-                    (d.Month == 7 && d.Day == 7))     // fake tạm ngày lễ
+                    (d.Month == 9 && d.Day == 2))     // fake tạm ngày lễ
                 {
                     holidayList.Add((d, "Holiday"));
                 }
@@ -528,7 +530,6 @@ namespace E_Service.WorkSheet
         //3.ngày lễ
         //    ca làm chính 08:00 - 17:00 tính giờ xét value vào cột OT_301
         //    ca làm chính 17:00 - 05:00 tính giờ xét value vào cột OT_302
-        #endregion
         public List<worksheet_detail> CalculateWorksheetDetail(List<worksheet_daily> rawData, List<(DateTime date, string note)> holidayList)
         {
             var result = new List<worksheet_detail>();
@@ -796,14 +797,17 @@ namespace E_Service.WorkSheet
                 var gio01h = new TimeSpan(1, 0, 0);
                 var gio05h = new TimeSpan(5, 0, 0);
                 #endregion
-                //var empCodes = new List<string> { "J00047", "J04735" };
+                //var empCodes = new List<string> { "J00005" };
 
                 //rawData = rawData
                 //    .Where(x => empCodes.Contains(x.Emp_Code))
                 //    .ToList();
                 foreach (var item in rawData)
                 {
-                    string dayType = holidayList.FirstOrDefault(x => x.date.Date == workDay).note ?? "Weekday";
+                    string dayType = holidayList.FirstOrDefault(x => x.date.Date == workDay).note
+                        ?? (workDay.DayOfWeek == DayOfWeek.Sunday
+                        ? "Weekend"
+                        : "Weekday");
 
                     workDay = workDay.Date;
 
@@ -938,6 +942,8 @@ namespace E_Service.WorkSheet
                             detail.OT_101 += CalcOT(Max(inTime, t17), Min(outTime, t22));
                         if (outTime > t22 && outTime <= tNext05)
                         {
+                            detail.OT_101 += CalcOT(t17,t22);
+
                             var ot = CalcOT(Max(inTime, t22), Min(outTime, tNext05));
                             SubtractRest(ref ot, Max(inTime, t22), Min(outTime, tNext05));
                             detail.OT_102 += ot;
@@ -997,6 +1003,7 @@ namespace E_Service.WorkSheet
             }
         }
 
+        #endregion
         #endregion
     }
 }

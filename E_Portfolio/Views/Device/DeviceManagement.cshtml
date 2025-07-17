@@ -34,7 +34,7 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-                                Quản lý công
+                                Thiết bị
                             </li>
                             <!--end::Item-->
                             <!--end::Item-->
@@ -45,14 +45,14 @@
                             <!--end::Item-->
                             <!--begin::Item-->
                             <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
-                                Tính công
+                                Quản lý thiết bị
                             </li>
                             <!--end::Item-->
                         </ul>
                         <!--end::Breadcrumb-->
                         <!--begin::Title-->
                         <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
-                            Tính công
+                            Quản lý thiết bị
                         </h1>
                         <!--end::Title-->
                     </div>
@@ -76,110 +76,89 @@
         <div id="kt_app_content" class="app-content  flex-column-fluid ">
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-fluid ">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card card-flush" id="kt_contacts_list">
-                            <div class="card-header pt-7" id="kt_contacts_list_header">
-                                <!-- Header -->
-                                <div class="d-flex align-items-center justify-content-between py-2 px-2 border-bottom">
-                                    <div class="form-check form-check-sm">
-                                        <input class="form-check-input" type="checkbox" id="selectAllUser">
-                                    </div>
-                                    <form class="d-flex align-items-center position-relative w-100 m-0" autocomplete="off">
-                                        <i class="ki-duotone ki-magnifier fs-3 text-gray-500 position-absolute top-50 ms-5 translate-middle-y"><span class="path1"></span><span class="path2"></span></i>            <!--end::Icon-->
-                                        <input type="text" id="txt_Search" class="form-control form-control-sm form-control-solid ps-13" name="search" value="" placeholder="Search contacts">
-                                    </form>
-                                </div>
-                                <span id="label_user" class="badge bg-primary" style="display: none;"></span>
-                            </div>
-                            <div class="card-body pt-5" id="kt_contacts_list_body">
-                                <div class="scroll-y me-n5 pe-5 h-300px h-xl-auto" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_header, #kt_toolbar, #kt_footer, #kt_contacts_list_header" data-kt-scroll-wrappers="#kt_content, #kt_contacts_list_body" data-kt-scroll-stretch="#kt_contacts_list, #kt_contacts_main" data-kt-scroll-offset="5px" style="max-height: 836px;">
-                                    <!-- Danh sách user -->
-                                    <div id="userList"></div>
+                <!--begin::Card-->
+                <div class="card">
+                    <!--begin::Card header-->
+                    <div class="card-header border-0 pt-6 pb-0">
+                        <div class="row w-100 gx-3 gy-2 align-items-end">
+                            <!-- Tìm kiếm -->
+                            <div class="col-sm-6 col-md-5">
+                                <label for="txt_Search" class="form-label fw-bold mb-1">Tìm kiếm</label>
+                                <div class="position-relative">
+                                    <i class="ki-duotone ki-magnifier fs-3 position-absolute top-50 translate-middle-y ms-3"></i>
+                                    <input type="text" id="txt_Search" class="form-control form-control-sm ps-13 form-control-solid" placeholder="Nhập từ khóa...">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                        <div class="card">
-                            <div class="card-header border-0 pt-6 pb-0">
-                                <div class="row w-100 gx-3 gy-2 align-items-end">
-                                    <!-- Phòng ban -->
-                                    <div class="col-sm-5 col-md-5">
-                                        <label for="cbo_Dept" class="form-label fw-bold mb-1">Phòng ban</label>
-                                        <select id="cbo_Dept" onchange="loadUserList()" class="form-select form-select-sm form-select-solid">
-                                            <option value="">Tất cả</option>
-                                        </select>
-                                    </div>
 
-                                    <!-- Từ ngày -->
-                                    <div class="col-sm-3 col-md-2">
-                                        <label for="txt_FromDate" class="form-label fw-bold mb-1">Từ ngày</label>
-                                        <input type="date" id="txt_FromDate" class="form-control form-control-sm form-control-solid">
-                                    </div>
-
-                                    <!-- Đến ngày -->
-                                    <div class="col-sm-3 col-md-2">
-                                        <label for="txt_ToDate" class="form-label fw-bold mb-1">Đến ngày</label>
-                                        <input type="date" id="txt_ToDate" class="form-control form-control-sm form-control-solid">
-                                    </div>
-
-                                    <!-- Nút tìm kiếm -->
-                                    <div class="col-sm-3 col-md-2">
-                                        <label class="form-label fw-bold mb-1 invisible">Tìm kiếm</label>
-                                        <button type="button" id="btn_Search" onclick="searchClick()" class="btn btn-sm btn-primary w-100">
-                                            <i class="ki-duotone ki-search fs-4 me-1"></i> Tìm kiếm
-                                        </button>
-                                    </div>
-                                </div>
+                            <div class="col-sm-3 col-md-2">
+                                <label for="cbo_Type" class="form-label fw-bold mb-1">Phân loại</label>
+                                <select id="cbo_Type" class="form-select form-select-sm form-select-solid">
+                                    <option value="">Tất cả</option>
+                                </select>
                             </div>
-                            <div class="card-body py-4">
-                                <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
-                                    <div class="table-responsive">
-                                        <table id="worksheet_table" class="table table-sm table-hover table-bordered table-striped align-middle text-center fs-8 gy-2 w-100">
-                                            <thead>
-                                                <!-- Dòng 1: Header nhóm -->
-                                                <tr>
-                                                    <th rowspan="2" class="px-0">
-                                                        <div class="form-check form-check-sm">
-                                                            <input class="form-check-input" type="checkbox" id="selectAllRows">
-                                                        </div>
-                                                    </th>
-                                                    <th class="text-center" rowspan="2">Ngày</th>
-                                                    <th class="text-center" rowspan="2">Thứ</th>
-                                                    <th class="text-center" rowspan="2">Ca làm việc</th>
-                                                    <th class="text-center" rowspan="2">Giờ vào</th>
-                                                    <th class="text-center" rowspan="2">Giờ ra</th>
-                                                    <th class="text-center" rowspan="2">Giờ thiếu</th>
-                                                    <th class="text-center" colspan="4">Ngày thường</th>
-                                                    <th class="text-center" colspan="2">Ngày nghỉ</th>
-                                                    <th class="text-center" colspan="2">Ngày lễ</th>
-                                                    <th class="text-center" rowspan="2">Ghi chú</th>
-                                                    <th class="text-center" rowspan="2">Chức năng</th>
-                                                </tr>
-                                                <!-- Dòng 2: OT cụ thể -->
-                                                <tr>
-                                                    <th>Giờ tiêu chuẩn</th>
-                                                    <th>OT 150%</th>
-                                                    <th>OT 210%</th>
-                                                    <th>OT 200%</th>
-                                                    <th>OT 200%</th>
-                                                    <th>OT 270%</th>
-                                                    <th>OT 300%</th>
-                                                    <th>OT 390%</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="text-gray-600 fw-semibold">
-                                                <!-- Dữ liệu -->
-                                            </tbody>
-                                        </table>
 
-                                    </div>
-                                </div>
+                            <!-- Ca làm -->
+                            <div class="col-sm-3 col-md-2">
+                                <label for="cbo_Shift" class="form-label fw-bold mb-1">Trạng thái</label>
+                                <select id="cbo_Shift"
+                                        class="form-select form-select-sm form-select-solid"
+                                        data-control="select2" data-allow-clear="true">
+                                    <option value="">Tất cả</option>
+                                    <option value="001">Đang sử dụng</option>
+                                    <option value="002">Chưa cấp phát</option>
+                                    <option value="003">Không xác định</option>
+                                    <option value="004">Hỏng/ không sử dụng được</option>
+                                </select>
+                            </div>
+
+                            <!-- Nút tìm kiếm -->
+                            <div class="col-sm-3 col-md-1">
+                                <label class="form-label fw-bold mb-1 invisible">Tìm kiếm</label>
+                                <button type="button" id="btn_Search" onclick="searchClick()" class="btn btn-sm btn-primary w-100">
+                                    <i class="ki-duotone ki-search fs-4 me-1"></i> Tìm kiếm
+                                </button>
                             </div>
                         </div>
                     </div>
+                    <!--end::Card header-->
+                    <!--begin::Card body-->
+                    <div class="card-body py-4">
+                        <!--begin::Table-->
+                        <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+                            <div id="" class="table-responsive">
+                                <table id="device_table" class="table table-sm table-hover align-middle table-row-dashed fs-8 gy-2 dataTable" style="width: 100%;">
+                                    <thead>
+                                        <tr class="text-start text-muted fw-bold fs-7 text-uppercase gs-0" role="row">
+                                            <th class="w-10px pe-2 dt-orderable-none" data-dt-column="0" rowspan="1" colspan="1" aria-label="">
+                                                <span class="dt-column-title">
+                                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                                        <input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_table_users .form-check-input" value="1">
+                                                    </div>
+                                                </span>
+                                                <span class="dt-column-order"></span>
+                                            </th>
+                                            <th>Phân loại</th>
+                                            <th>Mã thiết bị</th>
+                                            <th>Tên thiết bị</th>
+                                            <th>Số lượng</th>
+                                            <th>Thông tin thiết bị</th>
+                                            <th>Người sử dụng</th>
+                                            <th>Tình trạng</th>
+                                            <th>Ghi chú</th>
+                                            <th>Chức năng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-gray-600 fw-semibold">
+                                    </tbody>
+                                    <tfoot></tfoot>
+                                </table>
+                            </div>
+                        </div>
+                        <!--end::Table-->
+                    </div>
+                    <!--end::Card body-->
                 </div>
+                <!--end::Card-->
             </div>
             <!--end::Content container-->
         </div>
@@ -368,6 +347,5 @@
 
 
 @section Scripts {
-
-    <script src="~/root/worksheet/worksheetdetail.js"></script>
+    <script src="~/root/device/devicemanagement.js"></script>
 }
