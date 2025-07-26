@@ -32,6 +32,10 @@ if (neoeConnection != null)
 var portfolioConnection = builder.Configuration.GetConnectionString("PortfolioConnection");
 if (portfolioConnection != null)
     Connection.AddConnectionString("PortfolioConnection", portfolioConnection);
+
+var E_PortalConnection = builder.Configuration.GetConnectionString("E_PortalConnection");
+if (E_PortalConnection != null)
+    Connection.AddConnectionString("E_PortalConnection", E_PortalConnection);
 #endregion
 
 #region Services

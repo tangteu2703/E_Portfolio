@@ -20,6 +20,10 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        public async Task<IActionResult> Chatbot()
+        {
+            return View();
+        }
         #region
         public IActionResult Admin()
         {

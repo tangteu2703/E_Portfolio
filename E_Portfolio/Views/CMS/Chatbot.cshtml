@@ -1,0 +1,156 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CMS.cshtml";
+    ViewData["Title"] = "E - Chatbot";
+}
+<div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+
+        <!--begin::Toolbar-->
+        <div id="kt_app_toolbar" class="app-toolbar  pt-5 ">
+
+            <!--begin::Toolbar container-->
+            <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+                <!--begin::Toolbar wrapper-->
+                <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+
+                    <!--begin::Page title-->
+                    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                <a href="/CMS" class="text-gray-500 text-hover-primary">
+                                    <i class="ki-duotone ki-home fs-3 text-gray-500 me-n1"></i>
+                                </a>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Quản lý công
+                            </li>
+                            <!--end::Item-->
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Trợ lý AI
+                            </li>
+                            <!--end::Item-->
+                        </ul>
+                        <!--end::Breadcrumb-->
+                        <!--begin::Title-->
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
+                            <i class="ki-duotone ki-image fs-2 text-info me-2"></i>
+                            Trợ lý AI - Phân tích ảnh & Chat
+                        </h1>
+                        <!--end::Title-->
+                    </div>
+                </div>
+                <!--end::Toolbar wrapper-->
+            </div>
+            <!--end::Toolbar container-->
+        </div>
+        <!--end::Toolbar-->
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content flex-column-fluid ">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-fluid ">
+                <!--begin::Card-->
+                <div class="card">
+                    <div class="card-body pt-4">
+                        <!-- Tabs -->
+                        <ul class="nav nav-tabs nav-line-tabs mb-4" id="aiTabs" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active" id="analyze-tab" data-bs-toggle="tab" data-bs-target="#analyze" type="button" role="tab">
+                                    🧠 Phân tích ảnh
+                                </button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" id="chat-tab" data-bs-toggle="tab" data-bs-target="#chat" type="button" role="tab">
+                                    💬 Trò chuyện
+                                </button>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content" id="aiTabsContent">
+                            <!-- Tab 1: Phân tích ảnh -->
+                            <div class="tab-pane fade show active" id="analyze" role="tabpanel">
+                                <div class="row g-4">
+                                    <!-- Upload + Preview -->
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Chọn ảnh để phân tích:</label>
+                                        <input type="file" id="inputAnalysisImage" class="form-control mb-3" accept="image/*" onchange="onImageSelected(event)">
+                                        <div class="border rounded shadow-sm overflow-hidden">
+                                            <img id="analysisPreview" class="w-100 h-auto" alt="Ảnh xem trước">
+                                        </div>
+                                    </div>
+
+                                    <!-- Kết quả ảnh -->
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Kết quả ảnh:</label>
+                                        <div id="analysisImage" class="rounded fs-6 text-gray-800">
+                                            📷 Hệ thống sẽ hiển thị kết quả phân tích tại đây sau khi bạn chọn ảnh.
+                                        </div>
+                                    </div>
+
+                                    <!-- Kết quả text-->
+                                    <div class="col-md-4">
+                                        <label class="form-label fw-semibold">Kết quả phân tích:</label>
+                                        <div id="analysisResult" class="rounded fs-6 text-gray-800" style="height: 66vh; overflow-y: auto;">
+                                            📷 Hệ thống sẽ hiển thị kết quả phân tích tại đây sau khi bạn chọn ảnh.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tab 2: Chatbot -->
+                            <div class="tab-pane fade" id="chat" role="tabpanel">
+                                <div class="border rounded bg-light p-3 mb-3" id="chatBox" style="height: 60vh; overflow-y: auto;">
+                                    <div class="d-flex flex-column gap-2">
+                                        <div class="d-flex flex-row align-items-start">
+                                            <div class="badge text-white me-2">
+                                                <i class="ki-duotone ki-technology-3 fs-1 text-success">
+                                                    <span class="path1"></span>
+                                                    <span class="path2"></span>
+                                                    <span class="path3"></span>
+                                                    <span class="path4"></span>
+                                                </i>
+                                            </div>
+                                            <div class="bg-white rounded p-2 shadow-sm">
+                                                Xin chào! Tôi là trợ lý ảo của bạn. Hãy nhập nội dung để bắt đầu.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="input-group">
+                                    <input type="text" id="chatInput" class="form-control" placeholder="Nhập nội dung..." />
+                                    <button class="btn btn-primary" onclick="sendMessage()">Gửi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+</div>
+<!-- Script -->
+@section Scripts {
+    <script src="~/root/ai/chatbot.js"></script>
+}

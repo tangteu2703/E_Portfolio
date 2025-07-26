@@ -40,8 +40,25 @@ namespace E_API.Controllers.MasterData
         {
             try
             {
-                var listData = (await _serviceWrapper.Department.SelectAllAsync())
+                var listData = (await _serviceWrapper.Department.SelectAllAsync("BioStarConnection"))
                                 .Select(c => new { c.dept_code, c.dept_name })
+                                .ToList();
+
+                return OK(listData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("DeviceType")]
+        public async Task<IActionResult> GetDeviceTypes()
+        {
+            try
+            {
+                var listData = (await _serviceWrapper.DeviceType.SelectAllAsync("E_PortalConnection"))
+                                .Select(c => new { c.type_id, c.type_name })
                                 .ToList();
 
                 return OK(listData);

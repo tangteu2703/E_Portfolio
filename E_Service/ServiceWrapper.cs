@@ -3,12 +3,17 @@ using E_Contract.Repository;
 using E_Contract.Service;
 using E_Contract.Service.Authentication;
 using E_Contract.Service.Department;
+using E_Contract.Service.Device;
 using E_Contract.Service.Dictionary;
+using E_Contract.Service.Hosted;
 using E_Contract.Service.User;
 using E_Contract.Service.WorkSheet;
+using E_Model.Table_SQL.Hosted;
 using E_Service.Authentication;
 using E_Service.Department;
+using E_Service.Device;
 using E_Service.Dictionary;
+using E_Service.Hosted;
 using E_Service.User;
 using E_Service.WorkSheet;
 
@@ -61,6 +66,21 @@ namespace E_Service
         #region MasterData
         private Lazy<DepartmentService> _Department => new(() => new DepartmentService(_repositoryWrapper));
         public IDepartmentService Department => _Department.Value;
+        #endregion
+
+        #region Hosted
+        private Lazy<TaskHistoriedService> _TaskHistoried => new(() => new TaskHistoriedService(_repositoryWrapper));
+        public ITaskHistoriedService TaskHistoried => _TaskHistoried.Value;
+
+        #endregion
+
+        #region Device
+        private Lazy<DeviceManagementService> _DeviceManagement => new(() => new DeviceManagementService(_repositoryWrapper));
+        public IDeviceManagementService DeviceManagement => _DeviceManagement.Value;
+        private Lazy<DeviceTypeService> _DeviceType => new(() => new DeviceTypeService(_repositoryWrapper));
+        public IDeviceTypeService DeviceType => _DeviceType.Value;
+
+
         #endregion
 
     }

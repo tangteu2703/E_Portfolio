@@ -11,7 +11,7 @@ namespace E_Contract.Service.Authentication
 {
     public interface ITokenService : IServiceBase<data_user>
     {
-        Task<UserAuthenticationItemResponse> AuthenticateAsync(string username, string password, bool is_ldap = false);
+        Task<UserAuthenticationItemResponse> AuthenticateAsync(LoginItemRequest data);
         Task<UserAuthenticationItemResponse> RefreshAsync(string username, string refresh_token);
         Task<bool> ChangePassword(ChangePasswordItemRequest request);
         Task<int> SignUp(SignUpItemRequest request);

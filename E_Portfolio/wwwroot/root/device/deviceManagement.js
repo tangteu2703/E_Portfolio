@@ -1,174 +1,107 @@
 ﻿$(document).ready(function () {
-
+    loadDeviceType();
     loadData();
 
 });
 
-const fakeData = [
-    {
-        type_name: "Màn hình",
-        device_code: "MON-001",
-        device_name: "Dell P2419H",
-        quanlity: 2,
-        device_config: "24\" FHD | IPS | 60Hz | Cổng: HDMI, DP, VGA",
-        user_code: "NV001",
-        user_name: "Nguyễn Văn A",
-        status: "Đang sử dụng",
-        note: "Màn hình chính phòng kế toán"
-    },
-    {
-        type_name: "Case máy tính",
-        device_code: "PC-001",
-        device_name: "Case HP ProDesk 400 G6",
-        quanlity: 1,
-        device_config: "CPU: i5-10500 | RAM: 16GB | SSD: 512GB NVMe | PSU: 300W",
-        user_code: "NV001",
-        user_name: "Nguyễn Văn A",
-        status: "Đang sử dụng",
-        note: "Dùng cho nhân viên thiết kế"
-    },
-    {
-        type_name: "Bàn phím",
-        device_code: "KEY-001",
-        device_name: "Logitech K120",
-        quanlity: 1,
-        device_config: "Full-size | USB | Chống tràn | Độ bền 10 triệu lần nhấn",
-        user_code: "NV001",
-        user_name: "Nguyễn Văn A",
-        status: "Đang sử dụng",
-        note: "Cấp phát cho nhân sự mới"
-    },
-    {
-        type_name: "Chuột",
-        device_code: "MOU-001",
-        device_name: "Logitech M185",
-        quanlity: 15,
-        device_config: "Không dây | DPI: 1000 | Pin AA 12 tháng",
-        user_code: "NV004",
-        user_name: "Phạm Thị D",
-        status: "Đang sử dụng",
-        note: "Chuột đi kèm laptop"
-    },
-    {
-        type_name: "Phần mềm",
-        device_code: "SW-001",
-        device_name: "Windows 11 Pro",
-        quanlity: 30,
-        device_config: "Bản quyền vĩnh viễn | OEM | 64-bit | Hỗ trợ TPM 2.0",
-        user_code: "NV005",
-        user_name: "Ngô Minh E",
-        status: "Đang sử dụng",
-        note: "Cài đặt cho các máy mới"
-    },
-    {
-        type_name: "Phần mềm",
-        device_code: "SW-002",
-        device_name: "Microsoft Office 2021",
-        quanlity: 25,
-        device_config: "Gồm Word, Excel, PowerPoint | Bản quyền vĩnh viễn",
-        user_code: "NV006",
-        user_name: "Vũ Thị F",
-        status: "Đang sử dụng",
-        note: "Bản quyền theo máy"
-    },
-    {
-        type_name: "Phần mềm",
-        device_code: "SW-003",
-        device_name: "AutoCAD 2023",
-        quanlity: 8,
-        device_config: "Bản quyền 1 năm | 64-bit | Cài đặt trên Windows 10/11",
-        user_code: "NV007",
-        user_name: "Đặng Văn G",
-        status: "Đang sử dụng",
-        note: "Dùng cho bộ phận kỹ thuật"
-    },
-    {
-        type_name: "Tai nghe",
-        device_code: "AUD-001",
-        device_name: "Tai nghe Logitech H111",
-        quanlity: 12,
-        device_config: "Kết nối 3.5mm | Mic đàm thoại | Dùng cho PC/laptop",
-        user_code: "NV008",
-        user_name: "Lý Thị H",
-        status: "Đang sử dụng",
-        note: "Dùng cho bộ phận CSKH"
-    },
-    {
-        type_name: "Ổ cứng",
-        device_code: "HDD-001",
-        device_name: "Seagate Barracuda 2TB",
-        quanlity: 6,
-        device_config: "3.5\" | SATA III | 7200RPM | Cache 256MB",
-        user_code: "NV009",
-        user_name: "Trương Văn I",
-        status: "Đã thu hồi",
-        note: "Chuyển sang kho lưu trữ"
-    },
-    {
-        type_name: "USB",
-        device_code: "USB-001",
-        device_name: "Kingston 32GB",
-        quanlity: 50,
-        device_config: "USB 3.2 | Vỏ kim loại | Tốc độ đọc 100MB/s",
-        user_code: "",
-        user_name: "",
-        status: "Chưa cấp phát",
-        note: "Chờ phân bổ theo yêu cầu"
-    }
-];
+const loadDeviceType = async () => {
 
+    apiHelper.get(`/Masters/DeviceType`, {},
+        function (res) {
+            comboBox.renderSelectOptions('cbo_Type', res.data, 'type_id', 'type_name', 'Tất cả');
+        },
+        function (err) {
+            console.error("Lỗi lấy danh sách");
+        });
+}
+const searchClick = () => {
+    loadData();
+}
 const loadData = async () => {
     const $table = $('#device_table');
-
-    // Nếu bảng đã được khởi tạo, thì hủy để tái tạo lại
+    // Xóa DataTable nếu đã khởi tạo
     if ($.fn.DataTable.isDataTable($table)) {
         $table.DataTable().clear().destroy();
     }
 
-    const columns = [
-        {
-            data: null,
-            orderable: false,
-            render: (data, type, row) => `
+    $table.DataTable({
+        processing: true,
+        serverSide: true,
+        responsive: true,
+        autoWidth: false,
+        ajax: {
+            url: `${apiBase}/Device/Management`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: function (d) {
+                const sortColumnIndex = d.order?.[0]?.column;
+                const sortDir = d.order?.[0]?.dir === 'asc';
+
+                const columnName = d.columns?.[sortColumnIndex]?.data;
+
+                return JSON.stringify({
+                    status_id: $('#cbo_Status').val() || 0,
+                    type_id: $('#cbo_Type').val() || 0,
+                    textSearch: $('#txt_Search').val() || "",
+                    pageNumber: (d.start / d.length) + 1,
+                    pageSize: d.length,
+                    orderBy: columnName,
+                    isAscending: !sortDir
+                });
+            },
+            dataSrc: function (json) {
+                // DataTables yêu cầu phải trả về tổng số bản ghi để phân trang
+                //console.log(json.data);
+                return json.data;
+            },
+            error: function (xhr, error, thrown) {
+                console.error("Lỗi tải dữ liệu:", error, xhr.responseText);
+            }
+        },
+        columns: [
+            {
+                data: null,
+                orderable: false,
+                render: (data, type, row) => `
                     <div class="form-check form-check-sm form-check-custom form-check-solid">
                         <input class="form-check-input" type="checkbox" value="">
                     </div>`
-        },
-        { data: 'type_name', title: 'Phân loại' },
-        { data: 'device_code', title: 'Mã thiết bị' },
-        { data: 'device_name', title: 'Tên thiết bị' },
-        { data: 'quanlity', title: 'Số lượng' },
-        { data: 'device_config', title: 'Cấu hình thiết bị' },
-        {
-            data: null,
-            orderable: false,
-            render: (data, type, row) => {
-                if (!row.user_code) return `<span class="badge badge-light-secondary">Chưa gán</span>`;
-                return `<div>
+            },
+            { data: 'type_name', title: 'Phân loại' },
+            { data: 'device_code', title: 'Mã thiết bị' },
+            { data: 'device_name', title: 'Tên thiết bị' },
+            { data: 'quantity', title: 'Số lượng' },
+            { data: 'device_config', title: 'Cấu hình thiết bị' },
+            {
+                data: null,
+                orderable: false,
+                render: (data, type, row) => {
+                    if (!row.user_code) return ``;
+                    return `<div>
                             <span class="badge badge-light-info">${row.user_code}</span> 
-                            <span>${row.user_name}</span>
+                            <span>${row.full_name}</span>
                         </div>`;
-            }
-        },
-        {
-            data: 'status',
-            title: 'Trạng thái',
-            render: (data) => {
-                let badgeClass = 'badge-light-secondary';
-                if (data === 'Đang sử dụng') badgeClass = 'badge-light-success';
-                else if (data === 'Đã thu hồi') badgeClass = 'badge-light-warning';
-                else if (data === 'Hỏng') badgeClass = 'badge-light-danger';
+                }
+            },
+            {
+                data: 'status_name',
+                title: 'Trạng thái',
+                render: (data) => {
+                    let badgeClass = 'badge-light-secondary';
+                    if (data === 'Đang sử dụng') badgeClass = 'badge-light-success';
+                    else if (data === 'Đã thu hồi') badgeClass = 'badge-light-warning';
+                    else if (data === 'Hỏng') badgeClass = 'badge-light-danger';
 
-                return `<span class="badge ${badgeClass} fw-bold">${data}</span>`;
-            }
-        },
-        { data: 'note', title: 'Ghi chú' },
-        {
-            data: null,
-            title: 'Chức năng',
-            orderable: false,
-            className: 'text-end',
-            render: (_, __, row) => `
+                    return `<span class="badge ${badgeClass} fw-bold">${data}</span>`;
+                }
+            },
+            { data: 'note', title: 'Ghi chú' },
+            {
+                data: null,
+                title: 'Chức năng',
+                orderable: false,
+                className: 'text-end',
+                render: (_, __, row) => `
                 <div class="dropdown">
                     <button class="btn btn-light btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
                         Lựa chọn
@@ -178,24 +111,11 @@ const loadData = async () => {
                         <li><a class="dropdown-item text-danger" href="#" data-action="delete">Xóa</a></li>
                     </ul>
                 </div>`
-        }
-    ];
-
-    const options = {
-        processing: true,
-        serverSide: false,
-        responsive: true,
-        autoWidth: false,
-        searching: true,
-        paging: true,
-        data: fakeData,
-        columns: columns,
+            }
+        ],
         language: {
             lengthMenu: "Hiển thị _MENU_ bản ghi mỗi trang",
             info: "Hiển thị _START_ đến _END_ của _TOTAL_ bản ghi",
-            infoEmpty: "Không có dữ liệu",
-            search: "Tìm kiếm:",
-            zeroRecords: "Không tìm thấy kết quả phù hợp",
             paginate: {
                 first: "Đầu",
                 last: "Cuối",
@@ -204,19 +124,53 @@ const loadData = async () => {
             },
             processing: "Đang xử lý..."
         }
-    };
+    });
+};
 
-    $table.DataTable(options);
+const sampleClick = async () => {
+    const fileName = 'DeviceManagement_SampleFile.xlsx';
+    const url = `${apiBase.replace(/\/api$/, '')}/Device/${fileName}`;
+
+    // Cách đơn giản: chuyển hướng trình duyệt để tải file
+    window.location.href = url;
+};
+
+const importClick = () => {
+    document.getElementById('file_Import').click();
+};
+const onFileSelected = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file); // "file" là tên tham số trong controller
+
+    apiHelper.postFile(
+        `/Device/Import-excel`,
+        formData,
+        function (res) {
+            console.log("Import thành công:", res);
+
+            // Gán dữ liệu nếu cần
+            // $('#importResult').text(JSON.stringify(res, null, 2));
+
+            // Hiển thị modal kết quả
+            const modal = new bootstrap.Modal(document.getElementById("resultModal"));
+            modal.show();
+        },
+        function (err) {
+            console.error("Lỗi import:", err);
+            alert("Không thể import file Excel.");
+        }
+    );
 };
 
 
 const exportClick = async () => {
-    apiHelper.post(`${apiBase}/WorkSheet/Export-excel`,
+    apiHelper.post(`/Device/Export-excel`,
         {
-            dept_code: $('#cbo_Dept').val() || "",
-            shift: $('#cbo_Shift').val() || "",
-            from_date: $('#txt_FromDate').val() || null,
-            to_date: $('#txt_ToDate').val() || null,
+            status_id: $('#cbo_Status').val() || 0,
+            type_id: $('#cbo_Type').val() || 0,
             textSearch: $('#txt_Search').val() || "",
             pageNumber: 1,
             pageSize: 0,

@@ -21,13 +21,13 @@ namespace E_API.Controllers.Authentication
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginItemRequest data)
         {
-            if (data == null || string.IsNullOrWhiteSpace(data.email) || string.IsNullOrWhiteSpace(data.password))
+            if (data == null || string.IsNullOrWhiteSpace(data.password))
                 return BadRequest("Email and password cannot be empty.");
 
             try
             {
                 // Authenticate the user
-                var user = await _serviceWrapper.TokenService.AuthenticateAsync(data.email, data.password);
+                var user = await _serviceWrapper.TokenService.AuthenticateAsync(data);
                 if (user != null && !string.IsNullOrEmpty(user.access_token))
                 {
                     // Save the refresh token in the database

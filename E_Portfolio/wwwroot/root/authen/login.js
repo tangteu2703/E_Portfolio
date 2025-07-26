@@ -23,13 +23,15 @@ $(document).ready(function () {
 const login = async () => {
     let data = {
         email: $(`#email`).val().trim(),
+        phone_number: $(`#email`).val().trim(),
         password: $(`#password`).val().trim(),
+        is_ldap: false,
     };
 
     // Kiểm tra xem các trường có bị bỏ trống không
     if (!data.email) {
         Swal.fire({
-            text: "Email không được để trống!",
+            text: "Email hoặc số điện thoại không được để trống!",
             icon: "warning",
             buttonsStyling: !1,
             confirmButtonText: "Ok, tôi hiểu!",
@@ -76,7 +78,7 @@ const login = async () => {
                     phone: response.user_info.phone || '',
                     avatar: response.user_info.avatar || '',
                     card_color: response.user_info.card_color || '',
-                    usercode: response.user_info.phone || ''
+                    usercode: response.user_info.user_code || ''
                 };
                 // Lưu userData vào store 'user_information', keyPath là 'usercode'
                 commonIndexDB.saveToIndexedDB('AuthorizeDB', 'user_information', userData, 'usercode')

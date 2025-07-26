@@ -14,9 +14,6 @@ namespace E_Service.Authentication
 {
     public class TokenService : ServiceBase<data_user>, ITokenService
     {
-        private string key = "A4E8D58F67C9A10B4C5D6E1F2G3H4I5J"; // 32 bytes (256 bits) for AES-256
-        private string iv = "2703200002082011"; // 16 bytes (128 bits) for AES
-
         private readonly JwtHelper _jwtHelper;
 
         public TokenService(IRepositoryWrapper RepositoryWrapper, JwtHelper jwtHelper) : base(RepositoryWrapper)
@@ -25,42 +22,37 @@ namespace E_Service.Authentication
             this._jwtHelper = jwtHelper;
         }
 
-        public async Task<UserAuthenticationItemResponse> AuthenticateAsync(string email, string password, bool is_ldap = false)
+        public async Task<UserAuthenticationItemResponse> AuthenticateAsync(LoginItemRequest data)
         {
             try
             {
                 var userAuthen = new UserAuthenticationItemResponse();
-                var encrypt_pass = new EncryptionHelper(key, iv).Encrypt(password);
+                data.password = _jwtHelper.Encrypt(data.password);
 
-                if (!is_ldap)
+                if (!data.is_ldap)
                 {
-                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(email, encrypt_pass);
+                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data);
                     if (user == null)
                         return new UserAuthenticationItemResponse();
 
-                    user.role_name = "";
-
-                    userAuthen.user_info = new DataUserCardItemResponse
-                    {
-                        avatar = user.avatar,
-                        full_name = user.full_name,
-                        email = user.email,
-                        department = user.department,
-                        phone = user.phone,
-                        position = user.position,
-                        title = user.title,
-                        card_color = user.card_color,
-                    };
-
                     var claims = new List<Claim>
                         {
-                            new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
-                            new Claim(ClaimTypes.Name, user.email),
-                            new Claim(ClaimTypes.Role, user.role_name),
+                            new Claim(ClaimTypes.NameIdentifier, user?.user_code),
+                            new Claim(ClaimTypes.Name, user?.email),
+                            new Claim(ClaimTypes.Role, ""),
                         };
 
                     userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
                     userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
+                    userAuthen.user_info = new DataUserCardItemResponse
+                    {
+                        user_code = user?.user_code,
+                        avatar = user?.avatar_url,
+                        full_name = user.full_name,
+                        email = user.email,
+                        phone = user.phone_number,
+                        card_color = user.card_color,
+                    };
                     //userAuthen.list_application = await _repositoryWrapper.DataApplication.SelectByUserIdAsync(user.id);
 
                     return userAuthen;
@@ -68,7 +60,7 @@ namespace E_Service.Authentication
                 else
                 {
                     //logic check LDAP
-                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(email, password);
+                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data.email, data.password);
                     if (!string.IsNullOrEmpty(user.ldap_server) && !string.IsNullOrEmpty(user.ldap_dc) && user.ldap_port > 0)
                         userAuthen.user_info = await CheckLoginAndResponseToken(user);
 
@@ -97,7 +89,7 @@ namespace E_Service.Authentication
             var user = await _repositoryWrapper.DataUser.SelectByUserAsync(request.email, request.old_password, false);
             if (user != null)
             {
-                var encrypt_pass = new EncryptionHelper(key, iv).Encrypt(request.old_password);
+                var encrypt_pass = _jwtHelper.Encrypt(request.old_password);
 
                 if (user.password.Trim() != encrypt_pass)
                 {
@@ -105,7 +97,7 @@ namespace E_Service.Authentication
                 }
                 else
                 {
-                    var encrypted_new_pass = new EncryptionHelper(key, iv).Encrypt(request.new_password);
+                    var encrypted_new_pass = _jwtHelper.Encrypt(request.new_password);
                     var user_new = new data_user
                     {
                         id = user.id,
@@ -123,7 +115,7 @@ namespace E_Service.Authentication
                         department_id = user.department_id,
                         card_color = user.card_color,
                     };
-                    user_new.SetUpdateInfo(user.id);
+                    user_new.SetUpdateInfo(user.id + "");
                     return await _repositoryWrapper.DataUser.UpdateAsync(user_new);
                 }
             }
@@ -151,7 +143,7 @@ namespace E_Service.Authentication
                     ldapConnection.Connect(user.ldap_server, user.ldap_port);
                     if (is_refresh)
                     {
-                        user.password = new EncryptionHelper(key, iv).Decrypt(user.password);
+                        user.password = _jwtHelper.Decrypt(user.password);
                         ldapConnection.Bind(username_ldap, user.password);
                     }
                     else
@@ -201,7 +193,7 @@ namespace E_Service.Authentication
                                 {
                                     title = titleAttribute.StringValue,
                                 };
-                                new_title.SetInsertInfo(user.id);
+                                new_title.SetInsertInfo(user.id + "");
                                 var check_insert = await _repositoryWrapper.DataTitle.InsertAsync(new_title);
                                 if (check_insert > 0)
                                 {
@@ -223,7 +215,7 @@ namespace E_Service.Authentication
                                 {
                                     department = departmentAttribute.StringValue,
                                 };
-                                new_department.SetInsertInfo(user.id);
+                                new_department.SetInsertInfo(user.id + "");
                                 var check_insert = await _repositoryWrapper.DataDepartment.InsertAsync(new_department);
                                 if (check_insert > 0)
                                 {
@@ -232,7 +224,7 @@ namespace E_Service.Authentication
                             }
                             user.department = departmentAttribute.StringValue;
                         }
-                        var encrypt_pass = new EncryptionHelper(key, iv).Encrypt(user.password);
+                        var encrypt_pass = _jwtHelper.Encrypt(user.password);
                         var new_user_info = new data_user
                         {
                             id = user.id,
@@ -251,14 +243,14 @@ namespace E_Service.Authentication
 
                             card_color = user.card_color.Trim(),
                         };
-                        new_user_info.SetUpdateInfo(user.id);
+                        new_user_info.SetUpdateInfo(user.id + "");
                         await _repositoryWrapper.DataUser.UpdateAsync(new_user_info);
 
                         var ldap_setting = await _repositoryWrapper.SysLdapSetting.SelectByIdAsync(user.ldap_setting_id);
                         if (ldap_setting != null && dnAttribute != null)
                         {
                             ldap_setting.ldap_dn = dnAttribute.StringValue;
-                            ldap_setting.SetUpdateInfo(user.id);
+                            ldap_setting.SetUpdateInfo(user.id + "");
                             await _repositoryWrapper.SysLdapSetting.UpdateAsync(ldap_setting);
                         }
                         userCard = new DataUserCardItemResponse
@@ -357,7 +349,7 @@ namespace E_Service.Authentication
             var user_new = new data_user
             {
                 username = request.username,
-                password = new EncryptionHelper(key, iv).Encrypt(request.password),
+                password = _jwtHelper.Encrypt(request.password),
                 full_name = request.full_name,
                 phone = request.phone,
                 email = request.email,
@@ -378,7 +370,7 @@ namespace E_Service.Authentication
                     {
                         title = request.title,
                     };
-                    new_title.SetInsertInfo(2);
+                    new_title.SetInsertInfo("");
                     var check_insert = await _repositoryWrapper.DataTitle.InsertAsync(new_title);
                     if (check_insert > 0)
                     {
@@ -386,7 +378,7 @@ namespace E_Service.Authentication
                     }
                 }
             }
-            user_new.SetInsertInfo(2);
+            user_new.SetInsertInfo("");
             return await _repositoryWrapper.DataUser.InsertAsync(user_new);
         }
 

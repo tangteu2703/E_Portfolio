@@ -3,11 +3,13 @@ using E_Common;
 using E_Contract.Repository.User;
 using E_Model.Authentication;
 using E_Model.Request;
+using E_Model.Request.Token;
 using E_Model.Request.User;
 using E_Model.Request.WorkSheet;
 using E_Model.Response.Authentication;
 using E_Model.Response.User;
 using E_Model.Response.WorkSheet;
+using E_Model.Table_SQL.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,7 +60,26 @@ namespace E_Repository.User
                 param.Add("@password", password);
                 param.Add("@is_ldap", is_ldap);
 
-                var result = await Connection.SelectAsync<DataUserItemResponse>("data_user_select_by_user", param, "PortfolioConnection");
+                var result = await Connection.SelectAsync<DataUserItemResponse>("data_user_select_by_user", param);
+                return result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<DataUserResponse> SelectByUserAsync(LoginItemRequest data)
+        {
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@email", data.email);
+                param.Add("@phone_number", data.phone_number);
+                param.Add("@password", data.password);
+                param.Add("@is_ldap", data.is_ldap);
+
+                var result = await Connection.SelectAsync<DataUserResponse>("UserData_select_by_user", param);
                 return result.FirstOrDefault();
             }
             catch (Exception ex)

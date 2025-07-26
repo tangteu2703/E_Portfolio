@@ -62,9 +62,11 @@
                             Excel
                         </button>
                         <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" onclick="sampleClick()" data-value="import">Sample File</a></li>
                             <li><a class="dropdown-item" onclick="importClick()" data-value="import">Import Excel</a></li>
                             <li><a class="dropdown-item" onclick="exportClick()" data-value="export">Export Excel</a></li>
                         </ul>
+                        <input type="file" id="file_Import" accept=".xlsx" style="display: none;" onchange="onFileSelected(event)">
                     </div>
                 </div>
                 <!--end::Toolbar wrapper-->
@@ -93,21 +95,21 @@
                             <div class="col-sm-3 col-md-2">
                                 <label for="cbo_Type" class="form-label fw-bold mb-1">Phân loại</label>
                                 <select id="cbo_Type" class="form-select form-select-sm form-select-solid">
-                                    <option value="">Tất cả</option>
+                                    <option value="0">Tất cả</option>
                                 </select>
                             </div>
 
                             <!-- Ca làm -->
                             <div class="col-sm-3 col-md-2">
-                                <label for="cbo_Shift" class="form-label fw-bold mb-1">Trạng thái</label>
-                                <select id="cbo_Shift"
+                                <label for="cbo_Status" class="form-label fw-bold mb-1">Trạng thái</label>
+                                <select id="cbo_Status"
                                         class="form-select form-select-sm form-select-solid"
                                         data-control="select2" data-allow-clear="true">
-                                    <option value="">Tất cả</option>
-                                    <option value="001">Đang sử dụng</option>
-                                    <option value="002">Chưa cấp phát</option>
-                                    <option value="003">Không xác định</option>
-                                    <option value="004">Hỏng/ không sử dụng được</option>
+                                    <option value="0">Tất cả</option>
+                                    <option value="1">Đang sử dụng</option>
+                                    <option value="2">Chưa cấp phát</option>
+                                    <option value="3">Không xác định</option>
+                                    <option value="4">Hỏng</option>
                                 </select>
                             </div>
 

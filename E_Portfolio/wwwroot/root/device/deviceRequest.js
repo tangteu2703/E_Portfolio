@@ -218,7 +218,10 @@ const loadDeviceRequestTable = () => {
     });
 };
 
+const addRequest = () => {
 
+    KTDrawer.getInstance($("#kt_shopping_cart")[0])?.show();
+}
 
 
 

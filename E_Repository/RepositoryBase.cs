@@ -6,12 +6,12 @@ namespace E_Repository
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        public async Task<IEnumerable<T>> SelectAllAsync()
+        public async Task<IEnumerable<T>> SelectAllAsync(string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try
             {
-                return await Connection.SelectAsync<T>( $"{tableName}_select_all");
+                return await Connection.SelectAsync<T>( $"{tableName}_select_all",null,db);
             }
             catch (Exception ex)
             {
@@ -19,7 +19,7 @@ namespace E_Repository
                 throw ex;
             }
         }
-        public async Task<IEnumerable<T>> SelectFilterAsync(T model)
+        public async Task<IEnumerable<T>> SelectFilterAsync(T model, string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try
@@ -32,7 +32,7 @@ namespace E_Repository
                 throw; // Giữ nguyên stack trace của exception
             }
         }
-        public async Task<T> SelectByIdAsync(int id)
+        public async Task<T> SelectByIdAsync(int id, string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try
@@ -65,7 +65,7 @@ namespace E_Repository
             }
         }
 
-        public async Task<int> InsertAsync(T model)
+        public async Task<int> InsertAsync(T model, string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try
@@ -79,13 +79,13 @@ namespace E_Repository
                 throw ex;
             }
         }
-        public async Task<bool> UpdateAsync(T model)
+        public async Task<bool> UpdateAsync(T model, string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try
             {
                 var param = DynamicParameterHelper.ConvertWithOutCreatitonParams(model);
-                await Connection.ExecuteAsync($"{tableName}_update", param);
+                await Connection.ExecuteAsync($"{tableName}_update", param,db);
                 return true;
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace E_Repository
                 throw ex;
             }
         }
-        public async Task<bool> DeleteAsync(int id, int userId)
+        public async Task<bool> DeleteAsync(int id, int userId, string db = "DefaultConnection")
         {
             var tableName = typeof(T).Name;
             try

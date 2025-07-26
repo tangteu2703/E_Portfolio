@@ -4,34 +4,37 @@ namespace E_Model
 {
     public class modify_info
     {
-        [JsonIgnore]
-        public bool is_deleted { get; set; }
 
         [JsonIgnore]
-        public DateTime last_datetime { get; set; }
+        public DateTime? created_at { get; set; }
 
         [JsonIgnore]
-        public int last_user_id { get; set; }
+        public string? created_by { get; set; }
 
-        /// <summary>
-        /// Set thông tin người thêm, thời gian thêm record này
-        /// </summary>
-        /// <param name="UserID"></param>
-        public void SetInsertInfo(int created_user_id)
+        [JsonIgnore]
+        public DateTime? updated_at { get; set; }
+
+        [JsonIgnore]
+        public string? updated_by { get; set; }
+
+        [JsonIgnore]
+        public bool? is_deleted { get; set; } = false;
+
+        [JsonIgnore]
+        public string? note { get; set; }
+
+        public void SetInsertInfo(string? created_user_id)
         {
             this.is_deleted = false;
-            this.last_user_id = created_user_id;
-            this.last_datetime = DateTime.Now;
+            this.created_by = created_user_id;
+            this.created_at = DateTime.Now;
         }
 
-        /// <summary>
-        /// Set thông tin người sửa, thời gian sửa của record này
-        /// </summary>
-        /// <param name="UserID"></param>
-        public void SetUpdateInfo(int last_modified_user_id)
+        public void SetUpdateInfo(string? last_modified_user_id)
         {
-            this.last_user_id = last_modified_user_id;
-            this.last_datetime = DateTime.Now;
+            this.is_deleted = false;
+            this.updated_by = last_modified_user_id;
+            this.updated_at = DateTime.Now;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace E_Repository.WorkSheet
                 var param = new DynamicParameters();
                 param.Add("@fromDate", fromDate);
                 param.Add("@toDate", toDate);
-                var result = await Connection.SelectAsync<data_transaction>("data_transaction_select_date", param);
+                var result = await Connection.SelectAsync<data_transaction>("data_transaction_select_date", param, "BioStarConnection");
                 return result;
             }
             catch (Exception ex)

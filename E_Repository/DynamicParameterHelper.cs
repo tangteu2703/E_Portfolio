@@ -14,14 +14,14 @@ namespace E_Repository
         public static void AddModifyInsertParameters(DynamicParameters param, modify_info obj)
         {
             param.Add("is_deleted", obj.is_deleted);
-            param.Add("last_modified_user_id", obj.last_user_id);
-            param.Add("last_modified_time", obj.last_datetime);
+            param.Add("updated_by", obj.updated_by);
+            param.Add("updated_at", obj.updated_at);
         }
 
         public static void AddModifyUpdateParameters(DynamicParameters param, modify_info obj)
         {
-            param.Add("last_modified_user_id", obj.last_user_id);
-            param.Add("last_modified_time", obj.last_datetime);
+            param.Add("updated_by", obj.updated_by);
+            param.Add("updated_at", obj.updated_at);
         }
 
         /// <summary>

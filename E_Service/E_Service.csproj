@@ -21,8 +21,4 @@
 		<ProjectReference Include="..\E_Contract\E_Contract.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<Folder Include="Hosted\" />
-	</ItemGroup>
-
 </Project>

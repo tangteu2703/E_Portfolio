@@ -19,7 +19,7 @@ const searchClick = () => {
     loadData();
 }
 const importClick = () => {
-    document.getElementById('inputImage').click();
+    document.getElementById('file_Import').click();
 }
 
 const onImageSelected = (event) => {

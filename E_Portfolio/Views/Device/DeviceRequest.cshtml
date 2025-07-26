@@ -39,13 +39,12 @@
                         <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
                             Yêu cầu – Bàn giao thiết bị
                         </h1>
-                        <!--end::Title-->
                     </div>
                     <!--end::Page title-->
                     <div class="d-flex mb-4">
-                        <a href="#" class="btn btn-sm btn-success btn-active-color-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_users_search">Thêm yêu cầu</a>
+                        <a href="#" onclick="addRequest()" class="btn btn-sm btn-success btn-active-color-primary me-3">Thêm yêu cầu</a>
 
-                        <a href="#" class="btn btn-sm btn-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_new_target">Thêm bàn giao</a>
+                        <a href="#" class="btn btn-sm btn-primary me-3">Thêm bàn giao</a>
 
                         <div class="dropdown w-150px me-3">
                             <button id="dropdownExcelAction" class="btn btn-sm btn-light w-100 dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -148,6 +147,105 @@
         <!--end::Content-->
     </div>
     <!--end::Content wrapper-->
+</div>
+
+<div id="kt_shopping_cart" class="bg-body drawer drawer-end" data-kt-drawer="true" data-kt-drawer-name="cart" data-kt-drawer-activate="true" data-kt-drawer-overlay="true" data-kt-drawer-width="{default:'300px', 'md': '500px'}" data-kt-drawer-direction="end" data-kt-drawer-toggle="#kt_drawer_shopping_cart_toggle" data-kt-drawer-close="#kt_drawer_shopping_cart_close" style="width: 500px !important;">
+
+    <div class="card w-100 border-0 rounded-0">
+        <!--begin::Card header-->
+        <div class="card-header">
+            <!--begin::Title-->
+            <h3 class="card-title text-gray-900 fw-bold">Yêu cầu thiết bị</h3>
+            <!--begin::Card toolbar-->
+            <div class="card-toolbar">
+                <div class="btn btn-sm btn-icon btn-active-light-primary" id="kt_drawer_shopping_cart_close">
+                    <i class="ki-duotone ki-cross fs-2"><span class="path1"></span><span class="path2"></span></i>
+                </div>
+            </div>
+        </div>
+        <!--begin::Card body-->
+        <div class="card-body hover-scroll-overlay-y h-400px pt-5">
+
+            <div class="d-flex flex-stack">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column me-3">
+                    <!--begin::Section-->
+                    <div class="mb-3">
+                        <a href="/saul-html-pro/apps/ecommerce/sales/details.html" class="text-gray-800 text-hover-primary fs-4 fw-bold">Iblender</a>
+
+                        <span class="text-gray-500 fw-semibold d-block">The best kitchen gadget in 2022</span>
+                    </div>
+                    <!--end::Section-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold text-gray-800 fs-5">$ 350</span>
+                        <span class="text-muted mx-2">for</span>
+                        <span class="fw-bold text-gray-800 fs-5 me-3">5</span>
+
+                        <a href="#" class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                            <i class="ki-duotone ki-minus fs-4"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                            <i class="ki-duotone ki-plus fs-4"></i>
+                        </a>
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Wrapper-->
+                <!--begin::Pic-->
+                <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                    <img src="/saul-html-pro/assets/media/stock/600x400/img-1.jpg" alt="">
+                </div>
+                <!--end::Pic-->
+            </div>
+            <div class="separator separator-dashed my-6"></div>
+            <div class="d-flex flex-stack">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column me-3">
+                    <!--begin::Section-->
+                    <div class="mb-3">
+                        <a href="/saul-html-pro/apps/ecommerce/sales/details.html" class="text-gray-800 text-hover-primary fs-4 fw-bold">SmartCleaner</a>
+
+                        <span class="text-gray-500 fw-semibold d-block">Smart tool for cooking</span>
+                    </div>
+                    <!--end::Section-->
+                    <!--begin::Section-->
+                    <div class="d-flex align-items-center">
+                        <span class="fw-bold text-gray-800 fs-5">$ 650</span>
+                        <span class="text-muted mx-2">for</span>
+                        <span class="fw-bold text-gray-800 fs-5 me-3">4</span>
+
+                        <a href="#" class="btn btn-sm btn-light-success btn-icon-success btn-icon w-25px h-25px me-2">
+                            <i class="ki-duotone ki-minus fs-4"></i>
+                        </a>
+
+                        <a href="#" class="btn btn-sm btn-light-success btn-icon w-25px h-25px">
+                            <i class="ki-duotone ki-plus fs-4"></i>
+                        </a>
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Wrapper-->
+                <!--begin::Pic-->
+                <div class="symbol symbol-70px symbol-2by3 flex-shrink-0">
+                    <img src="/saul-html-pro/assets/media/stock/600x400/img-3.jpg" alt="">
+                </div>
+                <!--end::Pic-->
+            </div>
+            <div class="separator separator-dashed my-6"></div>
+
+        </div>
+        <!--begin::Card footer-->
+        <div class="card-footer">
+            <!--end::Action-->
+            <div class="d-flex justify-content-end mt-9">
+                <a href="#" class="btn btn-primary d-flex justify-content-end">Lưu</a>
+            </div>
+            <!--end::Action-->
+        </div>
+        <!--end::Card footer-->
+    </div>
 </div>
 
 @section Scripts {
