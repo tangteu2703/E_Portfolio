@@ -1,4 +1,5 @@
-﻿using E_Common;
+﻿using E_API;
+using E_Common;
 using E_Contract.Repository;
 using E_Contract.Service;
 using E_Contract.Service.AI;
@@ -103,6 +104,12 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new() { Title = "E-Contract API", Version = "v1" });
+    c.OperationFilter<FileUploadOperation>(); // 👈 custom hỗ trợ IFormFile
+});
+
 #endregion
 
 var app = builder.Build();

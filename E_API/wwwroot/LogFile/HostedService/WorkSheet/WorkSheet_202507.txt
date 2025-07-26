@@ -1,3 +1,98 @@
+2025-07-26 17:02:39 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1137.3 minutes.
+2025-07-26 17:02:39 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 956.3 minutes.
+2025-07-26 17:02:39 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 911.3 minutes.
+2025-07-26 17:02:39 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 417.3 minutes.
+2025-07-26 17:02:39 | ***** [START] JobHostedService at 2025-07-26 17:02:39 *****
+2025-07-26 16:58:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1141.0 minutes.
+2025-07-26 16:58:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 960.0 minutes.
+2025-07-26 16:58:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 915.0 minutes.
+2025-07-26 16:58:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 421.0 minutes.
+2025-07-26 16:58:59 | ***** [START] JobHostedService at 2025-07-26 16:58:59 *****
+2025-07-26 16:48:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1151.4 minutes.
+2025-07-26 16:48:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 970.4 minutes.
+2025-07-26 16:48:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 925.4 minutes.
+2025-07-26 16:48:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 431.4 minutes.
+2025-07-26 16:48:36 | ***** [START] JobHostedService at 2025-07-26 16:48:36 *****
+2025-07-26 16:39:58 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1160.0 minutes.
+2025-07-26 16:39:58 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 979.0 minutes.
+2025-07-26 16:39:58 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 934.0 minutes.
+2025-07-26 16:39:58 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 440.0 minutes.
+2025-07-26 16:39:58 | ***** [START] JobHostedService at 2025-07-26 16:39:58 *****
+2025-07-26 16:02:44 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1197.3 minutes.
+2025-07-26 16:02:44 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1016.3 minutes.
+2025-07-26 16:02:44 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 971.3 minutes.
+2025-07-26 16:02:44 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 477.2 minutes.
+2025-07-26 16:02:43 | ***** [START] JobHostedService at 2025-07-26 16:02:43 *****
+2025-07-26 15:59:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1200.0 minutes.
+2025-07-26 15:59:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1019.0 minutes.
+2025-07-26 15:59:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 974.0 minutes.
+2025-07-26 15:59:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 480.0 minutes.
+2025-07-26 15:59:59 | ***** [START] JobHostedService at 2025-07-26 15:59:59 *****
+2025-07-26 15:57:51 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1202.2 minutes.
+2025-07-26 15:57:51 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1021.2 minutes.
+2025-07-26 15:57:51 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 976.2 minutes.
+2025-07-26 15:57:51 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 482.1 minutes.
+2025-07-26 15:57:50 | ***** [START] JobHostedService at 2025-07-26 15:57:50 *****
+2025-07-26 15:56:38 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1203.4 minutes.
+2025-07-26 15:56:38 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1022.4 minutes.
+2025-07-26 15:56:38 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 977.4 minutes.
+2025-07-26 15:56:38 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 483.3 minutes.
+2025-07-26 15:56:38 | ***** [START] JobHostedService at 2025-07-26 15:56:38 *****
+2025-07-26 15:45:54 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1214.1 minutes.
+2025-07-26 15:45:54 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1033.1 minutes.
+2025-07-26 15:45:54 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 988.1 minutes.
+2025-07-26 15:45:54 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 494.1 minutes.
+2025-07-26 15:45:53 | ***** [START] JobHostedService at 2025-07-26 15:45:53 *****
+2025-07-26 15:28:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1231.4 minutes.
+2025-07-26 15:28:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1050.4 minutes.
+2025-07-26 15:28:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1005.4 minutes.
+2025-07-26 15:28:37 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 511.4 minutes.
+2025-07-26 15:28:36 | ***** [START] JobHostedService at 2025-07-26 15:28:36 *****
+2025-07-26 15:24:42 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1235.3 minutes.
+2025-07-26 15:24:42 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1054.3 minutes.
+2025-07-26 15:24:42 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1009.3 minutes.
+2025-07-26 15:24:42 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 515.3 minutes.
+2025-07-26 15:24:42 | ***** [START] JobHostedService at 2025-07-26 15:24:42 *****
+2025-07-26 15:22:34 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1237.4 minutes.
+2025-07-26 15:22:34 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1056.4 minutes.
+2025-07-26 15:22:34 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1011.4 minutes.
+2025-07-26 15:22:34 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 517.4 minutes.
+2025-07-26 15:22:34 | ***** [START] JobHostedService at 2025-07-26 15:22:34 *****
+2025-07-26 15:19:19 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1240.7 minutes.
+2025-07-26 15:19:19 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1059.7 minutes.
+2025-07-26 15:19:19 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1014.7 minutes.
+2025-07-26 15:19:19 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 520.6 minutes.
+2025-07-26 15:19:19 | ***** [START] JobHostedService at 2025-07-26 15:19:19 *****
+2025-07-26 15:12:13 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1247.8 minutes.
+2025-07-26 15:12:13 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1066.8 minutes.
+2025-07-26 15:12:13 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1021.8 minutes.
+2025-07-26 15:12:13 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 527.8 minutes.
+2025-07-26 15:12:12 | ***** [START] JobHostedService at 2025-07-26 15:12:12 *****
+2025-07-26 15:01:55 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1258.1 minutes.
+2025-07-26 15:01:55 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1077.1 minutes.
+2025-07-26 15:01:55 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1032.1 minutes.
+2025-07-26 15:01:55 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 538.0 minutes.
+2025-07-26 15:01:55 | ***** [START] JobHostedService at 2025-07-26 15:01:55 *****
+2025-07-26 15:01:17 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1258.7 minutes.
+2025-07-26 15:01:17 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1077.7 minutes.
+2025-07-26 15:01:17 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1032.7 minutes.
+2025-07-26 15:01:17 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 538.7 minutes.
+2025-07-26 15:01:17 | ***** [START] JobHostedService at 2025-07-26 15:01:17 *****
+2025-07-26 14:52:47 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1267.2 minutes.
+2025-07-26 14:52:47 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1086.2 minutes.
+2025-07-26 14:52:47 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1041.2 minutes.
+2025-07-26 14:52:47 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 547.2 minutes.
+2025-07-26 14:52:47 | ***** [START] JobHostedService at 2025-07-26 14:52:47 *****
+2025-07-26 14:51:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1268.0 minutes.
+2025-07-26 14:51:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1087.0 minutes.
+2025-07-26 14:51:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1042.0 minutes.
+2025-07-26 14:51:59 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 548.0 minutes.
+2025-07-26 14:51:58 | ***** [START] JobHostedService at 2025-07-26 14:51:58 *****
+2025-07-26 14:48:23 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1271.6 minutes.
+2025-07-26 14:48:23 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1090.6 minutes.
+2025-07-26 14:48:23 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1045.6 minutes.
+2025-07-26 14:48:23 | [SCHEDULED] 'TurnOn-ToolWorkSheet-12-24' (W_1224_202507262359) will run at 2025-07-26 23:59:58 - delay 551.6 minutes.
+2025-07-26 14:48:22 | ***** [START] JobHostedService at 2025-07-26 14:48:22 *****
 2025-07-26 14:42:53 | [SCHEDULED] 'TurnOn-ToolWorkSheet-09-12' (W_0912_202507271200) will run at 2025-07-27 12:00:00 - delay 1277.1 minutes.
 2025-07-26 14:42:53 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0009_202507270859) will run at 2025-07-27 08:59:00 - delay 1096.1 minutes.
 2025-07-26 14:42:53 | [SCHEDULED] 'TurnOn-ToolWorkSheet-00-09' (W_0008_202507270814) will run at 2025-07-27 08:14:00 - delay 1051.1 minutes.

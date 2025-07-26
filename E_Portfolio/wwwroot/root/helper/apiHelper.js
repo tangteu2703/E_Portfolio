@@ -65,6 +65,40 @@ const apiHelper = (function () {
         }
     }
 
+    async function sendRequestFile(options) {
+        const {
+            url,
+            method = 'POST',
+            data,
+            success = () => { },
+            error = () => { },
+            isAddToken = true,
+            isBlob = false
+        } = options;
+
+        const headers = {};
+
+        if (isAddToken) {
+            const token = isAddToken ? await getApiToken(url) : localStorage.getItem("e_atoken");
+            if (token) {
+                headers['Authorization'] = 'Bearer ' + token;
+            }
+        }
+
+        $.ajax({
+            url: apiBase + url,
+            method: method,
+            data: data, // data phải là FormData
+            headers: headers,
+            contentType: false,         // ❗ để browser tự set multipart/form-data
+            processData: false,         // ❗ không xử lý data
+            enctype: 'multipart/form-data',
+            xhrFields: isBlob ? { responseType: 'blob' } : {},
+            success: success,
+            error: error
+        });
+    }
+
     return {
         get: async function (url, data, success, error, isAddToken = true) {
             await sendRequest({
@@ -121,15 +155,15 @@ const apiHelper = (function () {
             });
         },
 
-        postFile: async function (url, data, success, error, isAddToken = true) {
-            await sendRequest({
+        postFile: async function (url, data, success, error, isAddToken = true, isBlob = false) {
+            await sendRequestFile({
                 url,
                 method: 'POST',
                 data,
                 success,
                 error,
                 isAddToken,
-                isBlob: true
+                isBlob: isBlob
             });
         }
     };

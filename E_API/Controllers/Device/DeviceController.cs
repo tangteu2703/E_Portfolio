@@ -40,7 +40,7 @@ namespace E_API.Controllers.Device
         }
 
         [HttpPost("Import-excel")]
-        public async Task<IActionResult> ImportExcel(IFormFile file)
+        public async Task<IActionResult> ImportExcel([FromForm] ImportExcelRequest request)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace E_API.Controllers.Device
                     { "Ghi chú", "note" }
                 };
 
-                using var stream = file.OpenReadStream();
+                using var stream = request.file.OpenReadStream();
                 var list = ExcelExtension.ImportFromExcel<DeviceManagementRespone>(stream, columnMapping);
                 return OK(list);
             }

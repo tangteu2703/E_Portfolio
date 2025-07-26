@@ -143,27 +143,87 @@ const onFileSelected = (event) => {
     if (!file) return;
 
     const formData = new FormData();
-    formData.append("file", file); // "file" là tên tham số trong controller
+    formData.append("file", file);
 
     apiHelper.postFile(
         `/Device/Import-excel`,
         formData,
-        function (res) {
-            console.log("Import thành công:", res);
-
-            // Gán dữ liệu nếu cần
-            // $('#importResult').text(JSON.stringify(res, null, 2));
-
-            // Hiển thị modal kết quả
-            const modal = new bootstrap.Modal(document.getElementById("resultModal"));
-            modal.show();
+        function (response) {
+            console.log("✅ Import thành công:", response);
+            renderDeviceTable(response.data, '#detail_table')
+            // 4. Hiển thị Drawer
+            KTDrawer.getInstance(document.querySelector('#kt_details'))?.show();
         },
         function (err) {
-            console.error("Lỗi import:", err);
+            console.error("❌ Lỗi import:", err);
             alert("Không thể import file Excel.");
-        }
+        },
+        false,  // isAddToken
+        false, // isBlob
     );
 };
+function renderDeviceTable(data, tableId) {
+    const $table = $(tableId);
+
+    // Xóa DataTable nếu đã khởi tạo
+    if ($.fn.DataTable.isDataTable($table)) {
+        $table.DataTable().clear().destroy();
+    }
+
+    // Xóa nội dung tbody
+    $table.find('tbody').empty();
+
+    // Trạng thái và value tương ứng
+    const statusOptions = {
+        "Đang sử dụng": 1,
+        "Chưa cấp phát": 2,
+        "Không xác định": 3,
+        "Hỏng": 4
+    };
+
+    // Duyệt từng dòng dữ liệu
+    data.forEach((item, index) => {
+        const selectedValue = statusOptions[item.status_name?.trim()] || 0;
+
+        const row = `
+            <tr>
+                <td class="text-center">${index + 1}</td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.type_name || ''}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.device_code || ''}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.device_name || ''}"></td>
+                <td><textarea class="form-control form-control-sm" rows="2">${item.device_config || ''}</textarea></td>
+                <td>
+                    <select class="form-select form-select-sm form-select-solid" data-control="select2" data-allow-clear="true">
+                        <option value="1" ${selectedValue === 1 ? 'selected' : ''}>Đang sử dụng</option>
+                        <option value="2" ${selectedValue === 2 ? 'selected' : ''}>Chưa cấp phát</option>
+                        <option value="3" ${selectedValue === 3 ? 'selected' : ''}>Không xác định</option>
+                        <option value="4" ${selectedValue === 4 ? 'selected' : ''}>Hỏng</option>
+                    </select>
+                </td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.user_code || ''}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.full_name || ''}"></td>
+                <td><input type="text" class="form-control form-control-sm" value="${item.note || ''}"></td>
+            </tr>
+        `;
+
+        $table.find('tbody').append(row);
+    });
+
+    comboBox.setSelectOptions();
+
+    // Khởi tạo lại DataTable
+    $table.DataTable({
+        paging: false,
+        info: false,
+        searching: false,
+        ordering: false,
+        autoWidth: false,
+        language: {
+            emptyTable: "Không có dữ liệu thiết bị",
+            processing: "Đang xử lý..."
+        }
+    });
+}
 
 
 const exportClick = async () => {
