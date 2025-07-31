@@ -52348,3 +52348,8 @@ body {
 }
 
 /*# sourceMappingURL=style.bundle.css.map*/
+@media (max-width: 991.98px) {
+    html, body {
+        font-size: 22px !important;
+    }
+}

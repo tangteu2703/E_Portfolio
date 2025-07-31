@@ -28,6 +28,23 @@ namespace E_API.Controllers.User
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("Select-User")]
+        public async Task<IActionResult> GetUserCode([FromQuery] string userCode)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userCode))
+                    return BadRequest("User code cannot be null or empty.");
+
+                var user = await _serviceWrapper.DataUser.SelectByCodeAsync(userCode);
+
+                return OK(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

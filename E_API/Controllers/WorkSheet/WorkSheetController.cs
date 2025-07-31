@@ -276,7 +276,7 @@ namespace E_API.Controllers.WorkSheet
             {
                 DateTime dayStart = (dateTime ?? DateTime.Now).Date;
 
-                var from = dayStart.AddHours(9); // 09:00
+                var from = dayStart.AddHours(8); // 09:00
                 var to = dayStart.AddHours(12);   // 12:00
 
                 var (success, message) = await _serviceWrapper.WorkSheet.Convert_WorkSheet_09_12(from, to);

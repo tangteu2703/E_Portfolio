@@ -28,6 +28,11 @@ namespace E_Service
         {
             return await _repositoryBase.SelectByIdAsync(id, db);
         }
+
+        public async Task<T> SelectByCodeAsync(string code, string db = "DefaultConnection")
+        {
+            return await _repositoryBase.SelectByCodeAsync(code, db);
+        }
         public async Task<int> InsertAsync(T model, string db = "DefaultConnection")
         {
             return await _repositoryBase.InsertAsync(model.Map<T>(), db);

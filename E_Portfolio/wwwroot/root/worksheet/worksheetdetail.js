@@ -302,11 +302,15 @@ const loadData = async () => {
             },
             {
                 data: 'time_In',
-                render: data => data ? moment(data).format("HH:mm:ss") : ''
+                render: data => data
+                    ? `<span title="${data}">${moment(data).format("HH:mm:ss")}</span>`
+                    : ''
             },
             {
                 data: 'time_Out',
-                render: data => data ? moment(data).format("HH:mm:ss") : ''
+                render: data => data
+                    ? `<span title="${data}">${moment(data).format("HH:mm:ss")}</span>`
+                    : ''
             },
             { data: 'lack_Hour' },
             { data: 'work_Hour' },

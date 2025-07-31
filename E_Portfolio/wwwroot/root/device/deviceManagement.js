@@ -1,13 +1,15 @@
-﻿$(document).ready(function () {
+﻿let listType = {};
+
+$(document).ready(function () {
     loadDeviceType();
     loadData();
-
 });
 
 const loadDeviceType = async () => {
 
     apiHelper.get(`/Masters/DeviceType`, {},
         function (res) {
+            listType = res.data;
             comboBox.renderSelectOptions('cbo_Type', res.data, 'type_id', 'type_name', 'Tất cả');
         },
         function (err) {
@@ -139,7 +141,8 @@ const importClick = () => {
     document.getElementById('file_Import').click();
 };
 const onFileSelected = (event) => {
-    const file = event.target.files[0];
+    const fileInput = event.target;
+    const file = fileInput.files[0];
     if (!file) return;
 
     const formData = new FormData();
@@ -149,19 +152,26 @@ const onFileSelected = (event) => {
         `/Device/Import-excel`,
         formData,
         function (response) {
-            console.log("✅ Import thành công:", response);
-            renderDeviceTable(response.data, '#detail_table')
-            // 4. Hiển thị Drawer
-            KTDrawer.getInstance(document.querySelector('#kt_details'))?.show();
+            // Hiển thị dữ liệu trong bảng
+            renderDeviceTable(response.data, '#detail_table');
+
+            // Hiển thị Drawer nếu có
+            const drawerEl = document.querySelector('#kt_details');
+            const drawerInstance = KTDrawer.getInstance(drawerEl);
+            drawerInstance?.show();
         },
         function (err) {
             console.error("❌ Lỗi import:", err);
             alert("Không thể import file Excel.");
         },
         false,  // isAddToken
-        false, // isBlob
+        false   // isBlob
     );
+
+    // Reset input file để cho phép chọn lại cùng 1 file
+    fileInput.value = null;
 };
+
 function renderDeviceTable(data, tableId) {
     const $table = $(tableId);
 
@@ -181,28 +191,42 @@ function renderDeviceTable(data, tableId) {
         "Hỏng": 4
     };
 
+
     // Duyệt từng dòng dữ liệu
     data.forEach((item, index) => {
-        const selectedValue = statusOptions[item.status_name?.trim()] || 0;
+        const selectedTypeId = listType.find(t => t.type_name === item.type_name)?.type_id || '';
+        const selectedValue = statusOptions[item.status_name?.trim()] || 3;
 
         const row = `
             <tr>
                 <td class="text-center">${index + 1}</td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.type_name || ''}"></td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.device_code || ''}"></td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.device_name || ''}"></td>
-                <td><textarea class="form-control form-control-sm" rows="2">${item.device_config || ''}</textarea></td>
                 <td>
-                    <select class="form-select form-select-sm form-select-solid" data-control="select2" data-allow-clear="true">
+                    <select id="cbo_Type_${index + 1}" class="form-select form-select-sm form-select-solid select-type" data-control="select2">
+                        <option value="">Chọn loại</option>
+                        ${listType.map(t =>
+                            `<option value="${t.type_id}" ${t.type_id === selectedTypeId ? 'selected' : ''}>${t.type_name}</option>`
+                        ).join('')}
+                    </select>
+                </td>
+                <td><input type="text" id="txt_DeviceCode_${index + 1}" class="form-control form-control-sm" value="${item.device_code || ''}"></td>
+                <td><input type="text" id="txt_DeviceName_${index + 1}" class="form-control form-control-sm" value="${item.device_name || ''}"></td>
+                <td><textarea id="txt_DeviceConfig_${index + 1}" class="form-control form-control-sm" rows="2">${item.device_config || ''}</textarea></td>
+                <td>
+                    <select id="cbo_Staus_${index + 1}" class="form-select form-select-sm form-select-solid" data-control="select2" data-allow-clear="true">
                         <option value="1" ${selectedValue === 1 ? 'selected' : ''}>Đang sử dụng</option>
                         <option value="2" ${selectedValue === 2 ? 'selected' : ''}>Chưa cấp phát</option>
                         <option value="3" ${selectedValue === 3 ? 'selected' : ''}>Không xác định</option>
                         <option value="4" ${selectedValue === 4 ? 'selected' : ''}>Hỏng</option>
                     </select>
                 </td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.user_code || ''}"></td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.full_name || ''}"></td>
-                <td><input type="text" class="form-control form-control-sm" value="${item.note || ''}"></td>
+                <td><input type="text" id="txt_UserCode_${index + 1}" class="form-control form-control-sm" value="${item.user_code || ''}"></td>
+                <td><p class="">${item.full_name || ''}</p></td>
+                <td><input type="text" id="txt_Note_${index + 1}" class="form-control form-control-sm" value="${item.note || ''}"></td>
+                <td>
+                    <button type="button" class="btn btn-icon btn-sm btn-danger btn-delete-row" onclick="deleteRowByButton(this)">
+                        <i class="bi bi-x fs-2"></i>
+                    </button>
+                </td>
             </tr>
         `;
 
@@ -222,6 +246,31 @@ function renderDeviceTable(data, tableId) {
             emptyTable: "Không có dữ liệu thiết bị",
             processing: "Đang xử lý..."
         }
+    });
+}
+function deleteRowByButton(button) {
+    // Tìm <tr> gần nhất từ nút được click
+    const $row = $(button).closest('tr');
+    $row.remove(); // Xóa dòng
+
+    // Lặp lại toàn bộ các dòng còn lại để cập nhật lại STT và ID
+    $('#detail_table tbody tr').each((i, row) => {
+        const index = i + 1;
+
+        // Cập nhật lại STT ở cột đầu tiên
+        $(row).find('td:first').text(index);
+
+        // Cập nhật ID của các input/select để đảm bảo không trùng
+        $(row).find('select[id^="cbo_Type_"]').attr('id', `cbo_Type_${index}`);
+        $(row).find('input[id^="txt_DeviceCode_"]').attr('id', `txt_DeviceCode_${index}`);
+        $(row).find('input[id^="txt_DeviceName_"]').attr('id', `txt_DeviceName_${index}`);
+        $(row).find('textarea[id^="txt_DeviceConfig_"]').attr('id', `txt_DeviceConfig_${index}`);
+        $(row).find('select[id^="cbo_Staus_"]').attr('id', `cbo_Staus_${index}`);
+        $(row).find('input[id^="txt_UserCode_"]').attr('id', `txt_UserCode_${index}`);
+        $(row).find('input[id^="txt_Note_"]').attr('id', `txt_Note_${index}`);
+
+        // Cập nhật lại nút xóa để luôn gọi đúng hàng
+        $(row).find('button.btn-delete-row').attr('onclick', `deleteRowByButton(this)`);
     });
 }
 

@@ -1,114 +1,112 @@
-﻿<style>
-	.fade-in {
-		opacity: 1;
-		transition: opacity 0.2s ease-in-out;
-	}
-
-	.fade-out {
-		opacity: 1;
-		transition: opacity 0.2s ease-in-out;
-	}
-
-	.d-none {
-		display: none;
-	}
-</style>
+﻿
 
 <div class="login-container">
 
-	<!-- Logo -->
-	<div class="text-center">
-		<img src="~/assets/img/logo/logo_t.png" alt="Logo" class="mb-2">
-	</div>
+    <!-- Logo -->
+    <div class="text-center">
+        <img src="~/assets/img/logo/logo_t.png" alt="Logo" class="mb-2">
+    </div>
 
-	<form id="loginForm" class="fade-in">
-		<h3 class="text-center mb-4">Login</h3>
+    <form id="loginForm" class="fade-in">
+        <h3 class="text-center mb-4">Login</h3>
 
-		<div class="mb-3">
-			<label for="email" class="form-label">Account</label>
-			<input type="text" class="form-control" id="email" placeholder="Enter your Account" autocomplete="email">
-		</div>
-		<div class="mb-3">
-			<label for="password" class="form-label">Password</label>
-			<div class="input-group">
-				<input type="password" class="form-control" id="password" placeholder="Enter your password" autocomplete="current-password">
-				<button class="btn btn-outline-secondary" type="button" id="togglePassword">
-					<i class="bi bi-eye"></i>
-				</button>
-			</div>
-		</div>
-		<div class="d-grid">
-			<label id="errorMessage" class="text-danger d-none">Sai tài khoản hoặc mật khẩu</label>
-			<button type="button" id="loginBtn" onclick="login()" class="btn btn-primary">
-				Login
-			</button>
-		</div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Account</label>
+            <input type="text" class="form-control" id="email" placeholder="Enter your Account" autocomplete="email">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <div class="position-relative">
+                <input type="password" class="form-control pe-5" id="password" placeholder="Enter your password" autocomplete="current-password">
+                <i id="togglePassword" onclick="commonPassword.toggleVisibility('password', this)"
+                   class="bi bi-eye position-absolute top-50 translate-middle-y"
+                   style="right: 1rem; z-index: 5; cursor: pointer;"></i>
+            </div>
+        </div>
+        <div class="d-grid">
+            <label id="errorMessage" class="text-danger d-none">Sai tài khoản hoặc mật khẩu</label>
+            <button type="button" id="loginBtn" onclick="login()" class="btn btn-primary">
+                Login
+            </button>
+        </div>
 
-		<div class="text-center mt-3">
-			<a href="#" id="forgotPasswordLink">Forgot password?</a>
-		</div>
-		<hr />
+        <div class="text-center mt-3">
+            <a href="#" id="forgotPasswordLink">Forgot password?</a>
+        </div>
+        <hr />
 
-		<!-- Nút đăng nhập với Google -->
-		<div class="text-center mt-3">
-			<button class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 w-100" id="googleLogin">
-				<i class="bi bi-google"></i> Login with Google
-			</button>
-		</div>
+        <!-- Nút đăng nhập với Google -->
+        <div class="text-center mt-3">
+            <button class="btn btn-outline-danger d-flex align-items-center justify-content-center gap-2 w-100" id="googleLogin">
+                <i class="bi bi-google"></i> Login with Google
+            </button>
+        </div>
 
-		<!-- Nút đăng nhập với Facebook -->
-		<div class="text-center mt-2">
-			<button class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 w-100" id="facebookLogin">
-				<i class="bi bi-facebook"></i> Login with Facebook
-			</button>
-		</div>
-	</form>
+        <!-- Nút đăng nhập với Facebook -->
+        <div class="text-center mt-2">
+            <button class="btn btn-outline-primary d-flex align-items-center justify-content-center gap-2 w-100" id="facebookLogin">
+                <i class="bi bi-facebook"></i> Login with Facebook
+            </button>
+        </div>
+    </form>
 
-	<form id="forgotPasswordForm" class="fade-out d-none">
-		<div class="text-center">
-			<h3 class="mb-4">Forgot Password</h3>
-		</div>
-		<div class="mb-3">
-			<label for="forgotEmail" class="form-label">Email address</label>
-			<input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email">
-		</div>
-		<div class="d-grid gap-2">
-			<button type="button" class="btn btn-primary">Send mail</button>
-			<button type="button" class="btn btn-outline-secondary" id="backToLoginBtn">Back to Login</button>
-		</div>
-	</form>
+    <form id="forgotPasswordForm" class="fade-out d-none">
+        <div class="text-center">
+            <h3 class="mb-4">Forgot Password</h3>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="forgotEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="forgotEmail" placeholder="Enter your email">
+        </div>
+
+        <!-- Code -->
+        <div class="mb-3 d-none" id="codeGroup">
+            <label class="form-label d-flex justify-content-between align-items-center">
+                <span>OTP Code</span>
+                <b id="countdownTimer" class="text-danger small"></b>
+            </label>
+            <div id="otpInputs" class="d-flex justify-content-center gap-2">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+                <input type="text" class="form-control text-center otp-input" maxlength="1">
+            </div>
+        </div>
+
+        <!-- New Password -->
+        <div class="mb-3 d-none" id="newPasswordGroup">
+            <label for="newPassword" class="form-label">New Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="newPassword" placeholder="Enter new password">
+                <i onclick="commonPassword.toggleVisibility('newPassword', this)"
+                   class="bi bi-eye position-absolute top-50 translate-middle-y"
+                   style="right: 1rem; z-index: 5; cursor: pointer;"></i>
+            </div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mb-3 d-none" id="confirmPasswordGroup">
+            <label for="confirmPassword" class="form-label">Confirm New Password</label>
+            <div class="input-group">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm new password">
+                <i onclick="commonPassword.toggleVisibility('confirmPassword', this)"
+                   class="bi bi-eye position-absolute top-50 translate-middle-y"
+                   style="right: 1rem; z-index: 5; cursor: pointer;"></i>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2">
+            <button type="button" onclick="sendOTP()" class="btn btn-primary" id="sendMailBtn">Send Mail</button>
+            <button type="button" onclick="confirmChangePassword()" class="btn btn-success d-none" id="confirmChangeBtn">Confirm</button>
+            <button type="button" class="btn btn-outline-secondary" id="backToLoginBtn">Back to Login</button>
+        </div>
+    </form>
+
 </div>
 @section Scripts {
-	<script>
-		document.addEventListener("DOMContentLoaded", function () {
-			  const loginForm = document.getElementById("loginForm");
-			  const forgotPasswordForm = document.getElementById("forgotPasswordForm");
-			  const forgotPasswordLink = document.getElementById("forgotPasswordLink");
-			  const backToLoginBtn = document.getElementById("backToLoginBtn");
-
-			  // Hiển thị form forgot password
-			  forgotPasswordLink.addEventListener("click", function (e) {
-				  e.preventDefault();
-				  loginForm.classList.add("fade-out");
-				  loginForm.classList.remove("fade-in");
-				  setTimeout(() => {
-					  loginForm.classList.add("d-none");
-					  forgotPasswordForm.classList.remove("d-none");
-					  forgotPasswordForm.classList.add("fade-in");
-				  }, 200); // Thời gian khớp với transition
-			  });
-
-			  // Quay lại form login
-			  backToLoginBtn.addEventListener("click", function () {
-				  forgotPasswordForm.classList.add("fade-out");
-				  forgotPasswordForm.classList.remove("fade-in");
-				  setTimeout(() => {
-					  forgotPasswordForm.classList.add("d-none");
-					  loginForm.classList.remove("d-none");
-					  loginForm.classList.add("fade-in");
-				  }, 200);
-			  });
-		  });
-    </script>
-	<script src="~/root/authen/login.js"></script>
+    <script src="~/root/authen/login.js"></script>
 }

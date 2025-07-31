@@ -797,198 +797,209 @@ namespace E_Service.WorkSheet
                 var gio01h = new TimeSpan(1, 0, 0);
                 var gio05h = new TimeSpan(5, 0, 0);
                 #endregion
-                //var empCodes = new List<string> { "J00005" };
 
-                //rawData = rawData
-                //    .Where(x => empCodes.Contains(x.Emp_Code))
-                //    .ToList();
+                rawData = rawData.OrderByDescending(c => c.DateTime_In).ToList();
+
+                var empCodes = new List<string> { "J04430" };
+                rawData = rawData.Where(x => empCodes.Contains(x.Emp_Code)).ToList();
+
                 foreach (var item in rawData)
                 {
-                    string dayType = holidayList.FirstOrDefault(x => x.date.Date == workDay).note
+                    try
+                    { 
+                        string dayType = holidayList.FirstOrDefault(x => x.date.Date == workDay).note
                         ?? (workDay.DayOfWeek == DayOfWeek.Sunday
                         ? "Weekend"
                         : "Weekday");
 
-                    workDay = workDay.Date;
+                        workDay = workDay.Date;
 
-                    if (item.DateTime_In == null || item.DateTime_Out == null)
-                    {
-                        // Kiểm tra xem đã tồn tại bản ghi có cùng Work_Day, Emp_Code, Factory chưa
-                        bool isExist = result.Any(x =>
-                            x.Work_Day == workDay.Date &&
-                            x.Emp_Code == item.Emp_Code &&
-                            x.Factory == item.Factory);
-
-                        if (!isExist)
+                        if (item.DateTime_In == null || item.DateTime_Out == null)
                         {
-                            var add = new worksheet_detail
+                            // Kiểm tra xem đã tồn tại bản ghi có cùng Work_Day, Emp_Code, Factory chưa
+                            bool isExist = result.Any(x =>
+                                x.Work_Day == workDay.Date &&
+                                x.Emp_Code == item.Emp_Code &&
+                                x.Factory == item.Factory);
+
+                            if (!isExist)
                             {
-                                Factory = item.Factory,
-                                Emp_Code = item.Emp_Code,
-                                Work_Day = workDay.Date,
-                                Time_In = item.DateTime_In,
-                                Time_Out = item.DateTime_Out,
-                                Shift_Code = (item.DateTime_In?.Hour >= 5 || item.DateTime_Out?.Hour < 22) ? "001" : "002",
-                                Day_Code = dayType,
-                                note = dayType
-                            };
-                            add.SetModified("J05468", false);
-                            result.Add(add);
+                                var add = new worksheet_detail
+                                {
+                                    Factory = item.Factory,
+                                    Emp_Code = item.Emp_Code,
+                                    Work_Day = workDay.Date,
+                                    Time_In = item.DateTime_In,
+                                    Time_Out = item.DateTime_Out,
+                                    Shift_Code = (item.DateTime_In?.Hour >= 5 || item.DateTime_Out?.Hour < 22) ? "001" : "002",
+                                    Day_Code = dayType,
+                                    note = dayType
+                                };
+                                add.SetModified("J05468", false);
+                                result.Add(add);
+                            }
+
+                            continue;
                         }
 
-                        continue;
-                    }
+                        var inTime = item.DateTime_In.Value;
+                        var outTime = item.DateTime_Out.Value;
+                        var shift = (inTime.Hour >= 5 && inTime.Hour <= 16) ? "001" : "002";
 
-                    var inTime = item.DateTime_In.Value;
-                    var outTime = item.DateTime_Out.Value;
-                    var shift = (inTime.Hour >= 5 && inTime.Hour <= 16) ? "001" : "002";
-
-                    var detail = new worksheet_detail
-                    {
-                        Factory = item.Factory,
-                        Emp_Code = item.Emp_Code,
-                        Work_Day = workDay,
-                        Shift_Code = shift,
-                        Day_Code = dayType,
-                        Time_In = inTime,
-                        Time_Out = outTime,
-                        Work_Hour = 0,
-                        Lack_Hour = 0,
-                        OT_101 = 0,
-                        OT_102 = 0,
-                        OT_103 = 0,
-                        OT_201 = 0,
-                        OT_202 = 0,
-                        OT_301 = 0,
-                        OT_302 = 0,
-                        note = dayType
-                    };
-                    detail.SetModified("J05468", false);
-
-                    var t08 = workDay + gio08h;
-                    var t17 = workDay + gio17h;
-                    var t20 = workDay + gio20h;
-                    var t22 = workDay + gio22h;
-                    var tNext05 = workDay.AddDays(1).Date + gio05h;
-
-                    float CalcOT(DateTime start, DateTime end)
-                    {
-                        if (start.Hour == 7 && start.Minute > 0) start = start.Date + gio08h;
-                        if (start.Hour == 19 && start.Minute > 0) start = start.Date + gio20h;
-                        if (end.Hour == 17 && end.Minute > 0) end = end.Date + gio17h;
-                        if (end.Hour == 5 && end.Minute > 0) end = end.Date + gio05h;
-
-                        // Làm tròn start lên
-                        start = start.Minute > 30
-                            ? new DateTime(start.Year, start.Month, start.Day, start.Hour + 1, 0, 0)
-                            : new DateTime(start.Year, start.Month, start.Day, start.Hour, start.Minute > 0 ? 30 : 0, 0);
-                        // Làm tròn end xuống
-                        end = new DateTime(end.Year, end.Month, end.Day, end.Hour, end.Minute > 30 ? 30 : 0, 0);
-
-                        var hours = (float)(end - start).TotalHours;
-                        return hours >= 1 ? RoundDownToNearestHalf(hours) : 0;
-                    }
-
-                    float restHour = 0;
-                    var restStart = workDay + gio12h;
-                    var restEnd = workDay + gio13h;
-                    var restStartMid = workDay.AddDays(1) + gio00h;
-                    var restEndMid = workDay.AddDays(1) + gio01h;
-
-                    void SubtractRest(ref float ot, DateTime start, DateTime end)
-                    {
-                        float deduction = 0;
-                        if (start < restStart && end > restEnd) deduction += 1f;
-                        if (start < restStartMid && end > restEndMid) deduction += 1f;
-                        ot -= deduction;
-                    }
-
-                    if (dayType == "Weekday")
-                    {
-                        #region Tính giờ làm (Work_Hour)
-
-                        if ((inTime.TimeOfDay < gio08h && outTime.TimeOfDay > gio12h)
-                            || (inTime.TimeOfDay < gio01h && outTime.TimeOfDay > gio05h)
-                            || (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio24h && outTime.TimeOfDay > gio05h))
-                            detail.Work_Hour += 4;
-                        else if (inTime.TimeOfDay > gio08h && inTime.TimeOfDay < gio12h && outTime.TimeOfDay > gio12h)
-                            detail.Work_Hour += (float)(gio12h - inTime.TimeOfDay).TotalHours;
-
-                        if ((inTime.TimeOfDay < gio13h && outTime.TimeOfDay > gio17h)
-                            || (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio20h && outTime.TimeOfDay > gio00h))
-                            detail.Work_Hour += 4;
-                        else if (inTime.TimeOfDay < gio13h && outTime.TimeOfDay > gio13h && outTime.TimeOfDay < gio17h)
-                            detail.Work_Hour += (float)(outTime.TimeOfDay - gio13h).TotalHours;
-                        else if (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio24h)
-                            detail.Work_Hour += (float)(gio24h - inTime.TimeOfDay).TotalHours;
-
-                        if (detail.Work_Hour <= 0 || (outTime - inTime).TotalHours < 4)  // in out quá ngắn < 4h
+                        var detail = new worksheet_detail
                         {
-                            if (outTime.TimeOfDay < gio12h)
-                                detail.Work_Hour = (float)(outTime.TimeOfDay - gio08h).TotalHours;
-                            else if (outTime.TimeOfDay < gio24h)
-                                detail.Work_Hour = (float)(outTime.TimeOfDay - gio20h).TotalHours;
-                        }
+                            Factory = item.Factory,
+                            Emp_Code = item.Emp_Code,
+                            Work_Day = workDay,
+                            Shift_Code = shift,
+                            Day_Code = dayType,
+                            Time_In = inTime,
+                            Time_Out = outTime,
+                            Work_Hour = 0,
+                            Lack_Hour = 0,
+                            OT_101 = 0,
+                            OT_102 = 0,
+                            OT_103 = 0,
+                            OT_201 = 0,
+                            OT_202 = 0,
+                            OT_301 = 0,
+                            OT_302 = 0,
+                            note = dayType
+                        };
+                        detail.SetModified("J05468", false);
 
-                        detail.Work_Hour = RoundDownToInt((float)(detail.Work_Hour));
-                        detail.Lack_Hour = detail.Work_Hour < 8 ? (float)Math.Round(8f - detail.Work_Hour.Value, 2) : 0;
+                        var t08 = workDay + gio08h;
+                        var t17 = workDay + gio17h;
+                        var t20 = workDay + gio20h;
+                        var t22 = workDay + gio22h;
+                        var tNext05 = workDay.AddDays(1).Date + gio05h;
 
-                        #endregion
-
-                        #region Tính giờ OT
-                        if (inTime < t08)
-                            detail.OT_101 += CalcOT(inTime, Min(outTime, t08));
-                        if (outTime > t17 && outTime < t22)
-                            detail.OT_101 += CalcOT(Max(inTime, t17), Min(outTime, t22));
-                        if (outTime > t22 && outTime <= tNext05)
+                        float CalcOT(DateTime start, DateTime end)
                         {
-                            detail.OT_101 += CalcOT(t17,t22);
+                            if (start.Hour == 7 && start.Minute > 0) start = start.Date + gio08h;
+                            if (start.Hour == 19 && start.Minute > 0) start = start.Date + gio20h;
+                            if (end.Hour == 17 && end.Minute > 0) end = end.Date + gio17h;
+                            if (end.Hour == 5 && end.Minute > 0) end = end.Date + gio05h;
 
-                            var ot = CalcOT(Max(inTime, t22), Min(outTime, tNext05));
-                            SubtractRest(ref ot, Max(inTime, t22), Min(outTime, tNext05));
-                            detail.OT_102 += ot;
+                            // Làm tròn start lên
+                            start = start.Minute > 30
+                                    ? (start.Hour < 23
+                                        ? new DateTime(start.Year, start.Month, start.Day, start.Hour + 1, 0, 0)
+                                        : new DateTime(start.Year, start.Month, start.Day, 23, 59, 59).AddMinutes(1)) // hoặc AddHours(1)
+                                    : new DateTime(start.Year, start.Month, start.Day, start.Hour, start.Minute > 0 ? 30 : 0, 0);
+
+                            // Làm tròn end xuống
+                            end = new DateTime(end.Year, end.Month, end.Day, end.Hour, end.Minute > 30 ? 30 : 0, 0);
+
+                            var hours = (float)(end - start).TotalHours;
+                            return hours >= 1 ? RoundDownToNearestHalf(hours) : 0;
                         }
 
-                        if (inTime > t17 && inTime < t20)
-                            detail.OT_101 += CalcOT(inTime, Min(outTime, t20));
-                        if (outTime > tNext05)
-                            detail.OT_103 += CalcOT(Max(inTime, tNext05), outTime);
-                        #endregion
+                        float restHour = 0;
+                        var restStart = workDay + gio12h;
+                        var restEnd = workDay + gio13h;
+                        var restStartMid = workDay.AddDays(1) + gio00h;
+                        var restEndMid = workDay.AddDays(1) + gio01h;
+
+                        void SubtractRest(ref float ot, DateTime start, DateTime end)
+                        {
+                            float deduction = 0;
+                            if (start < restStart && end > restEnd) deduction += 1f;
+                            if (start < restStartMid && end > restEndMid) deduction += 1f;
+                            ot -= deduction;
+                        }
+
+                        if (dayType == "Weekday")
+                        {
+                            #region Tính giờ làm (Work_Hour)
+
+                            if ((inTime.TimeOfDay < gio08h && outTime.TimeOfDay > gio12h)
+                                || (inTime.TimeOfDay < gio01h && outTime.TimeOfDay > gio05h)
+                                || (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio24h && outTime.TimeOfDay > gio05h))
+                                detail.Work_Hour += 4;
+                            else if (inTime.TimeOfDay > gio08h && inTime.TimeOfDay < gio12h && outTime.TimeOfDay > gio12h)
+                                detail.Work_Hour += (float)(gio12h - inTime.TimeOfDay).TotalHours;
+
+                            if ((inTime.TimeOfDay < gio13h && outTime.TimeOfDay > gio17h)
+                                || (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio20h && outTime.TimeOfDay > gio00h))
+                                detail.Work_Hour += 4;
+                            else if (inTime.TimeOfDay < gio13h && outTime.TimeOfDay > gio13h && outTime.TimeOfDay < gio17h)
+                                detail.Work_Hour += (float)(outTime.TimeOfDay - gio13h).TotalHours;
+                            else if (inTime.TimeOfDay > gio17h && inTime.TimeOfDay < gio24h)
+                                detail.Work_Hour += (float)(gio24h - inTime.TimeOfDay).TotalHours;
+
+                            if (detail.Work_Hour <= 0 || (outTime - inTime).TotalHours < 4)  // in out quá ngắn < 4h
+                            {
+                                if (outTime.TimeOfDay < gio12h)
+                                    detail.Work_Hour = (float)(outTime.TimeOfDay - gio08h).TotalHours;
+                                else if (outTime.TimeOfDay < gio24h)
+                                    detail.Work_Hour = (float)(outTime.TimeOfDay - gio20h).TotalHours;
+                            }
+
+                            detail.Work_Hour = RoundDownToInt((float)(detail.Work_Hour));
+                            detail.Lack_Hour = detail.Work_Hour < 8 ? (float)Math.Round(8f - detail.Work_Hour.Value, 2) : 0;
+
+                            #endregion
+
+                            #region Tính giờ OT
+                            if (inTime < t08)
+                                detail.OT_101 += CalcOT(inTime, Min(outTime, t08));
+                            if (outTime > t17 && outTime < t22)
+                                detail.OT_101 += CalcOT(Max(inTime, t17), Min(outTime, t22));
+                            if (outTime > t22 && outTime <= tNext05)
+                            {
+                                detail.OT_101 += CalcOT(t17, t22);
+
+                                var ot = CalcOT(Max(inTime, t22), Min(outTime, tNext05));
+                                SubtractRest(ref ot, Max(inTime, t22), Min(outTime, tNext05));
+                                detail.OT_102 += ot;
+                            }
+
+                            if (inTime > t17 && inTime < t20)
+                                detail.OT_101 += CalcOT(inTime, Min(outTime, t20));
+                            if (outTime > tNext05)
+                                detail.OT_103 += CalcOT(Max(inTime, tNext05), outTime);
+                            #endregion
+                        }
+                        else if (dayType == "Weekend")
+                        {
+                            if (inTime < t22)
+                            {
+                                var ot = CalcOT(inTime, Min(outTime, t22));
+                                SubtractRest(ref ot, inTime, Min(outTime, t22));
+                                detail.OT_201 += ot;
+                            }
+
+                            if (inTime < tNext05 && outTime > t22)
+                            {
+                                var ot = CalcOT(Max(inTime, t22), Max(outTime, tNext05));
+                                SubtractRest(ref ot, Max(inTime, t22), Max(outTime, tNext05));
+                                detail.OT_202 += ot;
+                            }
+                        }
+                        else if (dayType == "Holiday")
+                        {
+                            if (inTime < t22)
+                            {
+                                var ot = CalcOT(inTime, Min(outTime, t22));
+                                SubtractRest(ref ot, inTime, Min(outTime, t22));
+                                detail.OT_301 += ot;
+                            }
+
+                            if (inTime < tNext05 && outTime > t22)
+                            {
+                                var ot = CalcOT(Max(inTime, t22), Max(outTime, tNext05));
+                                SubtractRest(ref ot, Max(inTime, t22), Max(outTime, tNext05));
+                                detail.OT_302 += ot;
+                            }
+                        }
+
+                        result.Add(detail);
                     }
-                    else if (dayType == "Weekend")
+                    catch (Exception ex)
                     {
-                        if (inTime < t22)
-                        {
-                            var ot = CalcOT(inTime, Min(outTime, t22));
-                            SubtractRest(ref ot, inTime, Min(outTime, t22));
-                            detail.OT_201 += ot;
-                        }
-
-                        if (inTime < tNext05 && outTime > t22)
-                        {
-                            var ot = CalcOT(Max(inTime, t22), Max(outTime, tNext05));
-                            SubtractRest(ref ot, Max(inTime, t22), Max(outTime, tNext05));
-                            detail.OT_202 += ot;
-                        }
+                        throw new Exception("Error in CalculateWorksheetDetail_v2: " + ex.Message);
                     }
-                    else if (dayType == "Holiday")
-                    {
-                        if (inTime < t22)
-                        {
-                            var ot = CalcOT(inTime, Min(outTime, t22));
-                            SubtractRest(ref ot, inTime, Min(outTime, t22));
-                            detail.OT_301 += ot;
-                        }
-
-                        if (inTime < tNext05 && outTime > t22)
-                        {
-                            var ot = CalcOT(Max(inTime, t22), Max(outTime, tNext05));
-                            SubtractRest(ref ot, Max(inTime, t22), Max(outTime, tNext05));
-                            detail.OT_302 += ot;
-                        }
-                    }
-
-                    result.Add(detail);
                 }
 
                 return result;

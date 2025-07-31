@@ -48,6 +48,22 @@ namespace E_Repository
                 throw ex;
             }
         }
+        public async Task<T> SelectByCodeAsync(string code, string db = "DefaultConnection")
+        {
+            var tableName = typeof(T).Name;
+            try
+            {
+                var param = new DynamicParameters();
+                param.Add("@code", code);
+                var ressult = await Connection.SelectAsync<T>( String.Format("{0}_select_by_code", tableName), param);
+                return ressult.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                //ex.SaveLog(String.Format("{0}/{1}", tableName, "SelectByIdAsync"));
+                throw ex;
+            }
+        }
         public async Task<IEnumerable<T>> SelectChangedAsync(DateTime fromTime)
         {
             var tableName = typeof(T).Name;

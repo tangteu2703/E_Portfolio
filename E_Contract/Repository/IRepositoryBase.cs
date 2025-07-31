@@ -6,6 +6,7 @@
         Task<IEnumerable<T>> SelectFilterAsync(T model, string db = "DefaultConnection");
 
         Task<T> SelectByIdAsync(int id, string db = "DefaultConnection");
+        Task<T> SelectByCodeAsync(string  code, string db = "DefaultConnection");
 
         Task<int> InsertAsync(T model, string db = "DefaultConnection");
 

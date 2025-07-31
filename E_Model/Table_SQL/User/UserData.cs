@@ -17,5 +17,11 @@ namespace E_Model.Table_SQL.User
         public bool? gender { get; set; }
         public string? address { get; set; }
         public string? avatar_url { get; set; }
+        public string? user_code { get; set; }
+        public int? department_id { get; set; }
+        public int? title_id { get; set; }
+        public int? position_id { get; set; }
+        public string? card_color { get; set; }
+        public bool? is_ldap { get; set; }
     }
 }

@@ -1746,9 +1746,113 @@ const commonIndexDB = {
             el.textContent = user.email || "no-email@example.com";
             el.href = `mailto:${user.email}`;
         });
-    }
+        // Gán user_code vào tất cả thẻ <a> có class user_account
+        document.querySelectorAll('.user_account').forEach(link => {
+            if (user.usercode) {
+                const url = new URL(link.href, window.location.origin);
+                url.searchParams.set("user_code", user.usercode);
+                link.href = `/Portal/Users?user_code=${user.usercode}`;
+            }
+        });
+    },
 
 };
+const commonPassword = {
+ 
+    validatePassword: function (password) {
+        if (password.length < 8) {
+            return "Mật khẩu phải có ít nhất 8 ký tự.";
+        }
+        if (!/[A-Z]/.test(password)) {
+            return "Mật khẩu phải chứa ít nhất một chữ cái viết hoa.";
+        }
+        if (!/[a-z]/.test(password)) {
+            return "Mật khẩu phải chứa ít nhất một chữ cái viết thường.";
+        }
+        if (!/\d/.test(password)) {
+            return "Mật khẩu phải chứa ít nhất một chữ số.";
+        }
+        if (!/[!@#$%^&*(),.?\":{}|<>]/.test(password)) {
+            return "Mật khẩu phải chứa ít nhất một ký tự đặc biệt.";
+        }
+        return null;
+    },
+
+    toggleVisibility: function (inputId, spanElement) {
+        const input = document.getElementById(inputId);
+        const icon = spanElement.querySelector('i');
+
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+
+        icon.classList.toggle('bi-eye', !isHidden);
+        icon.classList.toggle('bi-eye-slash', isHidden);
+    }
+};
+const commonButton = {
+    setButtonLoading: (button, isLoading, text = "Login") => {
+        button.innerHTML = isLoading
+            ? `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
+            : text;
+        button.disabled = isLoading;
+    },
+    hideElement: (element) => element.classList.add("d-none"),
+    showElement: (element) => element.classList.remove("d-none")
+};
+const commonSwal = {
+    showWarning: (text) => {
+        Swal.fire({
+            text,
+            icon: "warning",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, tôi hiểu!",
+            customClass: {
+                confirmButton: "btn fw-bold btn-primary"
+            }
+        });
+    },
+
+    showSuccess: (text) => {
+        Swal.fire({
+            text,
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Đã hiểu!",
+            customClass: {
+                confirmButton: "btn fw-bold btn-success"
+            }
+        });
+    },
+
+    showError: (text) => {
+        Swal.fire({
+            text,
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Thử lại",
+            customClass: {
+                confirmButton: "btn fw-bold btn-danger"
+            }
+        });
+    },
+
+    // ✅ Hàm toast tự động đóng
+    showToast: (text, icon = "info") => {
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            icon: icon,
+            title: text,
+            customClass: {
+                popup: 'bg-light shadow rounded px-3 py-2'
+            }
+        });
+    }
+};
+
 
 
 

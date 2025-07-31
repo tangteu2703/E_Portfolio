@@ -1,5 +1,4 @@
-﻿using System.Data;
-using System.Security.Claims;
+﻿using DocumentFormat.OpenXml.Spreadsheet;
 using E_Common;
 using E_Contract.Repository;
 using E_Contract.Service;
@@ -7,8 +6,11 @@ using E_Contract.Service.Authentication;
 using E_Model.Authentication;
 using E_Model.Request.Token;
 using E_Model.Response.Authentication;
+using E_Model.Table_SQL.User;
 using Microsoft.AspNetCore.Http;
 using Novell.Directory.Ldap;
+using System.Data;
+using System.Security.Claims;
 
 namespace E_Service.Authentication
 {
@@ -86,43 +88,21 @@ namespace E_Service.Authentication
 
         public async Task<bool> ChangePassword(ChangePasswordItemRequest request)
         {
-            var user = await _repositoryWrapper.DataUser.SelectByUserAsync(request.email, request.old_password, false);
+            request.code = null;
+            var user = await _repositoryWrapper.DataUser.SelectUserByEmailAsync(request.email);
             if (user != null)
             {
-                var encrypt_pass = _jwtHelper.Encrypt(request.old_password);
+                var encrypt_pass = _jwtHelper.Encrypt(request.new_password);
 
-                if (user.password.Trim() != encrypt_pass)
-                {
-                    return false;
-                }
-                else
-                {
-                    var encrypted_new_pass = _jwtHelper.Encrypt(request.new_password);
-                    var user_new = new data_user
-                    {
-                        id = user.id,
-                        username = user.username,
-                        avatar = user.avatar,
-                        password = encrypted_new_pass,
-                        full_name = user.full_name,
-                        phone = user.phone,
-                        email = user.email,
-                        organize_id = user.organize_id,
-                        is_deleted = user.is_deleted,
-                        is_ldap = user.is_ldap,
-                        title_id = user.title_id,
-                        position_id = user.position_id,
-                        department_id = user.department_id,
-                        card_color = user.card_color,
-                    };
-                    user_new.SetUpdateInfo(user.id + "");
-                    return await _repositoryWrapper.DataUser.UpdateAsync(user_new);
-                }
+                user.password = encrypt_pass;
+                user.note = "ChangePassword - " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+                user.SetUpdateInfo(user.user_code);
+
+                var status = await _repositoryWrapper.DataUser.UpdateAsync(user, "E_PortalConnection");
+                return status;
             }
             else
-            {
                 return false;
-            }
         }
 
         public async Task<DataUserCardItemResponse> CheckLoginAndResponseToken(DataUserItemResponse user, bool is_refresh = false)
@@ -225,22 +205,18 @@ namespace E_Service.Authentication
                             user.department = departmentAttribute.StringValue;
                         }
                         var encrypt_pass = _jwtHelper.Encrypt(user.password);
-                        var new_user_info = new data_user
+                        var new_user_info = new UserData
                         {
-                            id = user.id,
-                            phone = user.phone,
-                            full_name = user.full_name,
+                            user_id = user.id,
                             email = user.email,
-                            avatar = user.avatar,
-                            organize_id = user.organize_id,
+                            phone_number = user.phone,
+                            full_name = user.full_name,
+                            avatar_url = user.avatar,
                             is_ldap = user.is_ldap,
                             password = encrypt_pass,
-                            username = user.username,
-
                             title_id = user.title_id,
                             position_id = user.position_id,
                             department_id = user.department_id,
-
                             card_color = user.card_color.Trim(),
                         };
                         new_user_info.SetUpdateInfo(user.id + "");
@@ -275,18 +251,6 @@ namespace E_Service.Authentication
             catch (Exception ex)
             {
                 return userCard;
-            }
-        }
-
-        public async Task<IEnumerable<DataUserDepartmentResponse>> GetAllByDepartment(int? departmentId)
-        {
-            try
-            {
-                return await _repositoryWrapper.DataUser.SelectByDepatmentAsync(departmentId);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception();
             }
         }
 
@@ -346,15 +310,13 @@ namespace E_Service.Authentication
 
         public async Task<int> SignUp(SignUpItemRequest request)
         {
-            var user_new = new data_user
+            var user_new = new UserData
             {
-                username = request.username,
-                password = _jwtHelper.Encrypt(request.password),
                 full_name = request.full_name,
-                phone = request.phone,
+                password = _jwtHelper.Encrypt(request.password),
+                phone_number = request.phone,
                 email = request.email,
-                is_ldap = false,
-                title_id = 0,
+                card_color = "White",
             };
 
             if (!string.IsNullOrEmpty(request.title))

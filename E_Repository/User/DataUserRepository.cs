@@ -18,7 +18,7 @@ using System.Threading.Tasks;
 
 namespace E_Repository.User
 {
-    public class DataUserRepository : RepositoryBase<data_user>, IDataUserRepository
+    public class DataUserRepository : RepositoryBase<UserData>, IDataUserRepository
     {
         public async Task<DataUserItemResponse> SelectAsync(string username, string password)
         {
@@ -68,6 +68,20 @@ namespace E_Repository.User
                 throw ex;
             }
         }
+        public async Task<IEnumerable<UserResponse>> SelectFilterAsync(UserRequest request)
+        {
+            try
+            {
+                var param = request.ToDynamicParameters();
+
+                var result = await Connection.SelectAsync<UserResponse>("data_user_select_filter", param, "HRMConnection");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public async Task<DataUserResponse> SelectByUserAsync(LoginItemRequest data)
         {
@@ -88,14 +102,16 @@ namespace E_Repository.User
             }
         }
 
-        public async Task<IEnumerable<UserResponse>> SelectFilterAsync(UserRequest request)
+        public async Task<UserData> SelectUserByEmailAsync(string email)
         {
             try
             {
-                var param = request.ToDynamicParameters();
+                var param = new DynamicParameters();
+                param.Add("@email", email);
+                param.Add("@code", "");
 
-                var result = await Connection.SelectAsync<UserResponse>("data_user_select_filter", param, "HRMConnection");
-                return result;
+                var result = await Connection.SelectAsync<UserData>("UserData_select_by_email", param);
+                return result.FirstOrDefault();
             }
             catch (Exception ex)
             {

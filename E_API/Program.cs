@@ -60,6 +60,8 @@ builder.Services.AddLogging(loggingBuilder =>
     loggingBuilder.AddConsole();
     loggingBuilder.AddDebug();
 });
+// MemoryCache
+builder.Services.AddMemoryCache();
 #endregion
 
 #region CORS

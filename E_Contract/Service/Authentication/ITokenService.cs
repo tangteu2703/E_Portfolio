@@ -16,7 +16,6 @@ namespace E_Contract.Service.Authentication
         Task<bool> ChangePassword(ChangePasswordItemRequest request);
         Task<int> SignUp(SignUpItemRequest request);
         Task<DataUserCardItemResponse> CheckLoginAndResponseToken(DataUserItemResponse user, bool is_refresh);
-        Task<IEnumerable<DataUserDepartmentResponse>> GetAllByDepartment(int? departmentId);
 
     }
 }
