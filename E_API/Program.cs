@@ -71,7 +71,7 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(
             "https://localhost:44344",        // Cổng frontend đúng!
-            "http://192.168.22.124"           // Nếu chạy IIS
+            "http://10.80.26.135"           // Nếu chạy IIS
         )
         .AllowAnyHeader()
         .AllowAnyMethod()

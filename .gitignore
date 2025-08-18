@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/E_API/wwwroot/LogFile/HostedService/WorkSheet/WorkSheet_202508.txt
