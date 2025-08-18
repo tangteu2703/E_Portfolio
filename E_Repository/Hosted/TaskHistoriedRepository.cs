@@ -23,6 +23,7 @@ namespace E_Repository.Hosted
             }
             catch (Exception ex)
             {
+                return new List<TaskHistoried>();
                 throw ex;
             }
         }

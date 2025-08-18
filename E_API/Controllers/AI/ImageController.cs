@@ -307,7 +307,6 @@ namespace E_API.Controllers.AI
             return "Không rõ";
         }
 
-
         [HttpPost("face-id")]
         public IActionResult RecognizeFace([FromBody] Base64ImageRequest request)
         {
@@ -323,101 +322,5 @@ namespace E_API.Controllers.AI
             }
         }
 
-
-        #region FastAPI Integration (Commented Out)
-        //public class AnalyzeResponse
-        //{
-        //    public List<string> Texts { get; set; }
-        //    public string Image_Base64 { get; set; }
-        //}
-        //[HttpPost("detect-plate-v2")]
-        //public async Task<IActionResult> DetectPlateV2([FromBody] Base64ImageRequest request)
-        //{
-        //    if (string.IsNullOrEmpty(request.Base64))
-        //        return BadRequest("Base64 is null or empty.");
-
-        //    try
-        //    {
-        //        // Giải mã Base64 thành byte[]
-        //        byte[] imageBytes = Convert.FromBase64String(request.Base64);
-
-        //        // Tạo HTTP Multipart Form
-        //        using var content = new MultipartFormDataContent();
-        //        var imageContent = new ByteArrayContent(imageBytes);
-        //        imageContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/jpeg"); // hoặc "image/png"
-        //        content.Add(imageContent, "file", "image.jpg");
-
-        //        // Gửi tới FastAPI
-        //        using var client = new HttpClient();
-        //        var response = await client.PostAsync("http://127.0.0.1:8000/analyze", content);
-
-        //        if (!response.IsSuccessStatusCode)
-        //            return StatusCode((int)response.StatusCode, "FastAPI call failed.");
-
-        //        var result = await response.Content.ReadAsStringAsync();
-
-        //        // ✅ Deserialize kết quả trả về từ FastAPI
-        //        var parsed = JsonConvert.DeserializeObject<AnalyzeResponse>(result);
-
-        //        return Ok(new
-        //        {
-        //            objects = parsed.Texts.Select(text => new
-        //            {
-        //                label = "plate",
-        //                text = text
-        //            }),
-        //            annotated_image = parsed.Image_Base64
-        //        });
-        //    }
-        //    catch (FormatException)
-        //    {
-        //        return BadRequest("Invalid base64 string.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {ex.Message}");
-        //    }
-        //}
-        //[HttpPost("detect-plate-v3")]
-        //public async Task<IActionResult> DetectPlateV3([FromBody] Base64ImageRequest request)
-        //{
-        //    if (string.IsNullOrEmpty(request.Base64))
-        //        return BadRequest("Base64 is null or empty.");
-
-        //    try
-        //    {
-        //        string api_key = "D9DUxXciRNRPlIFuT1xP";
-        //        string model_endpoint = "license-plate-recognition-rxg4e/11"; // ví dụ model trên Roboflow Universe
-
-        //        // Format base64 ảnh nếu chưa có prefix
-        //        string base64Image = request.Base64;
-        //        if (!base64Image.StartsWith("data:image"))
-        //        {
-        //            base64Image = "data:image/jpeg;base64," + base64Image;
-        //        }
-
-        //        string apiUrl = $"https://detect.roboflow.com/{model_endpoint}?api_key={api_key}";
-
-        //        using (var httpClient = new HttpClient())
-        //        {
-        //            var content = new StringContent(base64Image);
-        //            content.Headers.ContentType = new MediaTypeHeaderValue("text/plain");
-
-        //            var response = await httpClient.PostAsync(apiUrl, content);
-        //            var responseString = await response.Content.ReadAsStringAsync();
-
-        //            return Ok(responseString);
-        //        }
-        //    }
-        //    catch (FormatException)
-        //    {
-        //        return BadRequest("Invalid base64 string.");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return StatusCode(500, $"Internal server error: {ex.Message}");
-        //    }
-        //}
-        #endregion
     }
 }

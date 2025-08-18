@@ -31,12 +31,20 @@
                 new { Link="/Portal/Chats", Icon="chat.png", Name="iChats" },
                 new { Link="/Portal/Documents", Icon="document.png", Name="Documents" },
                 new { Link="/Portal/Tests", Icon="exam.png", Name="Tests" },
-                new { Link="/Portal/users", Icon="user.png", Name="Users" },
+                // new { Link="/Portal/users", Icon="user.png", Name="User" },
                 new { Link="/CMS", Icon="content.png", Name="CMS" },
                 new { Link="/CMS/Admin", Icon="settings.png", Name="Admin" },
             };
         }
 
+        <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">
+            <a href="/Portal/users" class="text-decoration-none text-center w-100">
+                <div class="bg-white rounded-4 p-3 shadow d-flex justify-content-center align-items-center mx-auto transition-transform transform-hover" style="width: 80px; height: 80px;">
+                    <img src="https://img.icons8.com/ios-filled/100/000000/user.png" alt="User" class="user_avatar img-fluid transition-transform transform-hover" />
+                </div>
+                <div class="mt-2 text-dark fw-semibold transition-transform transform-hover user_fullname" style="min-height: 40px;">User</div>
+            </a>
+        </div>
         @foreach (var app in apps)
         {
             <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">

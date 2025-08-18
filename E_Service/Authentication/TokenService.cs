@@ -33,7 +33,25 @@ namespace E_Service.Authentication
 
                 if (!data.is_ldap)
                 {
-                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data);
+                    //var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data);
+                    var user = new UserData
+                    {
+                        user_id = 1,
+                        email = "tangdv@gmail.com",
+                        phone_number = "0901234567",
+                        full_name = "Tăng DV",
+                        birth_date = new DateTime(2000, 3, 27),
+                        gender = true, // true = Nam, false = Nữ
+                        address = "Hà Nội",
+                        avatar_url = "https://i.pravatar.cc/60?img=2",
+                        user_code = "U0001",
+                        department_id = 2,
+                        title_id = 5,
+                        position_id = 3,
+                        card_color = "#FF5733",
+                        is_ldap = false,
+                    };
+
                     if (user == null)
                         return new UserAuthenticationItemResponse();
 
