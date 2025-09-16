@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\img\video\" />
     <Folder Include="wwwroot\assets\js\" />
     <Folder Include="wwwroot\lib\gojs\" />
   </ItemGroup>
