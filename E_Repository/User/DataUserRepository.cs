@@ -89,9 +89,8 @@ namespace E_Repository.User
             {
                 var param = new DynamicParameters();
                 param.Add("@email", data.email);
-                param.Add("@phone_number", data.phone_number);
+                param.Add("@user_code", data.user_code);
                 param.Add("@password", data.password);
-                param.Add("@is_ldap", data.is_ldap);
 
                 var result = await Connection.SelectAsync<DataUserResponse>("UserData_select_by_user", param);
                 return result.FirstOrDefault();
@@ -108,7 +107,7 @@ namespace E_Repository.User
             {
                 var param = new DynamicParameters();
                 param.Add("@email", email);
-                param.Add("@code", "");
+                param.Add("@user_code", null);
 
                 var result = await Connection.SelectAsync<UserData>("UserData_select_by_email", param);
                 return result.FirstOrDefault();

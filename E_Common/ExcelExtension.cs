@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using E_Model.Table_SQL.WorkSheet;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -193,5 +194,70 @@ public static class ExcelExtension
         workbook.SaveAs(fullPath);
         return Path.Combine(filePath, fileName).Replace("\\", "/");
     }
+
+    #region  Worksheet nhiều sheet
+
+    public static List<WorkSheetTime> ImportTimeSheet(Stream fileStream)
+    {
+        var result = new List<WorkSheetTime>();
+        try
+        {
+            using (var workbook = new XLWorkbook(fileStream))
+            {
+                foreach (var worksheet in workbook.Worksheets)
+                {
+                    try
+                    {
+                        // A2 chứa ngày đầu tháng
+                        var baseDateStr = worksheet.Cell("A2").GetValue<string>();
+                        if (!DateTime.TryParse(baseDateStr, out var baseDate))
+                            throw new FormatException($"Sheet {worksheet.Name}: Ô A2 không phải định dạng ngày hợp lệ ({baseDateStr}).");
+
+                        int year = baseDate.Year;
+                        int month = baseDate.Month;
+                        int daysInMonth = DateTime.DaysInMonth(year, month);
+
+                        int lastRow = worksheet.LastRowUsed().RowNumber();
+
+                        for (int r = 5; r <= lastRow; r++) // từ dòng 3 trở đi là dữ liệu nhân viên
+                        {
+                            var userCode = worksheet.Cell(r, 2).GetValue<string>(); // cột A (STT)
+                            if (string.IsNullOrWhiteSpace(userCode))
+                                continue;
+
+                            for (int day = 1; day <= daysInMonth; day++)
+                            {
+                                int col = day + 3; // cột D = ngày 1
+                                var val = worksheet.Cell(r, col).GetValue<string>();
+
+                                if (double.TryParse(val, out double trueValue) && trueValue > 0)
+                                {
+                                    result.Add(new WorkSheetTime
+                                    {
+                                        user_code = userCode,
+                                        date_time = new DateTime(year, month, day),
+                                        true_value = trueValue
+                                    });
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception exSheet)
+                    {
+                        throw new Exception($"Lỗi khi đọc sheet '{worksheet.Name}': {exSheet.Message}", exSheet);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception($"Không thể import file Excel: {ex.Message}", ex);
+        }
+
+        return result;
+    }
+
+
+    #endregion
 
 }

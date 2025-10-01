@@ -20,6 +20,9 @@ namespace E_Repository
     {
         #region Authen
 
+        private IMenuRepository _menu;
+        public IMenuRepository Menu => _menu ??= new MenuRepository();
+
         private ITokenRepository _tokenRepository;
         public ITokenRepository Token => _tokenRepository ??= new TokenRepository();
 

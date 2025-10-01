@@ -33,6 +33,9 @@ namespace E_Service
         #region Authen
 
 
+        private Lazy<IMenuService> _menu => new(() => new MenuService(_repositoryWrapper));
+        public IMenuService Menu => _menu.Value;
+
         private Lazy<IDataApiService> _dataApi => new(() => new DataApiService(_repositoryWrapper));
         public IDataApiService DataApi => _dataApi.Value;
 

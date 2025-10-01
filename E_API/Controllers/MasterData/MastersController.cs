@@ -1,7 +1,9 @@
 ﻿using E_Contract.Service;
 using E_Model.Request.WorkSheet;
+using E_Model.Table_SQL.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace E_API.Controllers.MasterData
 {
@@ -21,7 +23,7 @@ namespace E_API.Controllers.MasterData
         {
             try
             {
-                var version = new
+                var version =  new
                 {
                     Version = "20250714",
                     BuildDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
@@ -35,13 +37,50 @@ namespace E_API.Controllers.MasterData
             }
         }
 
-        [HttpGet("Departments")]
+        [HttpGet("get-menus")]
+        public async Task<IActionResult> GetMenus()
+        {
+            try
+            {
+                var allClaims = User.Claims.ToList();
+
+                var userCodeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var userCode = userCodeClaim?.Value ?? "0";
+
+                var listData = (await _serviceWrapper.Menu.SelectMenuPermissionsByUserAsync(userCode)).ToList();
+
+                return OK(listData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("departments")]
         public async Task<IActionResult> GetDepartments()
         {
             try
             {
-                var listData = (await _serviceWrapper.Department.SelectAllAsync("BioStarConnection"))
+                var listData = (await _serviceWrapper.Department.SelectAllAsync())
                                 .Select(c => new { c.dept_code, c.dept_name })
+                                .ToList();
+
+                return OK(listData);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("users")]
+        public async Task<IActionResult> GetUsers()
+        {
+            try
+            {
+                var listData = (await _serviceWrapper.DataUser.SelectAllAsync())
+                                .Select(c => new { c.user_code, c.full_name })
                                 .ToList();
 
                 return OK(listData);

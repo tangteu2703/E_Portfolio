@@ -28,6 +28,10 @@ namespace E_Service.WorkSheet
         {
             return await _repositoryWrapper.WorkSheet.SelectDetailAsync(request, version);
         }
+        public async Task<DataTableResponse<WorkSheetTimeRespone>> SelectTimeSheetAsync(WorkSheetRequest request, string version = "")
+        {
+            return await _repositoryWrapper.WorkSheet.SelectTimeSheetAsync(request, version);
+        }
 
         public async Task<IEnumerable<TransactionResponse>> SelectBioHistoryAsync(WorkSheetRequest request)
         {
@@ -67,6 +71,12 @@ namespace E_Service.WorkSheet
         public async Task<int> InsertUpdateBatchAsync(List<HR_BarCode> list, string type = "")
         {
             return await _repositoryWrapper.WorkSheet.InsertUpdateBatchAsync(list, type);
+        }
+
+
+        public async Task<int> UpdateTimeSheetBatchAsync(List<WorkSheetTime> list, string type = "")
+        {
+            return await _repositoryWrapper.WorkSheet.UpdateTimeSheetBatchAsync(list, type);
         }
 
         #region  tools
@@ -1013,6 +1023,7 @@ namespace E_Service.WorkSheet
                 throw new Exception("Error in CalculateWorksheetDetail_v2: " + ex.Message);
             }
         }
+
 
         #endregion
         #endregion

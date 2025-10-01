@@ -1,11 +1,7 @@
-﻿using DocumentFormat.OpenXml.Drawing.Charts;
-using DocumentFormat.OpenXml.Office2016.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
-using E_Common;
+﻿using E_Common;
 using E_Contract.Service;
 using E_Model.Authentication;
 using E_Model.Request.Token;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -40,8 +36,8 @@ namespace E_API.Controllers.Authentication
 
                 // Tạo mã 6 chữ số
                 var code = new Random().Next(100000, 999999).ToString();
-                var minute = 2;
-                // Lưu vào MemoryCache với thời hạn 2 phút
+                var minute = 3;
+                // Lưu vào MemoryCache với thời hạn 3 phút
                 var cacheKey = $"forgotpwd_{email}";
                 var info = new VerificationCode
                 {
@@ -51,8 +47,10 @@ namespace E_API.Controllers.Authentication
                 };
                 _memoryCache.Set(cacheKey, info, TimeSpan.FromMinutes(2));
 
-                // Gửi email (triển khai riêng)
-                //var result = await ;
+                // Gửi email
+                var sent = await MailHelper.SendOtpAsync(email, code, minute);
+                if (!sent)
+                    return BadRequest("Không thể gửi email.");
 
                 return Ok(new
                 {

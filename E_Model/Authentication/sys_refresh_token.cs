@@ -3,7 +3,7 @@
     public class sys_refresh_token
     {
         public int id { get; set; }
-        public int user_id { get; set; }
+        public string? user_code { get; set; }
         public string email { get; set; }
         public string token { get; set; }
         public DateTime expired_date { get; set; }

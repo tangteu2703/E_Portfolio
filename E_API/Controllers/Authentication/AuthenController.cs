@@ -33,6 +33,7 @@ namespace E_API.Controllers.Authentication
                     // Save the refresh token in the database
                     var refreshToken = new sys_refresh_token
                     {
+                        user_code = user.user_info.user_code,
                         email = user.user_info.full_name,
                         token = user.refresh_token,
                         created_by_ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "",
@@ -41,7 +42,7 @@ namespace E_API.Controllers.Authentication
                         expired_date = DateTime.UtcNow.AddDays(7),
                     };
 
-                    //await _serviceWrapper.SysRefreshToken.InsertAsync(refreshToken);
+                    await _serviceWrapper.SysRefreshToken.InsertAsync(refreshToken);
 
                     // Return success response with user data
                     return OK(user);

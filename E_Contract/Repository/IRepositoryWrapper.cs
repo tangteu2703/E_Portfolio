@@ -14,6 +14,7 @@ namespace E_Contract.Repository
     {
         #region Authen
 
+        IMenuRepository Menu { get; }
         ITokenRepository Token { get; }
         IDataApiRepository DataApi { get; }
         IDataApplicationRepository DataApplication { get; }
@@ -21,6 +22,7 @@ namespace E_Contract.Repository
         ISysRefreshTokenRepository SysRefreshToken { get; }
 
         #endregion Authen
+
         #region User
 
         IDataTitleRepository DataTitle { get; }

@@ -19,42 +19,29 @@
 </style>
 
 <div class="container py-5">
-    <div class="row justify-content-center g-4">
-        @{
-            var apps = new[] {
-                new { Link="/Home/Portfolio", Icon="briefcase.png", Name="Portfolio" },
-                new { Link="/Portal", Icon="home.png", Name="Portal" },
-                new { Link="/Portal/Organize", Icon="user-group-man-man.png", Name="Organize" },
-                new { Link="/Portal/Calendar", Icon="calendar.png", Name="Calendar" },
-                new { Link="/Portal/Timesheet", Icon="calendar.png", Name="Timesheet" },
-                new { Link="/Portal/Salary", Icon="money-bag.png", Name="Salary" },
-                new { Link="/Portal/Chats", Icon="chat.png", Name="iChats" },
-                new { Link="/Portal/Documents", Icon="document.png", Name="Documents" },
-                new { Link="/Portal/Tests", Icon="exam.png", Name="Tests" },
-                // new { Link="/Portal/users", Icon="user.png", Name="User" },
-                new { Link="/CMS", Icon="content.png", Name="CMS" },
-                new { Link="/CMS/Admin", Icon="settings.png", Name="Admin" },
-            };
-        }
-
-        <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">
-            <a href="/Portal/users" class="text-decoration-none text-center w-100">
-                <div class="bg-white rounded-4 p-3 shadow d-flex justify-content-center align-items-center mx-auto transition-transform transform-hover" style="width: 80px; height: 80px;">
-                    <img src="https://img.icons8.com/ios-filled/100/000000/user.png" alt="User" class="user_avatar img-fluid transition-transform transform-hover" />
-                </div>
-                <div class="mt-2 text-dark fw-semibold transition-transform transform-hover user_fullname" style="min-height: 40px;">User</div>
-            </a>
-        </div>
-        @foreach (var app in apps)
-        {
-            <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">
-                <a href="@app.Link" class="text-decoration-none text-center w-100">
-                    <div class="bg-white rounded-4 p-3 shadow d-flex justify-content-center align-items-center mx-auto transition-transform transform-hover" style="width: 80px; height: 80px;">
-                        <img src="https://img.icons8.com/ios-filled/100/000000/@app.Icon" alt="@app.Name" class="img-fluid transition-transform transform-hover" />
-                    </div>
-                    <div class="mt-2 text-dark fw-semibold transition-transform transform-hover" style="min-height: 40px;">@app.Name</div>
-                </a>
-            </div>
-        }
-    </div>
+    <div id="view-menu" class="row justify-content-center g-4"></div>
 </div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            apiHelper.get("/Masters/get-menus", {}, function (res) {
+                const menuId = $("#view-menu");
+                res.data.forEach(item => {
+                    menuId.append(`
+                        <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">
+                            <a href="${item.menu_url}" class="menu-item text-decoration-none text-center w-100 p-3 rounded-4 bg-white shadow">
+                                <div class="menu-icon d-flex justify-content-center align-items-center mx-auto" style="width:80px;height:80px;">
+                                    <img src="${item.icon_url}" alt="${item.menu_name}" class="img-fluid" />
+                                </div>
+                                <div class="mt-2 text-dark fw-semibold" style="min-height:40px;">${item.menu_name}</div>
+                            </a>
+                        </div>
+                    `);
+                });
+            }, function (err) {
+                console.error("Lỗi lấy danh sách", err);
+            });
+        });
+    </script>
+}

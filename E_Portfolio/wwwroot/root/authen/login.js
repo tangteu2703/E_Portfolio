@@ -167,8 +167,8 @@ const sendOTP = async () => {
 
             commonButton.setButtonLoading(btnId, false, "Send Mail");
         },
-        function () {
-            commonSwal.showError("Gửi mail thất bại! Vui lòng thử lại.");
+        function (err) {
+            commonSwal.showError(err.responseJSON?.message);
             commonButton.setButtonLoading(btnId, false, "Send Mail");
         });
 

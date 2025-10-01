@@ -10,6 +10,7 @@ namespace E_Contract.Repository.WorkSheet
         Task<IEnumerable<WorkSheetResponse>> SelectFilterAsync(WorkSheetRequest request);
         Task<DataTableResponse<WorkSheetResponse>> SelectFilterAsync(WorkSheetRequest request, string version = "");
         Task<DataTableResponse<worksheet_detail>> SelectDetailAsync(WorkSheetRequest request, string version = "");
+        Task<DataTableResponse<WorkSheetTimeRespone>> SelectTimeSheetAsync(WorkSheetRequest request, string version = "");
         Task<IEnumerable<TransactionResponse>> SelectBioHistoryAsync(WorkSheetRequest request);
         Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime date);
         Task<IEnumerable<worksheet_daily>> SelectAsync(DateTime from, DateTime to);
@@ -19,6 +20,8 @@ namespace E_Contract.Repository.WorkSheet
         Task<int> UpdateBatchAsync(List<worksheet_daily> list, string type = "");
         Task<int> DeleteBatchAsync(string listId, string type = "");
 
+
+        Task<int> UpdateTimeSheetBatchAsync(List<WorkSheetTime> list, string type = "");
 
         //HR_BarCode
         Task<IEnumerable<HR_BarCode>> SelectHR_BarcodeAsync(DateTime date, string db = "");

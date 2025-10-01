@@ -6,6 +6,7 @@ using E_Model.Response;
 using E_Model.Response.WorkSheet;
 using E_Model.Table_SQL.WorkSheet;
 using System.Data;
+using System.Security.Cryptography.X509Certificates;
 using static E_Common.myExtension;
 
 namespace E_Repository.WorkSheet
@@ -85,7 +86,46 @@ namespace E_Repository.WorkSheet
                 throw;
             }
         }
+        public async Task<DataTableResponse<WorkSheetTimeRespone>> SelectTimeSheetAsync(WorkSheetRequest request, string version = "")
+        {
+            try
+            {
+                var data = new DataTableResponse<WorkSheetTimeRespone>();
 
+                var param = request.ToDynamicParameters();
+                param.Add("@recordsTotal", dbType: DbType.Int32, direction: ParameterDirection.Output);
+                param.Add("@recordsFiltered", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+                var storeName = "WorkSheetTime_select_filter_detail";
+                var result = await Connection.SelectAsync<WorkSheetTimeRespone>(
+                    storeName,
+                    param
+                );
+                // tính total cho từng record
+                foreach (var item in result)
+                {
+                    item.total =
+                        (item.day_01 ?? 0) + (item.day_02 ?? 0) + (item.day_03 ?? 0) + (item.day_04 ?? 0) +
+                        (item.day_05 ?? 0) + (item.day_06 ?? 0) + (item.day_07 ?? 0) + (item.day_08 ?? 0) +
+                        (item.day_09 ?? 0) + (item.day_10 ?? 0) + (item.day_11 ?? 0) + (item.day_12 ?? 0) +
+                        (item.day_13 ?? 0) + (item.day_14 ?? 0) + (item.day_15 ?? 0) + (item.day_16 ?? 0) +
+                        (item.day_17 ?? 0) + (item.day_18 ?? 0) + (item.day_19 ?? 0) + (item.day_20 ?? 0) +
+                        (item.day_21 ?? 0) + (item.day_22 ?? 0) + (item.day_23 ?? 0) + (item.day_24 ?? 0) +
+                        (item.day_25 ?? 0) + (item.day_26 ?? 0) + (item.day_27 ?? 0) + (item.day_28 ?? 0) +
+                        (item.day_29 ?? 0) + (item.day_30 ?? 0) + (item.day_31 ?? 0);
+                }
+
+                data.recordsTotal = param.Get<int>("@recordsTotal");
+                data.recordsFiltered = param.Get<int>("@recordsFiltered");
+                data.listData = result.OrderBy(x=>x.user_code).ToList();
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
         public async Task<IEnumerable<TransactionResponse>> SelectBioHistoryAsync(WorkSheetRequest request)
         {
             try
@@ -270,6 +310,23 @@ namespace E_Repository.WorkSheet
         }
 
 
+        public async Task<int> UpdateTimeSheetBatchAsync(List<WorkSheetTime> list, string type = "")
+        {
+            var dataTable = TableTypeConverter.ConvertToDataTable(list);
+
+            var typeName = "WorkSheetTime_Type"; // Tên TYPE trong SQL
+
+            var param = new DynamicParameters();
+            param.Add("@WorkSheets", dataTable.AsTableValuedParameter(typeName));
+            param.Add("@UpdatedCount", dbType: DbType.Int32, direction: ParameterDirection.Output);
+
+            var response =  await Connection.ExecuteAsync("WorkSheetTime_Insert_Update", param);
+
+            int updatedCount = param.Get<int>("@UpdatedCount");
+
+            return updatedCount;
+        }
+
         #region HR_BarCode
         public async Task<IEnumerable<HR_BarCode>> SelectHR_BarcodeAsync(DateTime date, string db = "")
         {
@@ -358,6 +415,7 @@ namespace E_Repository.WorkSheet
                 throw;
             }
         }
+
         #endregion
 
     }

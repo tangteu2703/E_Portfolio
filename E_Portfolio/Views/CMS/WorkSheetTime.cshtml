@@ -1,0 +1,179 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout_CMS.cshtml";
+    ViewData["Title"] = "E - WorkSheet";
+}
+
+<div class="app-main flex-column flex-row-fluid " id="kt_app_main">
+    <!--begin::Content wrapper-->
+    <div class="d-flex flex-column flex-column-fluid">
+
+        <!--begin::Toolbar-->
+        <div id="kt_app_toolbar" class="app-toolbar  pt-5 ">
+
+            <!--begin::Toolbar container-->
+            <div id="kt_app_toolbar_container" class="app-container  container-fluid d-flex align-items-stretch ">
+                <!--begin::Toolbar wrapper-->
+                <div class="app-toolbar-wrapper d-flex flex-stack flex-wrap gap-4 w-100">
+
+                    <!--begin::Page title-->
+                    <div class="page-title d-flex flex-column gap-1 me-3 mb-2">
+                        <!--begin::Breadcrumb-->
+                        <ul class="breadcrumb breadcrumb-separatorless fw-semibold mb-6">
+
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                <a href="/CMS" class="text-gray-500 text-hover-primary">
+                                    <i class="ki-duotone ki-home fs-3 text-gray-500 me-n1"></i>
+                                </a>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Quản lý công
+                            </li>
+                            <!--end::Item-->
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item">
+                                <i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i>
+                            </li>
+                            <!--end::Item-->
+                            <!--begin::Item-->
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">
+                                Bảng chấm công
+                            </li>
+                            <!--end::Item-->
+                        </ul>
+                        <!--end::Breadcrumb-->
+                        <!--begin::Title-->
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">
+                            Bảng chấm công
+                        </h1>
+                        <!--end::Title-->
+                    </div>
+                    <!--end::Page title-->
+                    <div class="dropdown w-150px me-3">
+                        <button id="dropdownExcelAction" class="btn btn-sm btn-light w-100 dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Excel
+                        </button>
+                        <ul class="dropdown-menu w-100">
+                            <li><a class="dropdown-item" onclick="sampleClick()" data-value="import">Sample File</a></li>
+                            <li><a class="dropdown-item" onclick="importClick()" data-value="import">Import Excel</a></li>
+                            <li><a class="dropdown-item" onclick="exportClick()" data-value="export">Export Excel</a></li>
+                        </ul>
+                        <input type="file" id="file_Import" accept=".xlsx" style="display: none;" onchange="onFileSelected(event)">
+                    </div>
+                </div>
+                <!--end::Toolbar wrapper-->
+            </div>
+            <!--end::Toolbar container-->
+        </div>
+        <!--end::Toolbar-->
+        <!--begin::Content-->
+        <div id="kt_app_content" class="app-content  flex-column-fluid ">
+            <!--begin::Content container-->
+            <div id="kt_app_content_container" class="app-container container-fluid ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header border-0 pt-6 pb-0">
+                                <div class="row w-100 gx-3 gy-2 align-items-end">
+                                    <!-- Phòng ban -->
+                                    <div class="col-sm-5 col-md-5">
+                                        <label for="cbo_User" class="form-label fw-bold mb-1">Nhân viên</label>
+                                        <select id="cbo_User" class="form-select form-select-sm form-select-solid" data-control="select2">
+                                            <option value="">Tất cả</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3 col-md-2">
+                                        <label for="cbo_Month" class="form-label fw-bold mb-1">Tháng</label>
+                                        <select id="cbo_Month" onchange="setDefaultDateRange()" class="form-select form-select-sm form-select-solid" data-control="select2">
+                                            @for (int m = 1; m <= 12; m++)
+                                            {
+                                                if (m == DateTime.Now.Month)
+                                                {
+                                                    <option value="@m" selected="selected">Tháng @m</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@m">Tháng @m</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <div class="col-sm-3 col-md-2">
+                                        <label for="cbo_Year" class="form-label fw-bold mb-1">Năm</label>
+                                        <select id="cbo_Year" onchange="setDefaultDateRange()" class="form-select form-select-sm form-select-solid" data-control="select2">
+                                            @for (int y = DateTime.Now.Year - 9; y <= DateTime.Now.Year; y++)
+                                            {
+                                                if (y == DateTime.Now.Year)
+                                                {
+                                                    <option value="@y" selected="selected">@y</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@y">@y</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+
+                                    <!-- Nút tìm kiếm -->
+                                    <div class="col-sm-3 col-md-2">
+                                        <label class="form-label fw-bold mb-1 invisible">Tìm kiếm</label>
+                                        <button type="button" id="btn_Search" onclick="searchClick()" class="btn btn-sm btn-primary w-100">
+                                            <i class="ki-duotone ki-search fs-4 me-1"></i> Tìm kiếm
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body py-4">
+                                <div id="kt_table_users_wrapper" class="dt-container dt-bootstrap5 dt-empty-footer">
+                                    <div class="table-responsive">
+                                        <table id="worksheet_table" class="table table-sm table-hover table-bordered table-striped align-middle text-center fs-8 gy-2 w-100">
+                                            <thead>
+                                                <!-- Dòng 1: Header nhóm -->
+                                                <tr>
+                                                    <th class="text-center" rowspan="2">Mã Nv</th>
+                                                    <th class="text-start" rowspan="2">Nhân viên</th>
+                                                    <th class="text-start" rowspan="2">Tổng</th>
+                                                    <th class="text-center" colspan="31">Ngày</th>
+                                                </tr>
+                                                <!-- Dòng 2: ngày cụ thể -->
+                                                <tr>
+                                                    @for (int i = 1; i <= 31; i++)
+                                                    {
+                                                        <th class="text-center" id="txt_@i">@i</th>
+                                                    }
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-gray-600 fw-semibold">
+                                                <!-- Dữ liệu -->
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end::Content container-->
+        </div>
+        <!--end::Content-->
+    </div>
+    <!--end::Content wrapper-->
+</div>
+
+@section Scripts {
+
+    <script src="~/root/worksheet/worksheettime.js"></script>
+}

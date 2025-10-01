@@ -9,7 +9,7 @@ namespace E_Model.Request.Token
     public class LoginItemRequest
     {
         public string? email { get; set; }
-        public string? phone_number { get; set; }
+        public string? user_code { get; set; }
         public string? password { get; set; }
         public bool is_ldap { get; set; } = false;
     }

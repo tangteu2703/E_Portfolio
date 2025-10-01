@@ -62,6 +62,9 @@ builder.Services.AddLogging(loggingBuilder =>
 });
 // MemoryCache
 builder.Services.AddMemoryCache();
+
+// Gọi extension method
+builder.Services.AddMailHelper(builder.Configuration);
 #endregion
 
 #region CORS

@@ -1,6 +1,8 @@
 ﻿using E_Contract.Service;
+using E_Model.Request.Device;
 using E_Model.Request.User;
 using E_Model.Request.WorkSheet;
+using E_Model.Response.Device;
 using E_Model.Table_SQL.WorkSheet;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq.Dynamic.Core;
@@ -36,6 +38,120 @@ namespace E_API.Controllers.WorkSheet
                 return BadRequest(ex.Message);
             }
         }
+
+        #region TimeSheet
+        [HttpPost("TimeSheet")]
+        public async Task<IActionResult> GetDataTimeSheet([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var result = await _serviceWrapper.WorkSheet.SelectTimeSheetAsync(request);
+                return Ok(new
+                {
+                    data = result.listData,
+                    recordsTotal = result.recordsTotal,
+                    recordsFiltered = result.recordsFiltered
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("Import-TimeSheet")]
+        public async Task<IActionResult> ImportExcelTimeSheet([FromForm] ImportExcelRequest request)
+        {
+            try
+            {
+                // viết logic đọc file excel từ request.File
+                if (request.file == null || request.file.Length == 0)
+                    return BadRequest("Không tìm thấy file được tải lên.");
+
+                using var stream = request.file.OpenReadStream();
+                var listData = ExcelExtension.ImportTimeSheet(stream);
+
+                var result = await _serviceWrapper.WorkSheet.UpdateTimeSheetBatchAsync(listData);
+                if (result == 0)
+                    return BadRequest("Không có bản ghi nào được cập nhật dữ liệu. Vui lòng kiểm tra lại !");
+
+                return OK(result + " bản ghi được cập nhật dữ liệu.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi import Excel: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Export-TimeSheet")]
+        public async Task<IActionResult> ExportWorkSheetTime([FromBody] WorkSheetRequest request)
+        {
+            try
+            {
+                var listData = (await _serviceWrapper.WorkSheet.SelectTimeSheetAsync(request)).listData.ToList();
+
+                if (listData == null || !listData.Any())
+                    return BadRequest("Không có dữ liệu để xuất Excel.");
+
+                var month = request.from_date;
+                var sheetName = month?.ToString("MM-yyyy") ?? "WorkSheet";
+
+                var columnMapping = new Dictionary<string, (string, string?)>
+                {
+                    { "Mã nhân viên", ("user_code", null) },
+                    { "Tên nhân viên", ("full_name", null) },
+                    { "1", ("day_01", "dd") },
+                    { "2", ("day_02", "dd") },
+                    { "3", ("day_03", "dd") },
+                    { "4", ("day_04", "dd") },
+                    { "5", ("day_05", "dd") },
+                    { "6", ("day_06", "dd") },
+                    { "7", ("day_07", "dd") },
+                    { "8", ("day_08", "dd") },
+                    { "9", ("day_09", "dd") },
+                    { "10", ("day_10", "dd") },
+                    { "11", ("day_11", "dd") },
+                    { "12", ("day_12", "dd") },
+                    { "13", ("day_13", "dd") },
+                    { "14", ("day_14", "dd") },
+                    { "15", ("day_15", "dd") },
+                    { "16", ("day_16", "dd") },
+                    { "17", ("day_17", "dd") },
+                    { "18", ("day_18", "dd") },
+                    { "19", ("day_19", "dd") },
+                    { "20", ("day_20", "dd") },
+                    { "21", ("day_21", "dd") },
+                    { "22", ("day_22", "dd") },
+                    { "23", ("day_23", "dd") },
+                    { "24", ("day_24", "dd") },
+                    { "25", ("day_25", "dd") },
+                    { "26", ("day_26", "dd") },
+                    { "27", ("day_27", "dd") },
+                    { "28", ("day_28", "dd") },
+                    { "29", ("day_29", "dd") }, 
+                    { "30", ("day_30", "dd") },
+                    { "31", ("day_31", "dd") },
+                    { "Tổng", ("total", null) },
+                };
+
+                // Tên file có đuôi .xlsx
+                var fileName = $"WorkSheetTime_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx";
+
+                // Export và nhận về đường dẫn tương đối
+                var relativePath = ExcelExtension.ExportToExcel(listData, columnMapping, sheetName, fileName, "/WorkSheet");
+
+                // Tạo đường dẫn đầy đủ cho client tải
+                var fileUrl = $"{Request.Scheme}://{Request.Host}{relativePath}";
+
+                return Ok(new { url = fileUrl });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Lỗi xuất Excel: {ex.Message}");
+            }
+        }
+
+        #endregion
 
         #region History
         [HttpPost("History")]

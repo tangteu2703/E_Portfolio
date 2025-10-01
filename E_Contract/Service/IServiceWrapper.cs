@@ -13,6 +13,7 @@ namespace E_Contract.Service
     {
         #region Authentication
 
+        IMenuService Menu{ get; }
         ITokenService TokenService { get; }
         IDataApiService DataApi { get; }
         IDataApplicationService DataApplication { get; }

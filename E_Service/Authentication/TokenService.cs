@@ -33,37 +33,17 @@ namespace E_Service.Authentication
 
                 if (!data.is_ldap)
                 {
-                    //var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data);
-                    var user = new UserData
-                    {
-                        user_id = 1,
-                        email = "tangdv@gmail.com",
-                        phone_number = "0901234567",
-                        full_name = "Tăng DV",
-                        birth_date = new DateTime(2000, 3, 27),
-                        gender = true, // true = Nam, false = Nữ
-                        address = "Hà Nội",
-                        avatar_url = "https://i.pravatar.cc/60?img=2",
-                        user_code = "U0001",
-                        department_id = 2,
-                        title_id = 5,
-                        position_id = 3,
-                        card_color = "#FF5733",
-                        is_ldap = false,
-                    };
-
+                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data);
                     if (user == null)
                         return new UserAuthenticationItemResponse();
 
                     var claims = new List<Claim>
-                        {
-                            new Claim(ClaimTypes.NameIdentifier, user?.user_code),
-                            new Claim(ClaimTypes.Name, user?.email),
-                            new Claim(ClaimTypes.Role, ""),
-                        };
+                     {
+                         new Claim(ClaimTypes.NameIdentifier, user?.user_code),
+                         new Claim(ClaimTypes.Name, user?.email),
+                         new Claim(ClaimTypes.Role, user?.role_name??""),
+                     };
 
-                    userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
-                    userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
                     userAuthen.user_info = new DataUserCardItemResponse
                     {
                         user_code = user?.user_code,
@@ -73,6 +53,11 @@ namespace E_Service.Authentication
                         phone = user.phone_number,
                         card_color = user.card_color,
                     };
+                    userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
+                    userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
+
+                    var permissions = (await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(user?.user_code)).ToList();
+
                     //userAuthen.list_application = await _repositoryWrapper.DataApplication.SelectByUserIdAsync(user.id);
 
                     return userAuthen;
@@ -116,7 +101,7 @@ namespace E_Service.Authentication
                 user.note = "ChangePassword - " + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
                 user.SetUpdateInfo(user.user_code);
 
-                var status = await _repositoryWrapper.DataUser.UpdateAsync(user, "E_PortalConnection");
+                var status = await _repositoryWrapper.DataUser.UpdateAsync(user);
                 return status;
             }
             else

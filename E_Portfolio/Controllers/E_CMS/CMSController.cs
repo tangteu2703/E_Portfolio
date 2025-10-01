@@ -45,6 +45,10 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        public IActionResult WorkSheetTime()
+        {
+            return View();
+        }
         public IActionResult WorkSheetHistory()
         {
             return View();
