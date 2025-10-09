@@ -23,25 +23,5 @@
 </div>
 
 @section Scripts {
-    <script>
-        $(function () {
-            apiHelper.get("/Masters/get-menus", {}, function (res) {
-                const menuId = $("#view-menu");
-                res.data.forEach(item => {
-                    menuId.append(`
-                        <div class="col-4 col-sm-4 col-md-3 col-lg-3 d-flex flex-column align-items-center">
-                            <a href="${item.menu_url}" class="menu-item text-decoration-none text-center w-100 p-3 rounded-4 bg-white shadow">
-                                <div class="menu-icon d-flex justify-content-center align-items-center mx-auto" style="width:80px;height:80px;">
-                                    <img src="${item.icon_url}" alt="${item.menu_name}" class="img-fluid" />
-                                </div>
-                                <div class="mt-2 text-dark fw-semibold" style="min-height:40px;">${item.menu_name}</div>
-                            </a>
-                        </div>
-                    `);
-                });
-            }, function (err) {
-                console.error("Lỗi lấy danh sách", err);
-            });
-        });
-    </script>
+    <script src="~/root/authen/menu.js"></script>
 }

@@ -221,5 +221,6 @@ async function configIfTokenExpired() {
 }
 async function getApiToken(api_url) {
     await configIfTokenExpired();
+    return localStorage.getItem('e_atoken'); // ✅ TRẢ VỀ TOKEN THỰC SỰ
 }
 

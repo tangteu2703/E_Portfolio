@@ -17,6 +17,7 @@ namespace E_Model.Response.Authentication
         public string organize { get; set; }
         public string company { get; set; }
         public string role_name { get; set; }
+        public string? user_code { get; set; }
 
     }
 }

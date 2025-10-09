@@ -94,9 +94,9 @@ namespace E_Model.Response
         public bool is_success { get; set; }
         public string message { get; set; }
 
-        public ResponseBaseErr(string message = "")
+        public ResponseBaseErr(string message = "Error !", int statusCode = 400)
         {
-            this.status_code = HttpStatusCode.BadRequest;
+            this.status_code = statusCode == 500 ? HttpStatusCode.InternalServerError : HttpStatusCode.BadRequest;
             this.is_success = false;
             this.message = message;
         }

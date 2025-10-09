@@ -344,7 +344,7 @@ const commonExtension = {
         a.click();
         window.URL.revokeObjectURL(url);
     },
-   
+
     /*--------- Query Param -------------------------------*/
     getQueryParam: (param) => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -397,7 +397,7 @@ const commonExtension = {
         return url;
     },
 
-   
+
     getDictionaryFromIndexedDB: () => {
         return new Promise((resolve, reject) => {
             const request = indexedDB.open("TranslationDB");
@@ -1585,8 +1585,8 @@ const commonFunction = {
 };
 
 const comboBox = {
-    setSelectOptions : function (){
-       $('[data-control="select2"]').select2();
+    setSelectOptions: function () {
+        $('[data-control="select2"]').select2();
     },
     renderSelectOptions: function (selectId, data, valueField, textField, defaultOptionText = "Tất cả", callback = null) {
         const $select = $(`#${selectId}`);
@@ -1632,22 +1632,54 @@ const comboBox = {
     }
 };
 const commonIndexDB = {
+    // 🧹 Xóa toàn bộ dữ liệu trong 1 store
+    clearStore: async function (dbName, storeName) {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName);
+            request.onsuccess = function (e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(storeName)) {
+                    console.warn(`⚠️ Store '${storeName}' không tồn tại`);
+                    db.close();
+                    return resolve(false);
+                }
+
+                const tx = db.transaction(storeName, "readwrite");
+                const store = tx.objectStore(storeName);
+                const clearReq = store.clear();
+
+                clearReq.onsuccess = () => {
+                    db.close();
+                    console.log(`🧹 Đã clear dữ liệu trong store '${storeName}'`);
+                    resolve(true);
+                };
+                clearReq.onerror = (err) => {
+                    db.close();
+                    reject("❌ Lỗi khi clear store: " + err);
+                };
+            };
+            request.onerror = (e) => reject("Mở DB lỗi: " + e.target.errorCode);
+        });
+    },
+
+    // ====== HÀM GHI DỮ LIỆU (có sẵn) ======
     saveToIndexedDB: async function (dbName, storeName, data, keyPath = "id") {
         if (!dbName || !storeName || !data) {
             console.error("Thiếu tham số bắt buộc");
             return Promise.reject("Thiếu tham số");
         }
 
-        // ✅ Check nếu object không có keyPath
-        if (data[keyPath] === undefined || data[keyPath] === null) {
-            console.error(`Object không có keyPath '${keyPath}'`);
-            return Promise.reject(`Object thiếu key '${keyPath}'`);
-        }
+        const ensureKey = (item, index = 0) => {
+            if (item[keyPath] === undefined || item[keyPath] === null) {
+                item[keyPath] = `${storeName}_${Date.now()}_${index}`;
+            }
+            return item;
+        };
 
+        const dataArray = Array.isArray(data) ? data.map(ensureKey) : [ensureKey(data)];
         let currentVersion = 1;
         let needUpgrade = false;
 
-        // Bước 1: Mở DB để lấy version hiện tại
         try {
             const versionInfo = await new Promise((resolve, reject) => {
                 const req = indexedDB.open(dbName);
@@ -1667,10 +1699,8 @@ const commonIndexDB = {
             return Promise.reject(err);
         }
 
-        // Bước 2: Nếu store chưa tồn tại → tăng version và tạo store
         if (needUpgrade) {
             currentVersion += 1;
-
             await new Promise((resolve, reject) => {
                 const upgradeReq = indexedDB.open(dbName, currentVersion);
                 upgradeReq.onupgradeneeded = function (e) {
@@ -1687,7 +1717,6 @@ const commonIndexDB = {
             });
         }
 
-        // Bước 3: Mở lại và ghi dữ liệu
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(dbName, currentVersion);
             request.onsuccess = function (e) {
@@ -1695,16 +1724,81 @@ const commonIndexDB = {
                 const tx = db.transaction(storeName, "readwrite");
                 const store = tx.objectStore(storeName);
 
-                const putRequest = store.put(data);
-                putRequest.onsuccess = () => resolve(true);
-                putRequest.onerror = (e) => reject("Lỗi khi ghi: " + e.target.error);
+                dataArray.forEach(item => store.put(item));
 
-                tx.oncomplete = () => db.close();
+                tx.oncomplete = () => {
+                    db.close();
+                    console.log(`✅ Lưu ${dataArray.length} record vào ${storeName}`);
+                    resolve(true);
+                };
+                tx.onerror = (err) => {
+                    console.error("❌ Lỗi transaction:", err);
+                    reject(err);
+                };
             };
             request.onerror = (e) => reject("Mở DB lỗi: " + e.target.errorCode);
         });
     },
 
+    // ====== 🧩 HÀM LẤY 1 RECORD THEO KEY ======
+    getFromIndexedDB: async function (dbName, storeName, key) {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName);
+            request.onsuccess = function (e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(storeName)) {
+                    console.warn(`⚠️ Store '${storeName}' không tồn tại`);
+                    db.close();
+                    return resolve(null);
+                }
+
+                const tx = db.transaction(storeName, "readonly");
+                const store = tx.objectStore(storeName);
+                const getReq = store.get(key);
+
+                getReq.onsuccess = () => {
+                    db.close();
+                    resolve(getReq.result || null);
+                };
+                getReq.onerror = (err) => {
+                    db.close();
+                    reject("Lỗi đọc dữ liệu: " + err);
+                };
+            };
+            request.onerror = (e) => reject("Mở DB lỗi: " + e.target.errorCode);
+        });
+    },
+
+    // ====== 🧩 HÀM LẤY TOÀN BỘ DỮ LIỆU TRONG STORE ======
+    getAllFromIndexedDB: async function (dbName, storeName) {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(dbName);
+            request.onsuccess = function (e) {
+                const db = e.target.result;
+                if (!db.objectStoreNames.contains(storeName)) {
+                    console.warn(`⚠️ Store '${storeName}' không tồn tại`);
+                    db.close();
+                    return resolve([]);
+                }
+
+                const tx = db.transaction(storeName, "readonly");
+                const store = tx.objectStore(storeName);
+                const getAllReq = store.getAll();
+
+                getAllReq.onsuccess = () => {
+                    db.close();
+                    resolve(getAllReq.result || []);
+                };
+                getAllReq.onerror = (err) => {
+                    db.close();
+                    reject("Lỗi đọc toàn bộ dữ liệu: " + err);
+                };
+            };
+            request.onerror = (e) => reject("Mở DB lỗi: " + e.target.errorCode);
+        });
+    },
+
+    // ====== HÀM GÁN USER (có sẵn) ======
     setupUser: async function () {
         const dbName = 'AuthorizeDB';
         const storeName = 'user_information';
@@ -1748,17 +1842,18 @@ const commonIndexDB = {
         });
         // Gán user_code vào tất cả thẻ <a> có class user_account
         document.querySelectorAll('.user_account').forEach(link => {
+            link.textContent = user.usercode || "User code";
             if (user.usercode) {
                 const url = new URL(link.href, window.location.origin);
                 url.searchParams.set("user_code", user.usercode);
-                link.href = `/Portal/Users?user_code=${user.usercode}`;
+                link.href = `/Page-Account?user_code=${user.usercode}`;
             }
         });
     },
 
 };
 const commonPassword = {
- 
+
     validatePassword: function (password) {
         if (password.length < 8) {
             return "Mật khẩu phải có ít nhất 8 ký tự.";

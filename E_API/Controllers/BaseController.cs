@@ -55,7 +55,13 @@ namespace E_API.Controllers
             result.StatusCode = (int)HttpStatusCode.InternalServerError;
             return result;
         }
+        protected ContentResult InternalServerError(string message = "Internal server error", Exception? ex = null)
+        {
+            var result = new ResponseBaseErr(message, (int)HttpStatusCode.InternalServerError).ToContentResult();
+            result.StatusCode = (int)HttpStatusCode.InternalServerError;
 
+            return result;
+        }
         private async Task<ContentResult> SetStatusCodeAsync(Task<ContentResult> task, HttpStatusCode code)
         {
             var result = await task;

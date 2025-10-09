@@ -1,9 +1,14 @@
-﻿using E_Common;
+﻿using DocumentFormat.OpenXml.EMMA;
+using E_API.Filter;
+using E_Common;
 using E_Contract.Service;
 using E_Model.Authentication;
 using E_Model.Request.Token;
+using E_Model.Table_SQL.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
+using System.Security.Claims;
 
 namespace E_API.Controllers.Authentication
 {
@@ -21,8 +26,7 @@ namespace E_API.Controllers.Authentication
             _memoryCache = memoryCache;
         }
 
-        [HttpGet]
-        [Route("Send-OTP")]
+        [HttpGet("Send-OTP")]
         public async Task<IActionResult> SendOTP([FromQuery] string email)
         {
             try
@@ -59,12 +63,12 @@ namespace E_API.Controllers.Authentication
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, error = "Unexpected error: " + ex.Message });
+                // log lỗi lại nếu có ILogger
+                return InternalServerError($"Internal server error: {ex.Message}", ex);
             }
         }
 
-        [HttpPost]
-        [Route("ChangePassword")]
+        [HttpPost("Change-Password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordItemRequest data)
         {
             try
@@ -91,7 +95,63 @@ namespace E_API.Controllers.Authentication
             }
             catch (Exception ex)
             {
-                return BadRequest(new { success = false, error = "Unexpected error: " + ex.Message });
+                // log lỗi lại nếu có ILogger
+                return InternalServerError($"Internal server error: {ex.Message}", ex);
+            }
+        }
+
+        [Authorize]
+        [HttpGet("Select-Account-By-Code")]
+        public async Task<IActionResult> GetAccount()
+        {
+            try
+            {
+                // Lấy user_code từ JWT token (đã được xác thực bởi [Authorize] và kiểm tra quyền bởi [PermissionAuthorize])
+                var userCodeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var user_code = userCodeClaim?.Value ?? "";
+
+                if (string.IsNullOrWhiteSpace(user_code))
+                    return Unauthorized("Invalid or expired token. User code not found.");
+
+                // Validate user tồn tại trong hệ thống và lấy thông tin
+                var result = await _serviceWrapper.DataUser.SelectByCodeAsync(user_code);
+                if (result == null)
+                    return BadRequest("User not found or inactive.");
+
+                return OK(result);
+            }
+            catch (Exception ex)
+            {
+                // log lỗi lại nếu có ILogger
+                return InternalServerError($"Internal server error: {ex.Message}", ex);
+            }
+        }
+
+        [Authorize]
+        [PermissionAuthorize(1)] // Function tạo account (1)
+        [HttpPost("Update-Account")]
+        public async Task<IActionResult> CreateAccount(UserData model)
+        {
+            try
+            {
+                // Lấy user_code từ JWT token (đã được xác thực bởi [Authorize] và kiểm tra quyền bởi [PermissionAuthorize])
+                var userCodeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var user_code = userCodeClaim?.Value ?? "";
+
+                if (string.IsNullOrWhiteSpace(user_code))
+                    return Unauthorized("Invalid or expired token. User code not found.");
+
+                // Validate user tồn tại trong hệ thống và lấy thông tin
+                var result = await _serviceWrapper.DataUser.SelectByCodeAsync(user_code);
+                if (result == null)
+                    return Unauthorized("User not found or inactive.");
+
+                return OK(result);
+            }
+            catch (Exception ex)
+            {
+                // log lỗi lại nếu có ILogger
+                return InternalServerError($"Internal server error: {ex.Message}", ex);
             }
         }
     }

@@ -37,11 +37,15 @@ namespace E_Service.Authentication
                     if (user == null)
                         return new UserAuthenticationItemResponse();
 
+                    // Lấy danh sách quyền của user từ database (chỉ gọi 1 lần khi đăng nhập)
+                    var permissions = (await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(user?.user_code)).OrderBy(c=>c.is_order).ToList();
+
+                    // Tạo claims cơ bản cho JWT token (không bao gồm quyền để giữ token gọn nhẹ)
                     var claims = new List<Claim>
                      {
-                         new Claim(ClaimTypes.NameIdentifier, user?.user_code),
-                         new Claim(ClaimTypes.Name, user?.email),
-                         new Claim(ClaimTypes.Role, user?.role_name??""),
+                         new Claim(ClaimTypes.NameIdentifier, user?.user_code ?? ""),
+                         new Claim(ClaimTypes.Name, user?.email ?? ""),
+                         new Claim(ClaimTypes.Role, user?.role_name ?? ""),
                      };
 
                     userAuthen.user_info = new DataUserCardItemResponse
@@ -55,30 +59,38 @@ namespace E_Service.Authentication
                     };
                     userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
                     userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
-
-                    var permissions = (await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(user?.user_code)).ToList();
-
-                    //userAuthen.list_application = await _repositoryWrapper.DataApplication.SelectByUserIdAsync(user.id);
+                    userAuthen.list_permissions = permissions;
 
                     return userAuthen;
                 }
                 else
                 {
                     //logic check LDAP
-                    var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data.email, data.password);
-                    if (!string.IsNullOrEmpty(user.ldap_server) && !string.IsNullOrEmpty(user.ldap_dc) && user.ldap_port > 0)
-                        userAuthen.user_info = await CheckLoginAndResponseToken(user);
+                    //var user = await _repositoryWrapper.DataUser.SelectByUserAsync(data.email, data.password);
+                    //if (!string.IsNullOrEmpty(user.ldap_server) && !string.IsNullOrEmpty(user.ldap_dc) && user.ldap_port > 0)
+                    //    userAuthen.user_info = await CheckLoginAndResponseToken(user);
 
-                    var claims = new List<Claim>
-                        {
-                            new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
-                            new Claim(ClaimTypes.Name, user.email),
-                            new Claim(ClaimTypes.Role, user?.role_name),
-                        };
+                    //// Lấy danh sách quyền của user từ database
+                    //var permissions = (await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(user?.user_code)).OrderBy(c=>c.is_order).ToList();
 
-                    userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
-                    userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
-                    userAuthen.list_application = await _repositoryWrapper.DataApplication.SelectByUserIdAsync(user.id);
+                    //// Tạo claims với thông tin quyền để lưu vào JWT token
+                    //var claims = new List<Claim>
+                    //    {
+                    //        new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
+                    //        new Claim(ClaimTypes.Name, user.email),
+                    //        new Claim(ClaimTypes.Role, user?.role_name ?? ""),
+                    //    };
+
+                    //// Thêm thông tin quyền vào JWT token (định dạng: "menuId_functionId")
+                    //foreach (var permission in permissions)
+                    //{
+                    //    var permissionClaim = $"perm_{permission.menu_id}_{permission.function_id}";
+                    //    claims.Add(new Claim("permission", permissionClaim));
+                    //}
+
+                    //userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
+                    //userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
+                    //userAuthen.list_permissions = permissions;
 
                     return userAuthen;
                 }
@@ -295,12 +307,18 @@ namespace E_Service.Authentication
                     }
                     if (!string.IsNullOrEmpty(userAuthen.user_info.full_name))
                     {
+                        // Lấy danh sách quyền của user từ database (chỉ gọi khi refresh token)
+                        var permissions = (await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(user?.user_code)).OrderBy(c=>c.is_order).ToList();
+
+                        // Tạo claims cơ bản cho JWT token (không bao gồm quyền để giữ token gọn nhẹ)
                         var claims = new List<Claim>
                         {
                             new Claim(ClaimTypes.Name, email),
                         };
+
                         userAuthen.access_token = _jwtHelper.GenerateAccessToken(claims);
                         userAuthen.refresh_token = _jwtHelper.GenerateRefreshToken();
+                        userAuthen.list_permissions = permissions;
                     }
                     return userAuthen;
                 }
@@ -308,6 +326,84 @@ namespace E_Service.Authentication
                 {
                     return new UserAuthenticationItemResponse();
                 }
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền truy cập của user cho menu và function cụ thể từ database (chỉ dùng khi cần thiết)
+        /// </summary>
+        /// <param name="userCode">Mã user cần kiểm tra</param>
+        /// <param name="menuId">ID của menu</param>
+        /// <param name="functionId">ID của function (1: xem, 2: thêm, 3: sửa, 4: xóa)</param>
+        /// <returns>true nếu có quyền, false nếu không có quyền</returns>
+        public async Task<bool> CheckUserPermissionFromDatabaseAsync(string userCode, int menuId, int functionId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userCode))
+                    return false;
+
+                // Lấy danh sách permissions của user từ database
+                var permissions = await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(userCode);
+
+                // Kiểm tra quyền truy cập cho menu và function cụ thể
+                var hasPermission = permissions.Any(p =>
+                    p.menu_id == menuId &&
+                    p.function_id == functionId);
+
+                return hasPermission;
+            }
+            catch (Exception ex)
+            {
+                // Log error nếu cần
+                Console.WriteLine($"Error checking permission for user {userCode}: {ex.Message}");
+                return false;
+            }
+        }
+
+
+        /// <summary>
+        /// Kiểm tra quyền truy cập của user hiện tại từ database - với menu_id và function_id
+        /// </summary>
+        /// <param name="user">ClaimsPrincipal từ User object</param>
+        /// <param name="menuId">ID của menu</param>
+        /// <param name="functionId">ID của function</param>
+        /// <returns>true nếu có quyền, false nếu không có quyền</returns>
+        public async Task<bool> CheckCurrentUserPermissionAsync(ClaimsPrincipal user, int menuId, int functionId)
+        {
+            try
+            {
+                var userCodeClaim = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var userCode = userCodeClaim?.Value ?? "";
+                return await CheckUserPermissionFromDatabaseAsync(userCode, menuId, functionId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking current user permission: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Kiểm tra quyền truy cập của user hiện tại từ database - chỉ với function_id
+        /// </summary>
+        /// <param name="user">ClaimsPrincipal từ User object</param>
+        /// <param name="functionId">ID của function</param>
+        /// <returns>true nếu có quyền, false nếu không có quyền</returns>
+        public async Task<bool> CheckCurrentUserPermissionAsync(ClaimsPrincipal user, int functionId)
+        {
+            try
+            {
+                var userCodeClaim = user.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+                var userCode = userCodeClaim?.Value ?? "";
+                // Với chỉ function_id, cần tìm trong tất cả các menu có function này
+                var permissions = await _repositoryWrapper.Menu.SelectMenuPermissionsByUserAsync(userCode);
+                return permissions.Any(p => p.function_id == functionId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error checking current user permission: {ex.Message}");
+                return false;
             }
         }
 

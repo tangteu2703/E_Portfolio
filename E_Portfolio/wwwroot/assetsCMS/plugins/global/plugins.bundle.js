@@ -25334,7 +25334,7 @@ const localization = {
     var promiseIgnoresNonFunctionThenCallbacks = !throwsError(function () {
       return globals.Promise.reject(42).then(null, 5).then(null, noop);
     });
-    var promiseRequiresObjectContext = throwsError(function () { return globals.Promise.call(3, noop); });
+    var promiseRequiresObjectContext = throwsError(function () { return new (globals.Promise.bind(3))(noop); });
     // Promise.resolve() was errata'ed late in the ES6 process.
     // See: https://bugzilla.mozilla.org/show_bug.cgi?id=1170742
     //      https://code.google.com/p/v8/issues/detail?id=4161
@@ -25361,14 +25361,13 @@ const localization = {
       return count === 1;
     }());
 
-    var BadResolverPromise = function BadResolverPromise(executor) {
-      var p = new Promise(executor);
-      executor(3, function () {});
-      this.then = p.then;
-      this.constructor = BadResolverPromise;
-    };
-    BadResolverPromise.prototype = Promise.prototype;
-    BadResolverPromise.all = Promise.all;
+    //var BadResolverPromise = function BadResolverPromise(executor) {
+    //  var p = new Promise(executor);
+    //  this.then = p.then;
+    //  this.constructor = BadResolverPromise;
+    //};
+    //BadResolverPromise.prototype = Promise.prototype;
+    //BadResolverPromise.all = Promise.all;
     // Chrome Canary 49 (probably older too) has some implementation bugs
     var hasBadResolverPromise = valueOrFalseIfThrows(function () {
       return !!BadResolverPromise.all([1, 2]);

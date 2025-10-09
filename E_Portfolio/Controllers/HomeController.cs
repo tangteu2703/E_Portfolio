@@ -14,6 +14,7 @@ namespace E_Portfolio.Controllers
         {
             return View();
         }
+        [Route("Page-Portfolio")]
         public IActionResult Portfolio()
         {
             return View();

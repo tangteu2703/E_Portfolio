@@ -1,4 +1,7 @@
-﻿namespace E_Common
+﻿using System.Net;
+using System.Net.Sockets;
+
+namespace E_Common
 {
     public class LogExtension
     {
@@ -53,5 +56,27 @@
                 Console.WriteLine($"❌ Lỗi khi ghi log: {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Lấy tên máy (hostname)
+        /// </summary>
+        public static string GetMachineName()
+        {
+            return Dns.GetHostName();
+        }
+
+        /// <summary>
+        /// Lấy IP v4 của máy hiện tại
+        /// </summary>
+        public static string GetLocalIPAddress()
+        {
+            string hostName = Dns.GetHostName();
+            var ipAddresses = Dns.GetHostAddresses(hostName);
+
+            // Ưu tiên IPv4
+            var ipv4 = ipAddresses.FirstOrDefault(ip => ip.AddressFamily == AddressFamily.InterNetwork);
+            return ipv4?.ToString() ?? "Không tìm thấy IPv4";
+        }
+
     }
 }

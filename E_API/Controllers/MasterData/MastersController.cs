@@ -37,26 +37,6 @@ namespace E_API.Controllers.MasterData
             }
         }
 
-        [HttpGet("get-menus")]
-        public async Task<IActionResult> GetMenus()
-        {
-            try
-            {
-                var allClaims = User.Claims.ToList();
-
-                var userCodeClaim = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
-                var userCode = userCodeClaim?.Value ?? "0";
-
-                var listData = (await _serviceWrapper.Menu.SelectMenuPermissionsByUserAsync(userCode)).ToList();
-
-                return OK(listData);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpGet("departments")]
         public async Task<IActionResult> GetDepartments()
         {

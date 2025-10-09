@@ -16,11 +16,12 @@ namespace E_Portfolio.Controllers.CMS
         {
             _serviceWrapper = serviceWrapper;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
             return View();
         }
-        public async Task<IActionResult> Chatbot()
+        [Route("Page-Chatbot")]
+        public IActionResult Chatbot()
         {
             return View();
         }
@@ -29,6 +30,7 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        [Route("Page-News-Management")]
         public IActionResult News()
         {
             return View();
@@ -45,6 +47,7 @@ namespace E_Portfolio.Controllers.CMS
         {
             return View();
         }
+        [Route("Page-Timesheet")]
         public IActionResult WorkSheetTime()
         {
             return View();

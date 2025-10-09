@@ -34,9 +34,9 @@ namespace E_API.Controllers.Authentication
                     var refreshToken = new sys_refresh_token
                     {
                         user_code = user.user_info.user_code,
-                        email = user.user_info.full_name,
+                        email = user.user_info.email,
                         token = user.refresh_token,
-                        created_by_ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "",
+                        created_by_ip = HttpContext.Connection.RemoteIpAddress?.ToString() ?? LogExtension.GetMachineName(),
                         created_by_mac = _jwtHelper.GetMacAddressAndConvertToHS256(),
                         created_time = DateTime.Now,
                         expired_date = DateTime.UtcNow.AddDays(7),

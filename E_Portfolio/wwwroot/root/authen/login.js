@@ -78,9 +78,19 @@ const login = async () => {
                 usercode: user.user_code || ''
             };
 
+            // 🔹 Xóa dữ liệu cũ rồi mới lưu mới
+            await commonIndexDB.clearStore('AuthorizeDB', 'user_information');
+            await commonIndexDB.clearStore('AuthorizeDB', 'e_permissions');
+
+            // 🔹 Lưu dữ liệu mới
             await commonIndexDB.saveToIndexedDB('AuthorizeDB', 'user_information', userData, 'usercode')
                 .then(() => console.log("✅ userData lưu thành công"))
                 .catch(err => console.error("❌", err));
+
+            await commonIndexDB.saveToIndexedDB('AuthorizeDB', 'e_permissions', response.list_permissions, 'permissions')
+                .then(() => console.log("✅ e_permissions lưu thành công"))
+                .catch(err => console.error("❌", err));
+
 
             window.location.href = "/";
 

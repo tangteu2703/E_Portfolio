@@ -16,5 +16,8 @@ namespace E_Model.Response.Authentication
         public string? icon_url { get; set; }
         public string? descriptions { get; set; }
         public string? is_order { get; set; }
+
+        public int? function_id { get; set; }
+
     }
 }
