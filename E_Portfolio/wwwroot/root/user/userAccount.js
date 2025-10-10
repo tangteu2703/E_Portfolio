@@ -32,8 +32,6 @@ const setupFormEvents = () => {
         e.preventDefault(); // Ngăn form submit mặc định
         saveChanges(); // Gọi hàm save changes tùy chỉnh
     });
-
-    console.log("Đã thiết lập các sự kiện cho form");
 };
 
 // Hàm hiển thị thông tin người dùng (cho cả dữ liệu mẫu và API)

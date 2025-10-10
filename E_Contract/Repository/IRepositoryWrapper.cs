@@ -3,6 +3,7 @@ using E_Contract.Repository.Department;
 using E_Contract.Repository.Device;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.Hosted;
+using E_Contract.Repository.News;
 using E_Contract.Repository.User;
 using E_Contract.Repository.WorkSheet;
 using E_Contract.Service.Department;
@@ -47,6 +48,10 @@ namespace E_Contract.Repository
         #region Device
         IDeviceManagementRepository DeviceManagement { get; }
         IDeviceTypeRepository DeviceType { get; }
+        #endregion
+
+        #region News
+        IDataNewsRepository News { get; }
         #endregion
     }
 }
