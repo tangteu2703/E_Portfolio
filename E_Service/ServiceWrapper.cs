@@ -6,6 +6,7 @@ using E_Contract.Service.Department;
 using E_Contract.Service.Device;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.Hosted;
+using E_Contract.Service.News;
 using E_Contract.Service.User;
 using E_Contract.Service.WorkSheet;
 using E_Model.Table_SQL.Hosted;
@@ -14,6 +15,7 @@ using E_Service.Department;
 using E_Service.Device;
 using E_Service.Dictionary;
 using E_Service.Hosted;
+using E_Service.News;
 using E_Service.User;
 using E_Service.WorkSheet;
 
@@ -82,8 +84,11 @@ namespace E_Service
         public IDeviceManagementService DeviceManagement => _DeviceManagement.Value;
         private Lazy<DeviceTypeService> _DeviceType => new(() => new DeviceTypeService(_repositoryWrapper));
         public IDeviceTypeService DeviceType => _DeviceType.Value;
+        #endregion
 
-
+        #region News
+        private Lazy<DataNewsService> _News => new(() => new DataNewsService(_repositoryWrapper));
+        public IDataNewsService News => _News.Value;
         #endregion
 
     }

@@ -4,6 +4,7 @@ using E_Contract.Repository.Department;
 using E_Contract.Repository.Device;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.Hosted;
+using E_Contract.Repository.News;
 using E_Contract.Repository.User;
 using E_Contract.Repository.WorkSheet;
 using E_Repository.Authentication;
@@ -11,6 +12,7 @@ using E_Repository.Department;
 using E_Repository.Device;
 using E_Repository.Dictionary;
 using E_Repository.Hosted;
+using E_Repository.News;
 using E_Repository.User;
 using E_Repository.WorkSheet;
 
@@ -81,6 +83,11 @@ namespace E_Repository
 
         private IDeviceTypeRepository _DeviceType;
         public IDeviceTypeRepository DeviceType => _DeviceType ??= new DeviceTypeRepository();
+        #endregion
+
+        #region News
+        private IDataNewsRepository _News;
+        public IDataNewsRepository News => _News ??= new DataNewsRepository();
         #endregion
 
     }

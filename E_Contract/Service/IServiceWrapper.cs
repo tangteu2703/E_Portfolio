@@ -4,6 +4,7 @@ using E_Contract.Service.Department;
 using E_Contract.Service.Device;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.Hosted;
+using E_Contract.Service.News;
 using E_Contract.Service.User;
 using E_Contract.Service.WorkSheet;
 
@@ -45,6 +46,10 @@ namespace E_Contract.Service
         #region Device
         IDeviceTypeService DeviceType { get; }
         IDeviceManagementService DeviceManagement { get; }
+        #endregion
+
+        #region News
+        IDataNewsService News { get; }
         #endregion
 
     }
