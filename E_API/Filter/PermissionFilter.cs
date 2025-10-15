@@ -5,21 +5,7 @@ using System.Security.Claims;
 
 namespace E_API.Filter
 {
-    /// <summary>
-    /// Custom attribute để kiểm tra quyền truy cập function (chỉ cần function_id)
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class PermissionAuthorizeAttribute : TypeFilterAttribute
-    {
-        /// <summary>
-        /// Khởi tạo attribute với function cần kiểm tra
-        /// </summary>
-        /// <param name="functionId">ID của function (1: tạo mới, 2: cập nhật, 3: vô hiệu hóa, 4: import, 5: export)</param>
-        public PermissionAuthorizeAttribute(int functionId) : base(typeof(PermissionAuthorizeFilter))
-        {
-            Arguments = new object[] { functionId };
-        }
-    }
+    // Legacy filter implementation (no longer used by attribute). Kept for potential reuse.
 
     /// <summary>
     /// Filter implementation để kiểm tra quyền truy cập
@@ -43,8 +29,14 @@ namespace E_API.Filter
             try
             {
                 // Kiểm tra quyền truy cập từ database dựa trên user_code từ JWT token
-                var hasPermission = await _serviceWrapper.TokenService.CheckCurrentUserPermissionAsync(
-                    context.HttpContext.User, _functionId);
+                // Chuyển trách nhiệm check sang PermissionAuthorizeAttribute mới (theo api_url + cache)
+                // Ở đây fallback: nếu không dùng attribute mới, kiểm tra tối thiểu theo function_id qua DB
+                var hasPermission = true;
+                if (_functionId > 0)
+                {
+                    var user = context.HttpContext.User;
+                    hasPermission = await _serviceWrapper.TokenService.CheckCurrentUserPermissionAsync(user, _functionId);
+                }
 
                 if (!hasPermission)
                 {

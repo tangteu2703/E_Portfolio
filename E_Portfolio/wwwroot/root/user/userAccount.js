@@ -3,6 +3,10 @@
 });
 
 const init = () => {
+    // Kiểm tra đăng nhập trước khi gọi API
+    if (!LoginAuthorize()) {
+        return;
+    }
     // Gọi API thực tế (để sau này sử dụng)
     apiHelper.get(`/Account/Select-Account-By-Code`,
         {},
@@ -127,8 +131,15 @@ const saveChanges = () => {
 
     console.log("Đang gửi dữ liệu cập nhật:", userData);
 
-    // Gọi API cập nhật thông tin
-    apiHelper.post(`/Account/Update-Account`, userData,
+    // Gọi API cập nhật thông tin (có kiểm tra quyền ở client để UX tốt hơn, server vẫn check)
+    const currentApi = '/Account/User-Update';
+    PermissionAuthorize(currentApi, 0).then((canAccess) => {
+        if (!canAccess) {
+            toastr.error("Bạn không có quyền thực hiện chức năng này.");
+            submitBtn.prop('disabled', false).html(originalText);
+            return;
+        }
+        apiHelper.post(currentApi, userData,
         function (res) {
             console.log("Cập nhật thành công:", res);
 
@@ -155,5 +166,40 @@ const saveChanges = () => {
             toastr.error(errorMessage);
         }
     );
+    }).catch(() => {
+        submitBtn.prop('disabled', false).html(originalText);
+        toastr.error("Không thể kiểm tra quyền. Vui lòng thử lại.");
+    });
 };
+
+// ===== Helpers authorize phía client (dùng IndexedDB để hạn chế gọi DB) =====
+function LoginAuthorize() {
+    const token = localStorage.getItem('e_atoken');
+    if (!token) {
+        window.location.href = '/login';
+        return false;
+    }
+    return true;
+}
+
+async function PermissionAuthorize(apiUrl, functionId = 0) {
+    try {
+        // Ưu tiên lấy quyền từ IndexedDB đã lưu khi login/refresh
+        const perms = await commonIndexDB.getAllFromIndexedDB('AuthorizeDB', 'e_permissions');
+        console.log("Permissions từ IndexedDB:", perms);
+        if (perms && perms.length > 0) {
+            const url = (apiUrl || '').toLowerCase();
+            const hasApi = perms.some(p => (p.menu_url || '').trim().toLowerCase() && url.includes(p.menu_url.trim().toLowerCase()));
+            if (!hasApi) return false;
+            if (functionId > 0) {
+                return perms.some(p => (p.menu_url || '').trim().toLowerCase() && url.includes(p.menu_url.trim().toLowerCase()) && p.function_id === functionId);
+            }
+            return true;
+        }
+        // Fallback: nếu chưa có quyền trong cache client, vẫn để server kiểm tra
+        return true;
+    } catch (e) {
+        return true; // không chặn nếu client-side check lỗi; server sẽ là nguồn sự thật
+    }
+}
 

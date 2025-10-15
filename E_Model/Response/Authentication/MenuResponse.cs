@@ -18,6 +18,9 @@ namespace E_Model.Response.Authentication
         public string? is_order { get; set; }
 
         public int? function_id { get; set; }
+        public string? function_name { get; set; }
+        public string? api_url { get; set; }
+        public string? function_desc { get; set; }
 
     }
 }

@@ -100,7 +100,7 @@ namespace E_API.Controllers.Authentication
             }
         }
 
-        [Authorize]
+        [LoginAuthorize]
         [HttpGet("Select-Account-By-Code")]
         public async Task<IActionResult> GetAccount()
         {
@@ -127,9 +127,8 @@ namespace E_API.Controllers.Authentication
             }
         }
 
-        [Authorize]
-        [PermissionAuthorize(1)] // Function tạo account (1)
-        [HttpPost("Update-Account")]
+        [PermissionAuthorize]
+        [HttpPost("User-Update")]
         public async Task<IActionResult> CreateAccount(UserData model)
         {
             try
