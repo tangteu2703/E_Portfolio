@@ -4238,30 +4238,30 @@ var KTSearch = function(element, options) {
         }
 
         // Menu
-        if ( the.menuObject ) {
-            // Toggle menu
-            if ( the.toggleElement ) {
-                the.toggleElement.addEventListener('click', _show);
+        //if ( the.menuObject ) {
+        //    // Toggle menu
+        //    if ( the.toggleElement ) {
+        //        the.toggleElement.addEventListener('click', _show);
 
-                the.menuObject.on('kt.menu.dropdown.show', function(item) {
-                    if (KTUtil.visible(the.toggleElement)) {
-                        the.toggleElement.classList.add('active');
-                        the.toggleElement.classList.add('show');
-                    } 
-                });
+        //        the.menuObject.on('kt.menu.dropdown.show', function(item) {
+        //            if (KTUtil.visible(the.toggleElement)) {
+        //                the.toggleElement.classList.add('active');
+        //                the.toggleElement.classList.add('show');
+        //            } 
+        //        });
     
-                the.menuObject.on('kt.menu.dropdown.hide', function(item) {
-                    if (KTUtil.visible(the.toggleElement)) {
-                        the.toggleElement.classList.remove('active');
-                        the.toggleElement.classList.remove('show');
-                    }
-                });
-            }            
+        //        the.menuObject.on('kt.menu.dropdown.hide', function(item) {
+        //            if (KTUtil.visible(the.toggleElement)) {
+        //                the.toggleElement.classList.remove('active');
+        //                the.toggleElement.classList.remove('show');
+        //            }
+        //        });
+        //    }            
 
-            the.menuObject.on('kt.menu.dropdown.shown', function() {
-                the.inputElement.focus();
-            });
-        } 
+        //    the.menuObject.on('kt.menu.dropdown.shown', function() {
+        //        the.inputElement.focus();
+        //    });
+        //} 
 
         // Window resize handling
         window.addEventListener('resize', function() {
@@ -4397,7 +4397,7 @@ var KTSearch = function(element, options) {
             if ( responsiveFormMode === 'on' && the.contentElement.contains(the.formElement) === false ) {
                 the.contentElement.prepend(the.formElement);
                 the.formElement.classList.remove('d-none');                
-            } else if ( responsiveFormMode === 'off' && the.contentElement.contains(the.formElement) === true ) {
+            } else if (responsiveFormMode === 'off' && the.contentElement != null && the.contentElement.contains(the.formElement) === true ) {
                 the.element.prepend(the.formElement);
                 the.formElement.classList.add('d-none');
             }
@@ -7726,38 +7726,21 @@ var KTLayoutSearch = function() {
         emptyElement.classList.add('d-none');
     }    
 
-    var handlePreferences = function() {
-        // Preference show handler
-        preferencesShowElement.addEventListener('click', function() {
-            wrapperElement.classList.add('d-none');
-            preferencesElement.classList.remove('d-none');
-        });
+    //var handlePreferences = function() {
+    //    // Preference show handler
+    //    preferencesShowElement.addEventListener('click', function() {
+    //        wrapperElement.classList.add('d-none');
+    //        preferencesElement.classList.remove('d-none');
+    //    });
 
-        // Preference dismiss handler
-        preferencesDismissElement.addEventListener('click', function() {
-            wrapperElement.classList.remove('d-none');
-            preferencesElement.classList.add('d-none');
-        });
-    }
+    //    // Preference dismiss handler
+    //    preferencesDismissElement.addEventListener('click', function() {
+    //        wrapperElement.classList.remove('d-none');
+    //        preferencesElement.classList.add('d-none');
+    //    });
+    //}
 
-    var handleAdvancedOptionsForm = function() {
-        // Show
-        advancedOptionsFormShowElement.addEventListener('click', function() {
-            wrapperElement.classList.add('d-none');
-            advancedOptionsFormElement.classList.remove('d-none');
-        });
-
-        // Cancel
-        advancedOptionsFormCancelElement.addEventListener('click', function() {
-            wrapperElement.classList.remove('d-none');
-            advancedOptionsFormElement.classList.add('d-none');
-        });
-
-        // Search
-        advancedOptionsFormSearchElement.addEventListener('click', function() {
-            
-        });
-    }
+    
 
     // Public methods
 	return {
@@ -7797,8 +7780,8 @@ var KTLayoutSearch = function() {
             searchObject.on('kt.search.clear', clear);
 
             // Custom handlers
-            handlePreferences();
-            handleAdvancedOptionsForm();            
+            //handlePreferences();
+            //handleAdvancedOptionsForm();            
 		}
 	};
 }();

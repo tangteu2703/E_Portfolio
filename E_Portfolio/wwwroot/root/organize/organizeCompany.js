@@ -1,27 +1,94 @@
-﻿
-const diagramDiv = document.getElementById("myDiagramDiv");
-const btnToggle = document.getElementById("fullscreenToggle");
-const btnExit = document.getElementById("exitFullscreenBtn");
-
-btnToggle.addEventListener("click", () => {
-    // Add fullscreen styles to diagram
-    diagramDiv.classList.add("position-fixed", "top-0", "start-0", "w-100", "h-100", "zindex-tooltip");
-    diagramDiv.style.zIndex = "1055";
-
-    // Show the exit fullscreen button
-    btnExit.classList.remove("d-none");
+﻿$(document).ready(function () {
+    boot();
 });
 
-btnExit.addEventListener("click", () => {
-    // Remove fullscreen styles from diagram
-    diagramDiv.classList.remove("position-fixed", "top-0", "start-0", "w-100", "h-100", "zindex-tooltip");
-    diagramDiv.style.zIndex = "";
+let myDiagram;
+let myInspector;
+let dialog;
 
-    // Hide the exit fullscreen button
-    btnExit.classList.add("d-none");
-});
 
-function init() {
+const boot = () => {
+    setupFullscreenHandlers();
+    initDiagram();
+    fetchAndRenderOrganize();
+};
+
+
+const setupFullscreenHandlers = () => {
+    const diagramDiv = document.getElementById("myDiagramDiv");
+    const btnToggle = document.getElementById("fullscreenToggle");
+    const btnExit = document.getElementById("exitFullscreenBtn");
+    if (!diagramDiv || !btnToggle || !btnExit) return;
+
+    btnToggle.addEventListener("click", () => {
+        diagramDiv.classList.add("position-fixed", "top-0", "start-0", "w-100", "h-100", "zindex-tooltip");
+        diagramDiv.style.zIndex = "1055";
+        btnExit.classList.remove("d-none");
+    });
+
+    btnExit.addEventListener("click", () => {
+        diagramDiv.classList.remove("position-fixed", "top-0", "start-0", "w-100", "h-100", "zindex-tooltip");
+        diagramDiv.style.zIndex = "";
+        btnExit.classList.add("d-none");
+    });
+};
+
+const fetchOrganize = (request) => {
+    return new Promise((resolve, reject) => {
+        apiHelper.post(
+            '/Organize/Select-Organize-Filter',
+            request,
+            function (res) { resolve(res); },
+            function (err) { reject(err); }
+        );
+    });
+};
+
+const mapOrganizeToNodes = (list) => {
+    return (Array.isArray(list) ? list : []).map(item => ({
+        key: item.user_id,
+        code: item.user_code,
+        name: item.full_name,
+        title: item.title,
+        position: item.position,
+        section: item.section,
+        dept: item.dept,
+        group: item.group,
+        pic: item.avatar || '',
+        email: item.email,
+        phone: item.phone,
+        parent: item.parent_id || undefined
+    }));
+};
+
+const renderDiagramModel = (nodeDataArray) => {
+    myDiagram.model = new go.TreeModel(nodeDataArray);
+    let lastkey = 1;
+    myDiagram.model.makeUniqueKeyFunction = (model, data) => {
+        let k = data.key || lastkey;
+        while (model.findNodeDataForKey(k)) k++;
+        data.key = lastkey = k;
+        return k;
+    };
+};
+
+const fetchAndRenderOrganize = async () => {
+    const request = { TextSearch: '', PageNumber: 1, PageSize: 1000 };
+    try {
+        const res = await fetchOrganize(request);
+        const list = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+        const nodes = mapOrganizeToNodes(list);
+        renderDiagramModel(nodes);
+    } catch (err) {
+        console.error('Không thể tải dữ liệu sơ đồ tổ chức:', err);
+        if (typeof toastr !== 'undefined' && toastr?.error) {
+            toastr.error('Không tải được dữ liệu sơ đồ tổ chức');
+        }
+    }
+};
+
+
+const initDiagram = () => {
     myDiagram = new go.Diagram('myDiagramDiv', {
         allowCopy: false,
         allowDelete: false,
@@ -457,255 +524,42 @@ function init() {
     }).add(new go.Shape({ strokeWidth: 2 }).theme('stroke', 'link')); // the link shape
 
     // read in the JSON-format data from the "mySavedModel" element
-    load();
+    fetchAndRenderOrganize();
 
     // support editing the properties of the selected person in HTML
-    myInspector = new Inspector('myInspector', myDiagram, {
-        properties: {
-            key: { readOnly: true },
-            // Don't show these temporary data values
-            EMAIL: { show: false },
-            PHONE: { show: false }
-        }
-    });
-} // end init
+    if (typeof Inspector !== 'undefined') {
+        myInspector = new Inspector('myInspector', myDiagram, {
+            properties: {
+                key: { readOnly: true },
+                // Don't show these temporary data values
+                EMAIL: { show: false },
+                PHONE: { show: false }
+            }
+        });
+    } else {
+        console.warn('Inspector add-on is not loaded. Skipping inspector initialization.');
+    }
+}; // end init
 
-function save() {
+const save = () => {
     document.getElementById('mySavedModel').value = myDiagram.model.toJson();
     myDiagram.isModified = false;
-}
+};
 
-function changeTheme() {
+const changeTheme = () => {
     const myDiagram = go.Diagram.fromDiv('myDiagramDiv');
     if (myDiagram) {
         myDiagram.themeManager.currentTheme = document.getElementById('theme').value;
     }
-}
+};
 
-function load() {
-    const data = {
-        class: "go.TreeModel",
-        nodeDataArray: [
-            {
-                key: 1,
-                name: "Nguyễn Kim Đảng",
-                title: "Trưởng phòng IT",
-                position: "Management",
-                section: "Administration",
-                dept: "IT",
-                group: "Policy",
-                pic: "https://picsum.photos/200/300?random=1",
-                email: "ndang@company.vn",
-                phone: "0901 555 001"
-            },
-            {
-                key: 2,
-                name: "Nguyễn Thái Học",
-                title: "Trưởng nhóm Hạ tầng",
-                position: "Assistant Management",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=2",
-                email: "nhoc@company.vn",
-                phone: "0901 555 002",
-                parent: 1
-            },
-            {
-                key: 3,
-                name: "Nguyễn Thị Thu Hiền",
-                title: "Trưởng nhóm Ứng dụng",
-                position: "Assistant Management",
-                dept: "IT",
-                section: "Software",
-                group: "Application",
-                pic: "https://picsum.photos/200/300?random=3",
-                email: "nhien@company.vn",
-                phone: "0901 555 003",
-                parent: 1
-            },
-            {
-                key: 4,
-                name: "Nguyễn Duy Thanh",
-                title: "Supervior",
-                position: "Senior Staff",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=4",
-                email: "plong@company.vn",
-                phone: "0901 555 004",
-                parent: 2
-            },
-            {
-                key: 5,
-                name: "Hoàng văn Lam",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=5",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 4
-            },
-            {
-                key: 6,
-                name: "Đỗ Ngọc Duy",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=6",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 4
-            },
-            {
-                key: 7,
-                name: "Đỗ Ngọc Duy",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=6",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 4
-            },
-            {
-                key: 8,
-                name: "Nguyễn Phương Nam",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Infrastructure",
-                group: "Hardware",
-                pic: "https://picsum.photos/200/300?random=7",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 4
-            },
-            {
-                key: 9,
-                name: "Vũ Hữu Tuấn",
-                title: "Supervior",
-                position: "Senior Staff",
-                dept: "IT",
-                section: "Application",
-                group: "Application",
-                pic: "https://picsum.photos/200/300?random=9",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 3
-            },
-            {
-                key: 10,
-                name: "Mai Tiên Tiến",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Application",
-                group: "Application",
-                pic: "https://picsum.photos/200/300?random=10",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 9
-            },
-            {
-                key: 11,
-                name: "Trịnh Văn Lộc",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Application",
-                group: "Application",
-                pic: "https://picsum.photos/200/300?random=11",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 9
-            },
-            {
-                key: 12,
-                name: "---------",
-                title: "Trưởng nhóm Policy",
-                position: "Staff",
-                dept: "IT",
-                section: "Policy",
-                group: "Policy",
-                pic: "https://picsum.photos/200/300?random=12",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 1
-            },
-            {
-                key: 13,
-                name: "Trần Đình Khiết",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Policy",
-                group: "Policy",
-                pic: "https://picsum.photos/200/300?random=12",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 14
-            },
-            {
-                key: 14,
-                name: "Đào Duy Hợp",
-                title: "Advisor",
-                position: "Staff",
-                dept: "IT",
-                section: "Policy",
-                group: "Policy",
-                pic: "https://picsum.photos/200/300?random=12",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 12
-            },
-            {
-                key: 15,
-                name: "Nguyễn Cư Sơn",
-                title: "Staff",
-                position: "Staff",
-                dept: "IT",
-                section: "Application",
-                group: "Application",
-                pic: "https://picsum.photos/200/300?random=15",
-                email: "thuy@company.vn",
-                phone: "0901 555 005",
-                parent: 9
-            },
-            
-        ]
-    }
-
-    myDiagram.model = go.Model.fromJson(data);
-
-    // make sure new data keys are unique positive integers
-    let lastkey = 1;
-    myDiagram.model.makeUniqueKeyFunction = (model, data) => {
-        let k = data.key || lastkey;
-        while (model.findNodeDataForKey(k)) k++;
-        data.key = lastkey = k;
-        return k;
-    };
-}
+// removed legacy load(); now using fetchAndRenderOrganize()
 
 // ...existing code...
+// optional: init dialog reference for toasts/modal if needed
 window.addEventListener('DOMContentLoaded', () => {
     dialog = document.querySelector('dialog');
-    dialog.addEventListener('click', (e) => {
-        dialog.close();
-    });
-    // setTimeout only to ensure font is loaded before loading diagram
-    // you may want to use an asset loading library for this
-    // to keep this sample simple, it does not
-    setTimeout(() => {
-        init();
-    }, 300);
+    if (dialog) {
+        dialog.addEventListener('click', () => dialog.close());
+    }
 });

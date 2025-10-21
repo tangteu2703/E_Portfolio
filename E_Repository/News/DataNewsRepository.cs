@@ -24,13 +24,12 @@ namespace E_Repository.News
                 // Convert dynamic to NewsResponse and parse JSON fields
                 var newsResponses = result.Select(item => new NewsResponse
                 {
-                    id = item.id,
+                    news_id = item.id,
                     user_code = item.user_code,
                     title = item.title,
                     contents = item.contents,
                     status = item.status,
                     location = item.location,
-                    privacy_level = item.privacy_level,
                     is_pinned = item.is_pinned,
                     created_at = item.created_at,
                     updated_at = item.updated_at,
@@ -45,11 +44,11 @@ namespace E_Repository.News
                         : new List<string>(),
                     
                     reactions = !string.IsNullOrEmpty(item.reactions_json)
-                        ? JsonConvert.DeserializeObject<List<NewsResponse.ReactionCount>>(item.reactions_json)
-                        : new List<NewsResponse.ReactionCount>(),
+                        ? JsonConvert.DeserializeObject<List<NewsResponse.Reaction>>(item.reactions_json)
+                        : new List<NewsResponse.Reaction>(),
                     
-                    comment_count = item.comment_count,
-                    share_count = item.share_count
+                    comments = item.comment_count,
+                    shares = item.share_count
                 });
 
                 return newsResponses;

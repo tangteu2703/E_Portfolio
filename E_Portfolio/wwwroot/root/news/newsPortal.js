@@ -16,36 +16,27 @@ const init = () => {
 
 // Load news list from API
 async function loadNewsList(page = 1) {
-    try {
-        showLoadingSpinner();
 
-        const response = await fetch(`${API_BASE_URL}/GetNewsList?page_index=${page}&page_size=${pageSize}`, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${getAuthToken()}`,
-                'Content-Type': 'application/json'
-            }
+    showLoadingSpinner();
+
+    await apiHelper.get(`/News/Select-news`, {},
+        function (response) {
+            const payload = Array.isArray(response?.data) ? response.data : (Array.isArray(response) ? response : []);
+            const normalized = normalizeNewsResponse(payload);
+            renderNews(normalized);
+            currentPage = page;
+        },
+        function (err) {
+            showError('Không thể tải bài viết. Đang sử dụng dữ liệu demo.');
+            loadDemoData();
         });
 
-        if (!response.ok) {
-            throw new Error('Failed to load news');
-        }
 
-        const data = await response.json();
-        renderNews(data);
-        currentPage = page;
-
-    } catch (error) {
-        console.error('Error loading news:', error);
-        showError('Không thể tải bài viết. Đang sử dụng dữ liệu demo.');
-        // Fallback to demo data
-        loadDemoData();
-    }
 }
 
 // Fallback demo data
 function loadDemoData() {
-    var newsList = [
+    var demo = [
         {
             news_id: 1,
             user_code: "NV001",
@@ -175,7 +166,47 @@ function loadDemoData() {
             ]
         },
     ];
-    renderNews(newsList);
+    const normalized = normalizeNewsResponse(demo);
+    renderNews(normalized);
+}
+
+// Normalize various backend shapes to frontend shape
+function normalizeNewsResponse(list) {
+    return (Array.isArray(list) ? list : []).map(src => {
+        const news_id = src.news_id ?? src.NewsId ?? src.id ?? 0;
+        const user_code = src.user_code ?? src.UserCode ?? '';
+        const title = src.title ?? src.Title ?? '';
+        const contents = src.contents ?? src.Contents ?? src.content ?? '';
+        const enter_time = src.enter_time ?? src.EnterTime ?? src.updated_at ?? src.UpdatedAt ?? new Date().toISOString();
+        const status = src.status ?? src.Status ?? '';
+        const tagging = src.tagging ?? src.Tagging ?? src.tagged_users ?? [];
+        const images = src.images ?? src.Images ?? [];
+        const likesRaw = src.likes ?? src.Likes ?? src.reactions ?? [];
+        const likes = (Array.isArray(likesRaw) ? likesRaw : []).map(l => ({
+            type_id: l.type_id ?? l.TypeId ?? l.reaction_type ?? l.ReactionType ?? 1,
+            count: l.count ?? l.Count ?? 0
+        }));
+        const commentsRaw = src.conments ?? src.Comments ?? src.comment_count ?? [];
+        const conments = (Array.isArray(commentsRaw) ? commentsRaw : []).map(c => ({
+            comment_id: c.comment_id ?? c.CommentId ?? 0,
+            parent_id: c.parent_id ?? c.ParentId ?? 0,
+            user_code: c.user_code ?? c.UserCode ?? '',
+            content: c.content ?? c.Content ?? '',
+            enter_time: c.enter_time ?? c.EnterTime ?? new Date().toISOString(),
+            images: c.images ?? c.Images ?? [],
+            likes: (Array.isArray(c.likes) ? c.likes : (Array.isArray(c.Likes) ? c.Likes : [])).map(l => ({
+                type_id: l.type_id ?? l.TypeId ?? 1,
+                count: l.count ?? l.Count ?? 0
+            }))
+        }));
+        const sharedRaw = src.shared ?? src.Shared ?? [];
+        const shared = (Array.isArray(sharedRaw) ? sharedRaw : []).map(s => ({
+            user_code: s.user_code ?? s.UserCode ?? '',
+            enter_time: s.enter_time ?? s.EnterTime ?? new Date().toISOString()
+        }));
+
+        return { news_id, user_code, title, contents, enter_time, status, tagging, images, likes, conments, shared };
+    });
 }
 
 // Helper functions
@@ -399,6 +430,29 @@ async function toggleReaction(newsId, reactionType) {
     }
 }
 
+// Share post
+async function shareNews(newsId, shareContent = null) {
+    try {
+        const response = await fetch(`${API_BASE_URL}/Share/${newsId}`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getAuthToken()}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(shareContent)
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to share');
+        }
+
+        showSuccess('Đã chia sẻ bài viết');
+    } catch (error) {
+        console.error('Error sharing post:', error);
+        showError('Không thể chia sẻ bài viết');
+    }
+}
+
 // Helper: Format time ago
 const formatTimeAgo = (dateString) => {
     const date = new Date(dateString);
@@ -450,7 +504,7 @@ const renderImages = (images) => {
             <div class="row g-2 mb-4">
                 <div class="col-12">
                     <a class="d-block card-rounded overlay h-300px h-md-400px" data-fslightbox="lightbox-projects">
-                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-100" style="background-image:url('')"></div>
+                        <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded h-100" style="background-image:url('${images[0]}')"></div>
                         <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
                             <i class="ki-duotone ki-eye fs-3x text-white"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                         </div>
@@ -608,10 +662,10 @@ const renderTopComments = (comments, newsId) => {
     return html;
 };
 
-const renderNews = (newsList) => {
+const renderNews = (list) => {
     const newsContainer = $('#kt_social_feeds_posts');
     newsContainer.empty();
-    newsList = newsList;
+    newsList = list;
     newsList.forEach(news => {
         const userInfo = getUserInfo(news.user_code);
         const timeAgo = formatTimeAgo(news.enter_time);
@@ -677,7 +731,7 @@ const renderNews = (newsList) => {
 
                     <!-- Actions -->
                     <div class="d-flex justify-content-around mb-4">
-                        <button class="btn btn-sm btn-light btn-color-gray-700 btn-active-light-primary flex-fill me-2">
+                        <button class="btn btn-sm btn-light btn-color-gray-700 btn-active-light-primary flex-fill me-2 btn-like" data-news-id="${news.news_id}" data-reaction="1">
                             <i class="ki-duotone ki-heart fs-2 me-1"><span class="path1"></span><span class="path2"></span></i>
                             Thích
                         </button>
@@ -685,7 +739,7 @@ const renderNews = (newsList) => {
                             <i class="ki-duotone ki-message-text-2 fs-2 me-1"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
                             Bình luận
                         </button>
-                        <button class="btn btn-sm btn-light btn-color-gray-700 btn-active-light-primary flex-fill">
+                        <button class="btn btn-sm btn-light btn-color-gray-700 btn-active-light-primary flex-fill btn-share" data-news-id="${news.news_id}">
                             <i class="ki-duotone ki-share fs-2 me-1"><span class="path1"></span><span class="path2"></span></i>
                             Chia sẻ
                         </button>
@@ -708,12 +762,12 @@ const renderNews = (newsList) => {
                             <img class="user_avatar rounded-circle" alt="Avatar" src="" />
                         </div>
                         <div class="position-relative flex-grow-1">
-                            <input type="text" class="form-control form-control-solid rounded-pill ps-4 pe-12" placeholder="Viết bình luận..." />
+                            <input type="text" class="form-control form-control-solid rounded-pill ps-4 pe-12 comment-input" placeholder="Viết bình luận..." data-news-id="${news.news_id}" />
                             <div class="position-absolute top-50 end-0 translate-middle-y me-3">
                                 <button class="btn btn-icon btn-sm btn-light-primary rounded-circle p-0 me-1" title="Đính kèm ảnh">
                                     <i class="ki-duotone ki-picture fs-2"><span class="path1"></span><span class="path2"></span></i>
                                 </button>
-                                <button class="btn btn-icon btn-sm btn-light-primary rounded-circle p-0" title="Gửi">
+                                <button class="btn btn-icon btn-sm btn-light-primary rounded-circle p-0 btn-comment-send" title="Gửi" data-news-id="${news.news_id}">
                                     <i class="ki-duotone ki-send fs-2"><span class="path1"></span><span class="path2"></span></i>
                                 </button>
                             </div>
@@ -726,11 +780,32 @@ const renderNews = (newsList) => {
         newsContainer.append(newsCard);
     });
 
-    // Add click event for viewing post detail
-    $('.view-post-detail').on('click', function (e) {
+    // Events
+    newsContainer.off('click.view-detail').on('click.view-detail', '.view-post-detail', function (e) {
         e.preventDefault();
         const newsId = $(this).data('news-id');
         viewPostDetail(newsId);
+    });
+    newsContainer.off('click.like').on('click.like', '.btn-like', async function () {
+        const newsId = $(this).data('news-id');
+        const type = $(this).data('reaction') || 1;
+        await toggleReaction(newsId, type);
+        loadNewsList(currentPage);
+    });
+    newsContainer.off('click.share').on('click.share', '.btn-share', async function () {
+        const newsId = $(this).data('news-id');
+        const text = prompt('Nhập lời nhắn khi chia sẻ (tuỳ chọn):', '');
+        await shareNews(newsId, text);
+        loadNewsList(currentPage);
+    });
+    newsContainer.off('click.comment').on('click.comment', '.btn-comment-send', async function () {
+        const newsId = $(this).data('news-id');
+        const input = $(this).closest('.position-relative').find('.comment-input');
+        const content = input.val();
+        if (!content) return;
+        await addComment(newsId, content);
+        input.val('');
+        loadNewsList(currentPage);
     });
 }
 
