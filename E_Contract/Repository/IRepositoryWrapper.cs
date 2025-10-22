@@ -48,6 +48,7 @@ namespace E_Contract.Repository
         #region Device
         IDeviceManagementRepository DeviceManagement { get; }
         IDeviceTypeRepository DeviceType { get; }
+        IDeviceRequestRepository DeviceRequest { get; }
         #endregion
 
         #region News

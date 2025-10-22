@@ -77,12 +77,16 @@ namespace E_Repository
         public ITaskHistoriedRepository TaskHistoried => _TaskHistoried ??= new TaskHistoriedRepository();
 
         #endregion
+
         #region Device
         private IDeviceManagementRepository _DeviceManagement;
         public IDeviceManagementRepository DeviceManagement => _DeviceManagement ??= new DeviceManagementRepository();
 
         private IDeviceTypeRepository _DeviceType;
         public IDeviceTypeRepository DeviceType => _DeviceType ??= new DeviceTypeRepository();
+
+        private IDeviceRequestRepository _DeviceRequest;
+        public IDeviceRequestRepository DeviceRequest => _DeviceRequest ??= new DeviceRequestRepository();
         #endregion
 
         #region News

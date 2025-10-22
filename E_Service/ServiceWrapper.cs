@@ -84,6 +84,8 @@ namespace E_Service
         public IDeviceManagementService DeviceManagement => _DeviceManagement.Value;
         private Lazy<DeviceTypeService> _DeviceType => new(() => new DeviceTypeService(_repositoryWrapper));
         public IDeviceTypeService DeviceType => _DeviceType.Value;
+        private Lazy<DeviceRequestService> _DeviceRequest => new(() => new DeviceRequestService(_repositoryWrapper));
+        public IDeviceRequestService DeviceRequest => _DeviceRequest.Value;
         #endregion
 
         #region News

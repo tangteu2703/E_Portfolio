@@ -8,8 +8,8 @@ namespace E_Model.Request.Device
 {
     public class DeviceRequest : PaginationRequest
     {
-        public int? type_id { get; set; } = null;
+        public string? department { get; set; } 
 
-        public int? status_id { get; set; } = null;
+        public string? status { get; set; }
     }
 }

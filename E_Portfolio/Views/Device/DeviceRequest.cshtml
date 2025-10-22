@@ -3,6 +3,10 @@
     ViewData["Title"] = "E - Device Request";
 }
 
+@section Styles {
+    <link href="~/assetscms/css/device/device-request.css" rel="stylesheet" />
+}
+
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <div class="d-flex flex-column flex-column-fluid">
         <!-- Toolbar -->
@@ -19,9 +23,9 @@
                             <li class="breadcrumb-item"><i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i></li>
                             <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Thiết bị</li>
                             <li class="breadcrumb-item"><i class="ki-duotone ki-right fs-4 text-gray-700 mx-n1"></i></li>
-                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">IT Request</li>
+                            <li class="breadcrumb-item text-gray-700 fw-bold lh-1">Yêu cầu thiết bị</li>
                         </ul>
-                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">Yêu cầu - bàn giao thiết bị</h1>
+                        <h1 class="page-heading d-flex flex-column justify-content-center text-gray-900 fw-bolder fs-1 lh-0">Yêu cầu thiết bị</h1>
                     </div>
                     <div class="d-flex mb-4">
                         <button type="button" class="btn btn-sm btn-success me-2" id="btn_new_request">
@@ -39,11 +43,10 @@
         </div>
 
         <!-- Content -->
-        <div id="kt_app_content" class="app-content flex-column-fluid">
+        <div id="kt_app_content" class="app-content flex-column-fluid ps-0">
             <div id="kt_app_content_container" class="app-container container-fluid">
-                <div class="row g-5">
-                    <!-- Left: Request List -->
-                    <div class="col-lg-12">
+                <div class="row">
+                    <div class="row">
                         <!-- Filters -->
                         <div class="card-header border-0">
                             <div class="w-100">
@@ -56,77 +59,97 @@
                                     <button class="btn btn-sm btn-light-dark filter-tab" data-filter="Done">Done <span class="badge badge-sm badge-circle badge-dark ms-1" id="count_closed">0</span></button>
                                     <button class="btn btn-sm btn-light-danger filter-tab" data-filter="Rejected">Rejected <span class="badge badge-sm badge-circle badge-danger ms-1" id="count_rejected">0</span></button>
                                 </div>
-                                <div class="position-relative">
-                                    <i class="ki-duotone ki-magnifier fs-3 position-absolute top-50 translate-middle-y ms-3"></i>
-                                    <input type="text" id="txt_search_request" class="form-control form-control-sm ps-10" placeholder="Type here to search...">
+                                <div class="position-relative row">
+                                    <input type="text" id="txt_search_request" class="col-md-9 form-control form-control-sm ps-5" placeholder="Type here to search...">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="card card-flush h-100">
-
+                    <!-- Resizable Split Layout using Bootstrap classes -->
+                    <div class="d-flex split-container" id="split_container" style="height: calc(100vh - 18rem); overflow: hidden;">
+                        <!-- Left: Filters and Request List -->
+                        <div class="split-panel flex-fill overflow-hidden position-relative" style="min-width: 25rem;" id="split_left">
                             <!-- Request List -->
-                            <div class="card-body pt-3 px-0 overflow-auto" style="max-height: 70vh;" id="request_list_container">
-                                <!-- Dynamic list will be rendered here -->
+                            <div class="card card-flush h-100">
+                                <div class="card-body pt-3 px-0 overflow-auto" id="request_list_container">
+                                    <!-- Dynamic list will be rendered here -->
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Right: Request Detail -->
-                    <div class="col-lg-6">
-                        <div class="card card-flush h-100">
-                            <div class="card-header border-0 pt-5">
-                                <h3 class="card-title align-items-start flex-column">
-                                    <span class="card-label fw-bold text-gray-800" id="detail_request_code">Select a request</span>
-                                    <span class="text-muted mt-1 fw-semibold fs-7" id="detail_request_title"></span>
-                                </h3>
-                                <div class="card-toolbar">
-                                    <button class="btn btn-sm btn-success me-2 d-none" id="btn_approve"><i class="ki-duotone ki-check fs-4"></i> Approve</button>
-                                    <button class="btn btn-sm btn-light-primary me-2 d-none" id="btn_view"><i class="ki-duotone ki-eye fs-4"></i> View</button>
-                                    <button class="btn btn-sm btn-light-primary me-2 d-none" id="btn_edit"><i class="ki-duotone ki-pencil fs-4"></i> Edit</button>
-                                    <button class="btn btn-sm btn-light-danger d-none" id="btn_delete"><i class="ki-duotone ki-trash fs-4"></i></button>
-                                </div>
+                        <!-- Resizer Handle -->
+                        <div class="split-resizer d-flex align-items-center justify-content-center" id="split_resizer">
+                            <div class="resizer-handle rounded">
+                                <i class="ki-duotone ki-setting-3 fs-2 text-muted"></i>
                             </div>
-                            <div class="card-body pt-0 overflow-auto" style="max-height: 65vh;" id="request_detail_container">
-                                <div class="text-center text-muted py-10">
-                                    <i class="ki-duotone ki-document fs-3x text-gray-400"><span class="path1"></span><span class="path2"></span></i>
-                                    <p class="mt-3">Select a request from the list to view details</p>
-                                </div>
-                            </div>
+                        </div>
 
-                            <!-- Progress Footer -->
-                            <div class="card-footer border-top py-4 d-none" id="progress_container">
-                                <div class="d-flex align-items-center justify-content-between position-relative">
-                                    <!-- Step A -->
-                                    <div class="flex-fill text-center position-relative" data-step="1">
-                                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width:40px;height:40px;z-index:2;" data-step-icon="1">A</div>
-                                        <div class="mt-2 small text-muted">REQUEST</div>
-                                        <div class="small text-muted">By requester</div>
+                        <!-- Right: Request Detail -->
+                        <div class="split-panel flex-fill overflow-hidden position-relative" style="min-width: 25rem;" id="split_right">
+                            <div class="card card-flush h-100">
+                                <div class="card-header border-0 pt-5">
+                                    <h3 class="card-title align-items-start flex-column">
+                                        <span class="card-label fw-bold text-gray-800" id="detail_request_code">Select a request</span>
+                                        <span class="text-muted mt-1 fw-semibold fs-7" id="detail_request_title"></span>
+                                    </h3>
+                                    <div class="card-toolbar d-flex flex-wrap gap-2 justify-content-end">
+                                        <!-- Critical Actions (Approve/Reject/Delete) -->
+                                        <div class="btn-group" role="group" aria-label="Critical actions">
+                                            <button class="btn btn-sm btn-danger d-none" id="btn_reject" title="Reject Request" aria-describedby="reject-help">
+                                                Reject
+                                            </button>
+                                            <button class="btn btn-sm btn-success d-none" id="btn_approve" title="Approve Request" aria-describedby="approve-help">
+                                                Approve
+                                            </button>
+                                            <button class="btn btn-sm btn-light d-none" id="btn_delete" title="Delete Request" aria-describedby="delete-help">
+                                                Cancel
+                                            </button>
+                                            <button class="btn btn-sm btn-primary" id="btn_view" title="View Details" aria-describedby="view-help">
+                                                View
+                                            </button>
+                                        </div>
                                     </div>
-                                    <!-- Step B -->
-                                    <div class="flex-fill text-center position-relative" data-step="2">
-                                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width:40px;height:40px;z-index:2;" data-step-icon="2">B</div>
-                                        <div class="mt-2 small text-muted">ADMIT</div>
-                                        <div class="small text-muted">By manager</div>
+                                </div>
+                                <div class="card-body pt-0 overflow-auto" id="request_detail_container">
+                                    <div class="text-center text-muted py-10">
+                                        <i class="ki-duotone ki-document fs-3x text-gray-400"><span class="path1"></span><span class="path2"></span></i>
+                                        <p class="mt-3">Select a request from the list to view details</p>
                                     </div>
-                                    <!-- Step C -->
-                                    <div class="flex-fill text-center position-relative" data-step="3">
-                                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width:40px;height:40px;z-index:2;" data-step-icon="3">C</div>
-                                        <div class="mt-2 small text-muted">ACCEPTANCE</div>
-                                        <div class="small text-muted">By IT manager</div>
-                                    </div>
-                                    <!-- Step D -->
-                                    <div class="flex-fill text-center position-relative" data-step="4">
-                                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width:40px;height:40px;z-index:2;" data-step-icon="4">D</div>
-                                        <div class="mt-2 small text-muted">COMPLETION</div>
-                                        <div class="small text-muted">By assigned IT</div>
-                                    </div>
-                                    <!-- Step E -->
-                                    <div class="flex-fill text-center position-relative" data-step="5">
-                                        <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width:40px;height:40px;z-index:2;" data-step-icon="5">E</div>
-                                        <div class="mt-2 small text-muted">CONFIRMATION</div>
-                                        <div class="small text-muted">By requester</div>
+                                </div>
+
+                                <!-- Progress Footer -->
+                                <div class="card-footer border-top py-4 d-none" id="progress_container">
+                                    <div class="d-flex align-items-center justify-content-between position-relative">
+                                        <!-- Step A -->
+                                        <div class="flex-fill text-center position-relative" data-step="1">
+                                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-step-icon="1">A</div>
+                                            <div class="mt-2 small text-muted">REQUEST</div>
+                                            <div class="small text-muted">By requester</div>
+                                        </div>
+                                        <!-- Step B -->
+                                        <div class="flex-fill text-center position-relative" data-step="2">
+                                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-step-icon="2">B</div>
+                                            <div class="mt-2 small text-muted">ADMIT</div>
+                                            <div class="small text-muted">By manager</div>
+                                        </div>
+                                        <!-- Step C -->
+                                        <div class="flex-fill text-center position-relative" data-step="3">
+                                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-step-icon="3">C</div>
+                                            <div class="mt-2 small text-muted">ACCEPTANCE</div>
+                                            <div class="small text-muted">By IT manager</div>
+                                        </div>
+                                        <!-- Step D -->
+                                        <div class="flex-fill text-center position-relative" data-step="4">
+                                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-step-icon="4">D</div>
+                                            <div class="mt-2 small text-muted">COMPLETION</div>
+                                            <div class="small text-muted">By assigned IT</div>
+                                        </div>
+                                        <!-- Step E -->
+                                        <div class="flex-fill text-center position-relative" data-step="5">
+                                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-step-icon="5">E</div>
+                                            <div class="mt-2 small text-muted">CONFIRMATION</div>
+                                            <div class="small text-muted">By requester</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -137,7 +160,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal: Create/Edit Request -->
 <div class="modal fade" id="modal_request_form" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
@@ -229,6 +251,16 @@
             </div>
         </div>
     </div>
+</div>
+
+
+<!-- Hidden help text for screen readers -->
+<div class="visually-hidden">
+    <div id="view-help">View detailed information about the selected request</div>
+    <div id="edit-help">Edit the selected request details</div>
+    <div id="approve-help">Approve the selected request to proceed to next step</div>
+    <div id="reject-help">Reject the selected request with a reason</div>
+    <div id="delete-help">Delete the selected request (cannot be undone)</div>
 </div>
 
 @section Scripts {

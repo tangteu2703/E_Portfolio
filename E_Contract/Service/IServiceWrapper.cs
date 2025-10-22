@@ -46,6 +46,7 @@ namespace E_Contract.Service
         #region Device
         IDeviceTypeService DeviceType { get; }
         IDeviceManagementService DeviceManagement { get; }
+        IDeviceRequestService DeviceRequest { get; }
         #endregion
 
         #region News
