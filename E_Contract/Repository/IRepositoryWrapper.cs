@@ -3,6 +3,7 @@ using E_Contract.Repository.Department;
 using E_Contract.Repository.Device;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.Hosted;
+using E_Contract.Repository.Kiot;
 using E_Contract.Repository.News;
 using E_Contract.Repository.User;
 using E_Contract.Repository.WorkSheet;
@@ -53,6 +54,11 @@ namespace E_Contract.Repository
 
         #region News
         IDataNewsRepository News { get; }
+        #endregion
+
+        #region Kiot
+        IKiotCategoryRepository KiotCategory { get; }
+        IKiotMenuRepository KiotMenu { get; }
         #endregion
     }
 }

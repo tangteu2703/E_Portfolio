@@ -1,0 +1,145 @@
+@{
+    Layout = "~/Views/Shared/_Layout_Sale.cshtml";
+}
+
+@section Styles {
+    <link href="~/assets/css/sale.css" rel="stylesheet" />
+}
+
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- Left Panel - Product List -->
+        <div class="col-lg-6 col-xl-6 bg-white border-end">
+            <div class="p-3 border-bottom bg-light sticky-top">
+                <div class="row g-2">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control border-start-0 ps-0" id="searchProduct" placeholder="Tìm kiếm sản phẩm...">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex gap-2">
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">Tất cả danh mục</option>
+                                <option value="1">Combo khuyến mãi</option>
+                                <option value="2">Sản phẩm chính</option>
+                                <option value="3">Nước uống</option>
+                                <option value="4">Sản phẩm khác</option>
+                            </select>
+                            <button class="btn btn-outline-primary" type="button">
+                                <i class="bi bi-funnel"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Navigation -->
+            <ul class="nav nav-tabs px-3 pt-3 border-0" id="productTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-semibold" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab">
+                        <i class="bi bi-grid-3x3-gap me-1"></i> Tất cả
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-semibold" id="combo-tab" data-bs-toggle="tab" data-bs-target="#combo" type="button" role="tab">
+                        <i class="bi bi-gift me-1"></i> Combo
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-semibold" id="drink-tab" data-bs-toggle="tab" data-bs-target="#drink" type="button" role="tab">
+                        <i class="bi bi-cup-straw me-1"></i> Nước uống
+                    </button>
+                </li>
+            </ul>
+
+            <!-- Product Grid -->
+            <div class="tab-content p-3" id="productTabContent" style="height: calc(100vh - 200px); overflow-y: auto;">
+                <div class="tab-pane fade show active" id="all" role="tabpanel">
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3" id="productGrid">
+                        <!-- Product Cards will be dynamically loaded from API -->
+                        <div class="col-12 text-center py-5">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Đang tải...</span>
+                            </div>
+                            <p class="mt-3 text-muted">Đang tải sản phẩm...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="combo" role="tabpanel">
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3" id="comboGrid">
+                        <!-- Combo products will be loaded here -->
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="drink" role="tabpanel">
+                    <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-3" id="drinkGrid">
+                        <!-- Drink products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Panel - Cart & Checkout -->
+        <div class="col-lg-6 col-xl-6 bg-light">
+            <div class="d-flex flex-column h-100" style="height: calc(100vh - 72px);">
+                <!-- Order Tabs Header -->
+                <div class="p-2 bg-primary text-white">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0 fw-bold">
+                            <i class="bi bi-receipt me-2"></i>Quản lý đơn hàng
+                        </h6>
+                        <!-- Dropdown for table selection -->
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-light dropdown-toggle" type="button" id="tableDropdown" 
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-plus-lg me-1"></i>Đơn mới
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end table-dropdown-menu" aria-labelledby="tableDropdown">
+                                <li class="dropdown-header fw-bold">
+                                    <i class="bi bi-table me-1"></i>Chọn bàn
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li class="table-grid-container">
+                                    <div class="table-grid" id="tableGrid">
+                                        <!-- Tables 1-20 will be generated by JS -->
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="javascript:void(0)" onclick="selectTable('takeaway')">
+                                        <i class="bi bi-bag-check text-success me-2"></i>
+                                        <strong>Mang về</strong>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Order Tabs Navigation -->
+                    <ul class="nav nav-pills order-tabs-nav" id="orderTabs" role="tablist">
+                        <!-- Tabs will be dynamically created -->
+                    </ul>
+                </div>
+
+                <!-- Order Tabs Content -->
+                <div class="tab-content flex-grow-1" id="orderTabsContent" style="overflow: hidden;">
+                    <!-- Empty state when no orders -->
+                    <div class="h-100 align-items-center justify-content-center text-muted" id="emptyState">
+                        <div class="text-center">
+                            <i class="bi bi-receipt fs-1 d-block mb-3"></i>
+                            <p class="mb-0">Chọn bàn hoặc mang về để bắt đầu</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/root/sale/sale.js"></script>
+}
+

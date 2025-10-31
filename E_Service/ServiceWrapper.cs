@@ -6,6 +6,7 @@ using E_Contract.Service.Department;
 using E_Contract.Service.Device;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.Hosted;
+using E_Contract.Service.Kiot;
 using E_Contract.Service.News;
 using E_Contract.Service.User;
 using E_Contract.Service.WorkSheet;
@@ -15,6 +16,7 @@ using E_Service.Department;
 using E_Service.Device;
 using E_Service.Dictionary;
 using E_Service.Hosted;
+using E_Service.Kiot;
 using E_Service.News;
 using E_Service.User;
 using E_Service.WorkSheet;
@@ -46,7 +48,7 @@ namespace E_Service
 
         private Lazy<IDataApplicationService> _dataApplication => new(() => new DataApplicationService(_repositoryWrapper));
         public IDataApplicationService DataApplication => _dataApplication.Value;
-        
+
         private Lazy<ISysRefreshTokenService> _sysRefreshToken => new(() => new SysRefreshTokenService(_repositoryWrapper));
         public ISysRefreshTokenService SysRefreshToken => _sysRefreshToken.Value;
 
@@ -91,6 +93,15 @@ namespace E_Service
         #region News
         private Lazy<DataNewsService> _News => new(() => new DataNewsService(_repositoryWrapper));
         public IDataNewsService News => _News.Value;
+        #endregion
+
+        #region Kiot
+
+        private Lazy<KiotCategoryService> _KiotCategory => new(() => new KiotCategoryService(_repositoryWrapper));
+        public IKiotCategoryService KiotCategory => _KiotCategory.Value;
+
+        private Lazy<KiotMenuService> kiotMenu => new(() => new KiotMenuService(_repositoryWrapper));
+        public IKiotMenuService KiotMenu => kiotMenu.Value;
         #endregion
 
     }

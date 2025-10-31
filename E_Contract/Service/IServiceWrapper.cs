@@ -4,6 +4,7 @@ using E_Contract.Service.Department;
 using E_Contract.Service.Device;
 using E_Contract.Service.Dictionary;
 using E_Contract.Service.Hosted;
+using E_Contract.Service.Kiot;
 using E_Contract.Service.News;
 using E_Contract.Service.User;
 using E_Contract.Service.WorkSheet;
@@ -14,7 +15,7 @@ namespace E_Contract.Service
     {
         #region Authentication
 
-        IMenuService Menu{ get; }
+        IMenuService Menu { get; }
         ITokenService TokenService { get; }
         IDataApiService DataApi { get; }
         IDataApplicationService DataApplication { get; }
@@ -51,6 +52,11 @@ namespace E_Contract.Service
 
         #region News
         IDataNewsService News { get; }
+        #endregion
+
+        #region Kiot
+        IKiotCategoryService KiotCategory { get; }
+        IKiotMenuService KiotMenu { get; }
         #endregion
 
     }

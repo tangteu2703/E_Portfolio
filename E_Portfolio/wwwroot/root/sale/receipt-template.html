@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hóa đơn {{orderNumber}}</title>
+    <style>
+        :root {
+            --primary: #111;
+            --muted: #666;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #000;
+            margin: 0;
+            padding: 16px;
+        }
+
+        .receipt {
+            max-width: 320px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+            .header .brand {
+                font-weight: 700;
+                font-size: 16px;
+            }
+
+            .header .sub {
+                color: var(--muted);
+                font-size: 12px;
+            }
+
+        .meta {
+            font-size: 12px;
+            margin: 10px 0;
+        }
+
+            .meta div {
+                display: flex;
+                justify-content: space-between;
+            }
+
+        hr {
+            border: none;
+            border-top: 1px dashed #999;
+            margin: 10px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th, td {
+            padding: 6px 0;
+            text-align: left;
+        }
+
+            th.qty, td.qty {
+                width: 28px;
+                text-align: right;
+            }
+
+            th.price, td.price {
+                width: 72px;
+                text-align: right;
+            }
+
+        .total-row td {
+            padding-top: 6px;
+        }
+
+        .total-row .label {
+            color: var(--muted);
+        }
+
+        .total-amount {
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 12px;
+        }
+
+        .my-3 {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }   
+
+        /* Watermark */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.07;
+            pointer-events: none;
+            z-index: 0;
+            text-align: center;
+            width: 80%;
+        }
+        .watermark img { max-width: 100%; height: auto; }
+        .watermark .wm-text { font-size: 28px; font-weight: 800; letter-spacing: 2px; color: #000; }
+
+        /* Stacking context for content above watermark */
+        .receipt > *:not(.watermark) { position: relative; z-index: 1; }
+
+        /* QR box */
+        .qr-box {
+            border: 1px dashed #ccc;
+            border-radius: 8px;
+            padding: 8px;
+            text-align: center;
+            margin-top: 8px;
+        }
+        .qr-box .label { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+        .qr-box img { width: 160px; height: 160px; object-fit: contain; }
+        .qr-meta { font-size: 11px; color: var(--muted); margin-top: 6px; }
+        .qr-meta strong { color: var(--primary); }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+
+            .receipt {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+	<div class="receipt">
+		<div class="watermark">{{watermark}}</div>
+		<div class="header">
+			<div class="brand my-3">Thanh Ha New City</div>
+			<div class="sub">HÓA ĐƠN BÁN HÀNG</div>
+		</div>
+
+		<div class="meta">
+			<div><span>Mã đơn:</span><strong>{{orderNumber}}</strong></div>
+			<div><span>Ngày in:</span><span>{{createdAt}}</span></div>
+			<div><span>Khách hàng:</span><span>{{customerName}}</span></div>
+			<div><span>Nhân viên:</span><span>{{cashierName}}</span></div>
+			{{tableInfo}}
+		</div>
+
+		<hr>
+
+		<table>
+			<thead>
+				<tr>
+					<th>Sản phẩm</th>
+					<th class="qty">SL</th>
+					<th class="price">Thành tiền</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{items}}
+			</tbody>
+		</table>
+
+		<hr>
+
+		<table>
+			<tr class="total-row">
+				<td class="label">Tạm tính</td>
+				<td></td>
+				<td class="price">{{subtotal}}</td>
+			</tr>
+			<tr class="total-row">
+				<td class="label">Giảm giá</td>
+				<td></td>
+				<td class="price">{{discount}}</td>
+			</tr>
+			<tr class="total-row">
+				<td><strong>Tổng cộng</strong></td>
+				<td></td>
+				<td class="price total-amount">{{total}}</td>
+			</tr>
+			{{paymentInfo}}
+		</table>
+
+		<div class="qr-box">
+			<div class="label">Quét mã để thanh toán</div>
+			{{qrImage}}
+			<div class="qr-meta">Ngân hàng: <strong>VPBank</strong> • STK: <strong>2227036888</strong></div>
+		</div>
+
+		<div class="footer">
+			<p>Cảm ơn Quý khách! Hẹn gặp lại.</p>
+		</div>
+	</div>
+
+	<script>
+		// Ensure auto-print once content is loaded in the print window
+		window.addEventListener('load', function(){ setTimeout(function(){ window.print(); }, 50); });
+	</script>
+</body>
+</html>
+
+

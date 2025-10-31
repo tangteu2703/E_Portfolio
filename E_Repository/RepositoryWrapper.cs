@@ -4,6 +4,7 @@ using E_Contract.Repository.Department;
 using E_Contract.Repository.Device;
 using E_Contract.Repository.Dictionary;
 using E_Contract.Repository.Hosted;
+using E_Contract.Repository.Kiot;
 using E_Contract.Repository.News;
 using E_Contract.Repository.User;
 using E_Contract.Repository.WorkSheet;
@@ -12,6 +13,7 @@ using E_Repository.Department;
 using E_Repository.Device;
 using E_Repository.Dictionary;
 using E_Repository.Hosted;
+using E_Repository.Kiot;
 using E_Repository.News;
 using E_Repository.User;
 using E_Repository.WorkSheet;
@@ -92,6 +94,15 @@ namespace E_Repository
         #region News
         private IDataNewsRepository _News;
         public IDataNewsRepository News => _News ??= new DataNewsRepository();
+        #endregion
+
+        #region Kiot
+        private IKiotCategoryRepository _kiotCategory;
+        public IKiotCategoryRepository KiotCategory => _kiotCategory ??= new KiotCategoryRepository();
+        private IKiotMenuRepository kiotMenu;
+        public IKiotMenuRepository KiotMenu=> kiotMenu ??= new KiotMenuRepository();
+
+
         #endregion
 
     }

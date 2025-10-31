@@ -42,6 +42,88 @@
     min-width: 200px
 }
 
+/* Cursor pointer for clickable elements */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Progress Step Styles */
+.progress-step {
+    transition: all 0.3s ease;
+}
+
+.progress-step.clickable-tab:hover {
+    transform: scale(1.05);
+}
+
+.progress-step.clickable-tab:hover [data-modal-step-icon] {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Disabled tab styles */
+.progress-step.disabled-tab {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+}
+
+.progress-step.disabled-tab:hover {
+    transform: none !important;
+}
+
+.progress-step.disabled-tab [data-modal-step-icon] {
+    pointer-events: none;
+}
+
+/* Progress content transition */
+.progress-content {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modal step icon styles */
+[data-modal-step-icon] {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Signature Canvas Styles */
+.signature-canvas-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+}
+
+.signature-canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    touch-action: none;
+    cursor: crosshair;
+}
+
+.signature-canvas:active {
+    cursor: crosshair;
+}
+
+/* Signature card hover effect */
+.card.border-primary:hover,
+.card.border-success:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
 /* Mobile responsive */
 @media (max-width: 768px) {
     .split-resizer {

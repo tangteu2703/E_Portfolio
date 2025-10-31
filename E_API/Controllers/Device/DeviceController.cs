@@ -68,6 +68,7 @@ namespace E_API.Controllers.Device
                 return InternalServerError($"Internal server error: {ex.Message}", ex);
             }
         }
+        
         [LoginAuthorize]
         [HttpGet("Select-Device-Request-Detail")]
         public async Task<IActionResult> GetDeviceRequestDetail(string? request_code)

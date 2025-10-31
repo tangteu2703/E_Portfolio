@@ -10,9 +10,13 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\assetsPortal\media\**" />
+    <Compile Remove="wwwroot\assets\js\**" />
     <Content Remove="wwwroot\assetsPortal\media\**" />
+    <Content Remove="wwwroot\assets\js\**" />
     <EmbeddedResource Remove="wwwroot\assetsPortal\media\**" />
+    <EmbeddedResource Remove="wwwroot\assets\js\**" />
     <None Remove="wwwroot\assetsPortal\media\**" />
+    <None Remove="wwwroot\assets\js\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,8 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\img\sales\" />
     <Folder Include="wwwroot\assets\img\video\" />
-    <Folder Include="wwwroot\assets\js\" />
     <Folder Include="wwwroot\lib\gojs\" />
   </ItemGroup>
 

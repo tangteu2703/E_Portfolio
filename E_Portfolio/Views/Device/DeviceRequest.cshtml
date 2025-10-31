@@ -54,8 +54,8 @@
                                     <button class="btn btn-sm btn-light-primary filter-tab active" data-filter="all">All <span class="badge badge-sm badge-circle badge-primary ms-1" id="count_all">0</span></button>
                                     <button class="btn btn-sm btn-light-warning filter-tab" data-filter="Request">Request <span class="badge badge-sm badge-circle badge-warning ms-1" id="count_accept">0</span></button>
                                     <button class="btn btn-sm btn-light-info filter-tab" data-filter="Approved">Approved <span class="badge badge-sm badge-circle badge-info ms-1" id="count_approved">0</span></button>
-                                    <button class="btn btn-sm btn-light-success filter-tab" data-filter="Confirm">Confirm <span class="badge badge-sm badge-circle badge-success ms-1" id="count_confirm">0</span></button>
                                     <button class="btn btn-sm btn-light-primary filter-tab" data-filter="Ongoing">Ongoing <span class="badge badge-sm badge-circle badge-primary ms-1" id="count_ongoing">0</span></button>
+                                    <button class="btn btn-sm btn-light-success filter-tab" data-filter="Confirm">Confirm <span class="badge badge-sm badge-circle badge-success ms-1" id="count_confirm">0</span></button>
                                     <button class="btn btn-sm btn-light-dark filter-tab" data-filter="Done">Done <span class="badge badge-sm badge-circle badge-dark ms-1" id="count_closed">0</span></button>
                                     <button class="btn btn-sm btn-light-danger filter-tab" data-filter="Rejected">Rejected <span class="badge badge-sm badge-circle badge-danger ms-1" id="count_rejected">0</span></button>
                                 </div>
@@ -170,77 +170,381 @@
                     <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
                 </div>
             </div>
-            <div class="modal-body">
-                <!-- Section A: Request Info -->
-                <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
-                    A. The field for incharge of publication department
-                </div>
-                <div class="row g-3 mb-5">
-                    <div class="col-md-6">
-                        <label class="form-label required">Receive department</label>
-                        <input type="text" class="form-control form-control-sm" id="form_receive_dept" placeholder="IT">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label required">Request No</label>
-                        <input type="text" class="form-control form-control-sm" id="form_request_no" readonly>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label required">Title</label>
-                        <input type="text" class="form-control form-control-sm" id="form_title" placeholder="ĐĂNG KÝ SỬ DỤNG WIFI">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label required">Publication date</label>
-                        <input type="date" class="form-control form-control-sm" id="form_pub_date">
-                    </div>
-                    <div class="col-md-3">
-                        <label class="form-label required">Deadline date</label>
-                        <input type="date" class="form-control form-control-sm" id="form_deadline">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label required">Request department</label>
-                        <input type="text" class="form-control form-control-sm" id="form_req_dept" placeholder="QUALITY CONTROL">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label required">Incharge</label>
-                        <input type="text" class="form-control form-control-sm" id="form_incharge" placeholder="Email">
-                    </div>
-                    <div class="col-12">
-                        <label class="form-label required">Request content</label>
-                        <textarea class="form-control form-control-sm" id="form_content" rows="3" placeholder="HRGA-F2312-V1_Internet_Access_Request"></textarea>
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                <!-- Progress Tab Section (Clickable) -->
+                <div id="modal_progress_tabs" class="mb-5">
+                    <div class="d-flex align-items-center justify-content-between position-relative">
+                        <!-- Step A -->
+                        <div class="flex-fill text-center position-relative cursor-pointer progress-step clickable-tab" data-progress="A" onclick="handleProgressClick('A')">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-primary text-white fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-modal-step-icon="A">A</div>
+                            <div class="mt-2 small fw-bold">REQUEST</div>
+                            <div class="small text-muted">By requester</div>
+                        </div>
+                        <!-- Step B -->
+                        <div class="flex-fill text-center position-relative cursor-pointer progress-step" data-progress="B" onclick="handleProgressClick('B')">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-modal-step-icon="B">B</div>
+                            <div class="mt-2 small text-muted">ADMIT</div>
+                            <div class="small text-muted">By manager</div>
+                        </div>
+                        <!-- Step C -->
+                        <div class="flex-fill text-center position-relative cursor-pointer progress-step" data-progress="C" onclick="handleProgressClick('C')">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-modal-step-icon="C">C</div>
+                            <div class="mt-2 small text-muted">ACCEPTANCE</div>
+                            <div class="small text-muted">By IT manager</div>
+                        </div>
+                        <!-- Step D -->
+                        <div class="flex-fill text-center position-relative cursor-pointer progress-step" data-progress="D" onclick="handleProgressClick('D')">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-modal-step-icon="D">D</div>
+                            <div class="mt-2 small text-muted">COMPLETION</div>
+                            <div class="small text-muted">By assigned IT</div>
+                        </div>
+                        <!-- Step E -->
+                        <div class="flex-fill text-center position-relative cursor-pointer progress-step" data-progress="E" onclick="handleProgressClick('E')">
+                            <div class="d-inline-flex align-items-center justify-content-center rounded-circle bg-light text-muted fw-bold position-relative" style="width: 2.5rem; height: 2.5rem; z-index: 2;" data-modal-step-icon="E">E</div>
+                            <div class="mt-2 small text-muted">CONFIRMATION</div>
+                            <div class="small text-muted">By requester</div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Section B: Equipment Table -->
-                <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
-                    B. Equipment Details
-                </div>
-                <div class="table-responsive mb-5">
-                    <table class="table table-sm table-row-bordered align-middle" id="tbl_equipment">
-                        <thead>
-                            <tr class="fw-bold text-muted bg-light">
-                                <th class="text-center" style="width:50px">No.</th>
-                                <th style="width:150px">Staff NV/ID</th>
-                                <th style="width:200px">Name</th>
-                                <th style="width:180px">Equipment</th>
-                                <th>Purpose</th>
-                                <th style="width:60px">
-                                    <button type="button" class="btn btn-sm btn-icon btn-light-primary" id="btn_add_equipment">
-                                        <i class="ki-duotone ki-plus fs-4"></i>
-                                    </button>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+                <!-- Section A: Request Info (Thông tin yêu cầu thiết bị) -->
+                <div class="progress-content" id="progress_A">
+                    <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
+                        A. Thông tin yêu cầu thiết bị
+                    </div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label required">A.1 Mã yêu cầu</label>
+                            <input type="text" class="form-control form-control-sm" id="form_request_no" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">A.2 Người yêu cầu</label>
+                            <input type="text" class="form-control form-control-sm" id="form_requester_name" placeholder="NV001 - Nguyễn Văn A">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">A.3 Chức vụ</label>
+                            <select class="form-select form-select-sm" id="form_requester_position" data-control="select2">
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                <option value="Trợ lý">Trợ lý</option>
+                                <option value="Phó phòng">Phó phòng</option>
+                                <option value="Trường phòng">Trường phòng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label required">A.4 Phòng ban yêu cầu</label>
+                            <select class="form-select form-select-sm" id="form_req_dept" data-control="select2">
+                                <option value="QUALITY CONTROL">QUALITY CONTROL</option>
+                                <option value="Product">Product</option>
+                                <option value="Sales">Sales</option>
+                                <option value="HR">HR</option>
+                                <option value="Kế toán">Kế toán</option>
+                                <option value="IT">IT</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label required">A.9 Phòng ban nhận</label>
+                            <select class="form-select form-select-sm" id="form_receive_dept" data-control="select2">
+                                <option value="IT">IT</option>
+                                <option value="QUALITY CONTROL">QUALITY CONTROL</option>
+                                <option value="Product">Product</option>
+                                <option value="Sales">Sales</option>
+                                <option value="HR">HR</option>
+                                <option value="Kế toán">Kế toán</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">A.5 Ngày yêu cầu</label>
+                            <input type="date" class="form-control form-control-sm" id="form_pub_date">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">A.6 Hạn hoàn thành</label>
+                            <input type="date" class="form-control form-control-sm" id="form_deadline">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label required">A.7 Tiêu đề</label>
+                            <input type="text" class="form-control form-control-sm" id="form_title" placeholder="ĐĂNG KÝ SỬ DỤNG WIFI">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label required">A.8 Nội dung</label>
+                            <textarea class="form-control form-control-sm" id="form_content" rows="3" placeholder="HRGA-F2312-V1_Internet_Access_Request"></textarea>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Section C: Attachments -->
-                <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
-                    C. Attachments
+                <!-- Section B: Department Approve (Trưởng phòng yêu cầu phê duyệt) -->
+                <div class="progress-content d-none" id="progress_B">
+                    <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
+                        B. Trưởng phòng yêu cầu phê duyệt
+                    </div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label">B.1 Người phê duyệt</label>
+                            <input type="text" class="form-control form-control-sm" id="form_dept_approve_code" placeholder="NV006 - Nguyễn Văn Thành" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">B.2 Chức vụ</label>
+                            <select class="form-select form-select-sm" id="form_dept_approve_position" data-control="select2">
+                                <option value="Trường phòng">Trường phòng</option>
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                <option value="Trợ lý">Trợ lý</option>
+                                <option value="Phó phòng">Phó phòng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">B.3 Trạng thái</label>
+                            <select class="form-select form-select-sm" id="form_dept_approve_status" data-control="select2">
+                                <option value="Request">Request</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">B.4 Ngày phê duyệt</label>
+                            <input type="date" class="form-control form-control-sm" id="form_dept_approve_date">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">B.5 Nội dung phê duyệt</label>
+                            <textarea class="form-control form-control-sm" id="form_dept_approve_content" rows="3" placeholder="Nội dung phê duyệt..."></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <input type="file" class="form-control form-control-sm" id="form_attachments" multiple>
-                    <div class="form-text">Upload related documents (PDF, DOC, XLS, IMG)</div>
+
+                <!-- Section C: IT Manager Approve (Trưởng phòng bàn giao phê duyệt) -->
+                <div class="progress-content d-none" id="progress_C">
+                    <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
+                        C. Trưởng phòng bàn giao phê duyệt
+                    </div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label">C.1 Người phê duyệt</label>
+                            <input type="text" class="form-control form-control-sm" id="form_it_approve_code" placeholder="IT001 - Nguyễn Văn Thành" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">C.2 Chức vụ</label>  <select class="form-select form-select-sm" id="form_it_approve_position" data-control="select2">
+                                <option value="Trường phòng">Trường phòng</option>
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                <option value="Trợ lý">Trợ lý</option>
+                                <option value="Phó phòng">Phó phòng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">C.3 Trạng thái</label>
+                            <select class="form-select form-select-sm" id="form_it_approve_status" data-control="select2">
+                                <option value="Request">Request</option>
+                                <option value="Approved">Approved</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">C.4 Ngày phê duyệt</label>
+                            <input type="date" class="form-control form-control-sm" id="form_it_approve_date">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">C.5 Nội dung phê duyệt</label>
+                            <textarea class="form-control form-control-sm" id="form_it_approve_content" rows="3" placeholder="Nội dung phê duyệt..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section D: Equipment Details (Chi tiết thiết bị yêu cầu) -->
+                <div class="progress-content d-none" id="progress_D">
+                    <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
+                        D. Chi tiết thiết bị yêu cầu
+                    </div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label">D.1 Người thực hiện</label>
+                            <input type="text" class="form-control form-control-sm" id="form_it_confirm_code" placeholder="IT001" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">D.2 Chức vụ</label>
+                            <select class="form-select form-select-sm" id="form_it_confirm_position" data-control="select2">
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                <option value="Trợ lý">Trợ lý</option>
+                                <option value="Phó phòng">Phó phòng</option>
+                                <option value="Trường phòng">Trường phòng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">D.3 Trạng thái thực hiện</label>
+                            <select class="form-select form-select-sm" id="form_it_confirm_status" data-control="select2">
+                                <option value="Ongoing">Ongoing</option>
+                                <option value="Confirm">Confirm</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">D.4 Ngày hoàn thành</label>
+                            <input type="date" class="form-control form-control-sm" id="form_it_confirm_date">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive mb-4">
+                        <table class="table table-sm table-row-bordered align-middle" id="tbl_equipment">
+                            <thead>
+                                <tr class="fw-bold text-muted bg-light">
+                                    <th class="text-center" style="width:50px">STT</th>
+                                    <th style="width:150px">Mã thiết bị</th>
+                                    <th style="width:200px">Tên thiết bị</th>
+                                    <th style="width:80px">Mã</th>
+                                    <th style="width:150px">Tên nhân viên</th>
+                                    <th>Ghi chú</th>
+                                    <th style="width:60px">
+                                        <button type="button" class="btn btn-sm btn-icon btn-light-primary" id="btn_add_equipment">
+                                            <i class="ki-duotone ki-plus fs-4"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">D.5 File đính kèm</label>
+                        <input type="file" class="form-control form-control-sm" id="form_attachments" multiple>
+                        <div class="form-text">Upload related documents (PDF, DOC, XLS, IMG)</div>
+                    </div>
+                </div>
+
+                <!-- Section E: Confirmation (Ký nhận bàn giao thiết bị) -->
+                <div class="progress-content d-none" id="progress_E">
+                    <div class="bg-light-primary border-start border-primary border-3 px-3 py-2 fw-bold mb-4">
+                        E. Ký nhận bàn giao thiết bị
+                    </div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-md-6">
+                            <label class="form-label">E.1 Người nhận</label>
+                            <input type="text" class="form-control form-control-sm" id="form_receiver_code" placeholder="NV001" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">E.2 Chức vụ</label>
+                            <select class="form-select form-select-sm" id="form_receiver_position" data-control="select2">
+                                <option value="Công nhân">Công nhân</option>
+                                <option value="Nhân viên">Nhân viên</option>
+                                <option value="Kỹ thuật viên">Kỹ thuật viên</option>
+                                <option value="Trợ lý">Trợ lý</option>
+                                <option value="Phó phòng">Phó phòng</option>
+                                <option value="Trường phòng">Trường phòng</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">E.3 Ngày nhận</label>
+                            <input type="date" class="form-control form-control-sm" id="form_receiver_date">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">E.4 Trạng thái</label>
+                            <select class="form-select form-select-sm" id="form_receiver_status" data-control="select2">
+                                <option value="Confirm">Confirm</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">E.5 Ghi chú</label>
+                            <textarea class="form-control form-control-sm" id="form_receiver_note" rows="3" placeholder="Ghi chú..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Digital Signatures Section -->
+                    <div class="bg-light-warning border-start border-warning border-3 px-3 py-2 fw-bold mb-4">
+                        E.6 Chữ ký điện tử
+                    </div>
+                    <div class="row g-4 mb-5">
+                        <!-- Deliverer Signature -->
+                        <div class="col-md-6">
+                            <div class="card border border-primary">
+                                <div class="card-header bg-light-primary py-2">
+                                    <h5 class="card-title mb-0 fs-6 fw-bold text-primary">
+                                        <i class="ki-duotone ki-user-tick fs-4 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        Người bàn giao (IT Staff)
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Chọn chữ ký có sẵn</label>
+                                        <select class="form-select form-select-sm" id="form_deliverer_signature_select" data-control="select2">
+                                            <option value="">-- Chọn chữ ký hoặc ký mới --</option>
+                                            <option value="sig_1">Chữ ký mẫu 1</option>
+                                            <option value="sig_2">Chữ ký mẫu 2</option>
+                                            <option value="sig_3">Chữ ký mẫu 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-center mb-2">
+                                        <span class="badge badge-light-primary">HOẶC</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Ký trực tiếp</label>
+                                        <div class="signature-canvas-container border border-primary rounded" style="background-color: #fff;">
+                                            <canvas id="canvas_deliverer_signature" class="signature-canvas" width="400" height="200"></canvas>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-2">
+                                            <button type="button" class="btn btn-sm btn-light-danger flex-fill" onclick="clearSignature('deliverer')">
+                                                <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                Xóa
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-light-primary flex-fill" onclick="saveSignatureAsTemplate('deliverer')">
+                                                <i class="ki-duotone ki-save-2 fs-5"><span class="path1"></span><span class="path2"></span></i>
+                                                Lưu mẫu
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-text text-center">
+                                        <i class="ki-duotone ki-information fs-5 text-primary"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        Vẽ chữ ký bằng chuột hoặc ngón tay
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Receiver Signature -->
+                        <div class="col-md-6">
+                            <div class="card border border-success">
+                                <div class="card-header bg-light-success py-2">
+                                    <h5 class="card-title mb-0 fs-6 fw-bold text-success">
+                                        <i class="ki-duotone ki-profile-user fs-4 me-2"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span></i>
+                                        Người nhận bàn giao (Requester)
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Chọn chữ ký có sẵn</label>
+                                        <select class="form-select form-select-sm" id="form_receiver_signature_select" data-control="select2">
+                                            <option value="">-- Chọn chữ ký hoặc ký mới --</option>
+                                            <option value="sig_1">Chữ ký mẫu 1</option>
+                                            <option value="sig_2">Chữ ký mẫu 2</option>
+                                            <option value="sig_3">Chữ ký mẫu 3</option>
+                                        </select>
+                                    </div>
+                                    <div class="text-center mb-2">
+                                        <span class="badge badge-light-success">HOẶC</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-semibold">Ký trực tiếp</label>
+                                        <div class="signature-canvas-container border border-success rounded" style="background-color: #fff;">
+                                            <canvas id="canvas_receiver_signature" class="signature-canvas" width="400" height="200"></canvas>
+                                        </div>
+                                        <div class="d-flex gap-2 mt-2">
+                                            <button type="button" class="btn btn-sm btn-light-danger flex-fill" onclick="clearSignature('receiver')">
+                                                <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                Xóa
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-light-success flex-fill" onclick="saveSignatureAsTemplate('receiver')">
+                                                <i class="ki-duotone ki-save-2 fs-5"><span class="path1"></span><span class="path2"></span></i>
+                                                Lưu mẫu
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="form-text text-center">
+                                        <i class="ki-duotone ki-information fs-5 text-success"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                                        Vẽ chữ ký bằng chuột hoặc ngón tay
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
